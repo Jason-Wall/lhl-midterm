@@ -6,7 +6,6 @@
  */
 
 const express = require("express");
-const { getUsers } = require("../db/queries/users");
 const router = express.Router();
 const usersdb = require('../db/queries/users')
 

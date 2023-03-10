@@ -7,7 +7,7 @@ $(document).ready(() => {
 
 
 const addNewDiv = () => {
-  $('.test').on('click', () => {
+  $('.discoverMapsTitle').on('click', () => {
     $.ajax({
       type: 'GET',
       url: '/maps',
@@ -16,7 +16,7 @@ const addNewDiv = () => {
         console.log(names);
         for (let entry of names) {
           const newDiv = $('<div>').text(entry.name);
-          $('body').append(newDiv);
+          $('.discoverMapsArea').append(newDiv);
         };
       })
       .catch(function (xhr, status, error) {
