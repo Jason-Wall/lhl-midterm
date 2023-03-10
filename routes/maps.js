@@ -6,10 +6,15 @@
  */
 
 const express = require("express");
+const { getUsers } = require("../db/queries/users");
 const router = express.Router();
+const usersdb = require('../db/queries/users')
 
 router.get("/", (req, res) => {
-  res.send('GET request to the homepage');
+  usersdb.getUsers()
+  .then(users => {
+    res.send(users);
+  })
 });
 
 
@@ -18,3 +23,8 @@ router.get("/", (req, res) => {
 
 
 module.exports = router;
+
+
+
+
+
