@@ -7,7 +7,7 @@
 
 const express = require("express");
 const router = express.Router();
-const usersdb = require('../db/queries/users')
+const usersdb = require('../db/queries/users');
 
 router.get("/", (req, res) => {
   usersdb.getUsers()
@@ -15,6 +15,66 @@ router.get("/", (req, res) => {
     res.send(users);
   })
 });
+
+
+
+
+
+
+// GET / - (logged in?) Home (Summary of maps i’ve created or contributed to, summary of favs)
+//             (not logged) redirect to maps
+
+
+
+
+// GET /maps   - Gets all maps (limit to 10?)
+
+
+
+
+// GET /maps/:id/   - Get individual map
+
+
+
+// GET /maps/:id/:pin - Take you to the pin information
+
+
+
+// GET /maps/:id/edit - Take you to map edit
+
+
+
+// GET /maps/:id/:pin/edit - Take you to the pin edit page
+
+
+
+// POST /maps - Create new map
+
+
+
+// POST  /maps/:id - Create a pin
+
+
+
+// POST /maps/:id/favorite - Add favorite to map.
+
+
+
+// POST/maps/:id/:pin/favorite - Add favorite to pin. (Stretch)
+
+// PATCH /maps/:id - Edit map info (title, cover photo, desc)
+
+
+
+// PATCH /maps/:id/:pin - Edit pin info
+
+
+
+// DELETE /maps/:id - Delete a map
+
+
+
+// DELETE /maps/:id/:pin - Delete a pin
 
 
 

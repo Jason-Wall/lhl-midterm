@@ -5,7 +5,7 @@ $(document).ready(() => {
 
 });
 
-
+//Jasons demo:
 const addNewDiv = () => {
   $('.discoverMapsTitle').on('click', () => {
     $.ajax({
