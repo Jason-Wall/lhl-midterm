@@ -1,31 +1,38 @@
-body {
-display: flex;
-flex-direction: column;
-width:100%;
-}
+/* style main content */
 
-nav {
-  display: flex;
-  justify-content: space-between;
-}
-
-.test {
+.mainContainer {
+  font-family: 'PT Sans', sans-serif;
+  padding-top: 100px;
   display: flex;
   flex-direction: rows;
-  width: 100%;
+  justify-content: space-around;
 }
 
+.discoverMapsTitle {
+  padding: 1em;
+}
 
-main {
+.discoverMapsArea {
+  height: 100000px;
+  width: 33%;
+  margin-left: 2em;
+  margin-right: 1em
+}
+
+.mapArea {
   display: flex;
-  flex-direction: rows;
-  // justify-content: center;
-  // align-items: center;
-  // min-height: 100vh;
-
-  // background: white;
+  justify-content:center;
+  align-items: center;
+  height: 700px;
+  position: sticky;
+  top: 101px;
+  width: 66%;
+  padding: 1em;
+  margin-right: 2em;
+  margin-left: 1em
 }
 
-div {
+//temporary border to see what we are doing
+div, nav {
   border: solid 1px;
 }

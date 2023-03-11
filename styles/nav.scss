@@ -1,0 +1,31 @@
+/* style nav bar */
+
+// font-family: 'Sen', sans-serif;
+// font-family: 'Source Sans Pro', sans-serif;
+
+nav {
+  font-family: 'Sen', sans-serif;
+  font-size: x-large;
+  padding: 1em;
+  background-color: white;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 90px;
+  position: fixed
+}
+
+.logo {
+  margin-left: 1em;
+}
+
+.login {
+  margin-right: 1em;
+}
+
+nav span {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
