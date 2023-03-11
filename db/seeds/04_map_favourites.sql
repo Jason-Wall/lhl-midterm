@@ -1,14 +1,14 @@
 INSERT INTO map_favourites (user_id, map_id)
-VALUES (1, 1)
+VALUES (1, 1);
 
 INSERT INTO map_favourites (user_id, map_id)
-VALUES (2, 2)
+VALUES (2, 2);
 
 INSERT INTO map_favourites (user_id, map_id)
-VALUES (3, 3)
+VALUES (3, 3);
 
 INSERT INTO map_favourites (user_id, map_id)
-VALUES (4, 4)
+VALUES (4, 1);
 
 INSERT INTO map_favourites (user_id, map_id)
-VALUES (5, 5)
+VALUES (5, 2);
