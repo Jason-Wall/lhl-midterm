@@ -12,15 +12,15 @@ router.get("/", (req, res) => {
   res.render("users");
 });
 
-// rather than having a user login, logout or registration, Andy suggested that we do the below:
-app.get("/login/id", (req, res) => {
-  // set an encrypted cookie
-  req.cookies.user_id = req.params.id;
+// // rather than having a user login, logout or registration, Andy suggested that we do the below:
+// app.get("/login/id", (req, res) => {
+//   // set an encrypted cookie
+//   req.cookies.user_id = req.params.id;
 
-  //plaintext cookies
-  res.cookie("user_id", req.params.id);
+//   //plaintext cookies
+//   res.cookie("user_id", req.params.id);
 
-  //res.redirect(‘/’)
-});
+//   //res.redirect(‘/’)
+// });
 
 module.exports = router;
