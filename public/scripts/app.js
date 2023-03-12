@@ -1,7 +1,7 @@
 // Client facing scripts here
 $(document).ready(() => {
   // addNewDiv();  // This is a sample function for SPA. In the future move all functions into their own helper function files.
-  eventListeners(); // This function establishes all initial event listeners around the page. See below.
+  populateMapsList(); // This function establishes all initial event listeners around the page. See below.
 
 
 });
@@ -26,7 +26,7 @@ $(document).ready(() => {
 //   })
 // }
 
-const eventListeners = () => {
+const populateMapsList = () => {
   $('.logo').on('click', () => {
     $.ajax({
       type: 'GET',

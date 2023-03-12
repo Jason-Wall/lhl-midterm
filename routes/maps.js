@@ -34,7 +34,6 @@ const mapsdb = require('../db/queries/mapsdb');
 router.get("/", (req, res) => {
   mapsdb.getMaps()
   .then(maps => {
-    console.log(maps);
     res.send(maps);
   })
 });
