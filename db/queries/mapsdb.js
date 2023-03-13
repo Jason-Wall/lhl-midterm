@@ -10,4 +10,18 @@ const getMaps = () => {
             })
 };
 
-module.exports = { getMaps };
+const getAMap = () => {
+  return db.query('SELECT * FROM maps WHERE maps.id = 4;')
+    .then(data => {
+      return data.rows[0];
+    })
+    .catch(function (xhr, status, error) {
+      console.log("Error: " + error);
+    })
+  };
+
+
+
+module.exports = {
+  getMaps,
+  getAMap };

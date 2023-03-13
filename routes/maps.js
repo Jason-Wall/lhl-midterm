@@ -42,6 +42,12 @@ router.get("/", (req, res) => {
 
 // GET /maps/:id/   - Get individual map
 
+router.get("/:id", (req, res) => {
+  mapsdb.getAMap()
+  .then(map => {
+    res.send(map);
+  })
+});
 
 
 // GET /maps/:id/:pin - Take you to the pin information
