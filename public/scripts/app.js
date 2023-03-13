@@ -3,6 +3,7 @@ $(document).ready(() => {
   // addNewDiv();  // This is a sample function for SPA. In the future move all functions into their own helper function files.
   populateMapsList(); // This function establishes all initial event listeners around the page. See below.
   populateMapArea();
+  renderMapArea();
 });
 
 //Jasons demo:
@@ -24,6 +25,24 @@ $(document).ready(() => {
 //       })
 //   })
 // }
+
+//users example
+// Client facing scripts here
+// $(() => {
+//   $(".login").on("click", () => {
+//     $.ajax({
+//       method: "GET",
+//       url: "/api/users",
+//     }).done((response) => {
+//       const $usersList = $("#users");
+//       $usersList.empty();
+
+//       for (const user of response.users) {
+//         $(`<li class="user">`).text(user.name).appendTo($usersList);
+//       }
+//     });
+//   });
+// });
 
 const populateMapsList = () => {
   $(".logo").on("click", () => {
@@ -51,12 +70,25 @@ const populateMapArea = () => {
   });
 
   //login event listener
-  $(".login").on("click", () => {
-    console.log("event listener:");
+  $(".buttons").on("click", ".login", () => {
     $.ajax({
-      type: "GET",
-      //we can hard code this here and/or enter the id as a parameter in the url
-      url: "/login/1",
+      type: "POST",
+      url: "/users-api/login/1",
+    }).then((response) => {
+      console.log(response);
+      renderNavArea();
+      // renderMemberArea(response.user);
+    });
+  });
+  //the below handler was not working for .logout button because it was created after the document loaded.  I got arround this by targeting the parent .buttons and then adding a second parameter to the .on function of .logout
+  $(".buttons").on("click", ".logout", () => {
+    $.ajax({
+      type: "POST",
+      //change the below to /users/logout
+      url: "/users-api/logout",
+    }).then((response) => {
+      console.log(response);
+      resetNavArea();
     });
   });
 };
