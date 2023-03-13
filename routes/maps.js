@@ -8,13 +8,15 @@
 const express = require("express");
 const router = express.Router();
 const usersdb = require('../db/queries/users');
+const mapsdb = require('../db/queries/mapsdb');
 
-router.get("/", (req, res) => {
-  usersdb.getUsers()
-  .then(users => {
-    res.send(users);
-  })
-});
+// Jasons example function - Note - conflict with below get/
+// router.get("/", (req, res) => {
+//   usersdb.getUsers()
+//   .then(users => {
+//     res.send(users);
+//   })
+// });
 
 
 
@@ -27,8 +29,15 @@ router.get("/", (req, res) => {
 
 
 
-// GET /maps   - Gets all maps (limit to 10?)
+// GET /maps   - Gets all maps
 
+router.get("/", (req, res) => {
+  mapsdb.getMaps()
+  .then(maps => {
+    console.log(maps);
+    res.send(maps);
+  })
+});
 
 
 
