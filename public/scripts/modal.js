@@ -9,7 +9,7 @@ const renderModal = (modalForm, id) => {
 
   $('.modal').on('click', (event) => {
     console.log(event.target)
-    if (event.target == $('.modal')) {
+    if (event.target == $('.modal')[0]) {
       $('.modal').remove();
     }
   });
@@ -20,6 +20,9 @@ const renderModal = (modalForm, id) => {
 // Render Edit Map Form
 const editMapForm = (id) => {
   console.log('edit map form, id:',id)
+
+
+
   const modalDiv = `
   <div class="edit-form">
         <p>this is an edit form</p>
