@@ -1,17 +1,24 @@
-// Renders
+
 const renderMapsList = (maps) => {
-  $('.mapList').remove()
+  $('.mapListContainer').remove()
   for (let map of maps) {
     const newDiv = $(`
-    <div id = '${map.id}' class = 'mapList'>
-      <div>pic</div>
-      <div>
-        <div>${map.map_title}</div>
-        <div>${map.map_description}</div>
-        <i>fav</i>
-        <i>edit</i>
+    <section class="mapListContainer">
+      <div id = '${map.id}' class="mapList">
+        <img class="mapListPic"
+          src=${map.map_url}
+          alt="map image">
+        <div class="mapListDetails">
+          <div>${map.map_title}</div>
+          <div>Created by: Jenny!</div>
+          <div class="mapListIcons">
+            <i class="fa-solid fa-heart"></i>
+            <i class="fa-solid fa-pen-to-square"></i>
+          </div>
+        </div>
       </div>
-    </div>
+      <div>${map.map_description}</div>
+    </section>
     `)
     $('.discoverMapsArea').append(newDiv);
     populateMapArea()
