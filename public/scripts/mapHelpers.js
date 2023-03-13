@@ -48,7 +48,7 @@ const renderMapArea = (map) => {
   mapID = map.id
   lat = 49.281059
   long = -123.119019
-  console.log(map)
+  // console.log(map)
   if ($('.googleMap').length > 0) {
     initMap()
     return;

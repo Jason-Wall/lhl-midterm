@@ -16,3 +16,13 @@
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
 }
+
+.modal-buttons{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.accept, .cancel{
+  border: 1px solid #888;
+  gap: 10px;
+}
