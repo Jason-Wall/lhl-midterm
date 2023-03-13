@@ -8,18 +8,28 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.render("users");
-});
+//favourite pin (stretch)
+router.post("/maps/:id/pin/favourite", (req, res) => {});
 
-// // rather than having a user login, logout or registration, Andy suggested that we do the below:
-app.get("/login/id", (req, res) => {
-  // set an encrypted cookie
-  req.cookies.user_id = req.params.id;
-  //   //plaintext cookies
-  //   res.cookie("user_id", req.params.id);
+//favourite map
+router.post("/maps/:id/favourite", (req, res) => {});
 
-  res.redirect("/");
-});
+//create map
+router.post("/maps/:id/create", (req, res) => {});
+
+//create pin
+router.post("/maps/:id/pin", (req, res) => {});
+
+//edit map info (title, cover photo, desc)
+router.patch("/maps/:id", (req, res) => {});
+
+//edit pin info
+router.patch("/maps/:id/pin", (req, res) => {});
+
+//delete a map
+router.delete("/maps/:id/delete", (req, res) => {});
+
+//delete a pin
+router.delete("/maps/:id/pin/delete", (req, res) => {});
 
 module.exports = router;
