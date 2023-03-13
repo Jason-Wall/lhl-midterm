@@ -21,12 +21,19 @@ const renderMapsList = (maps) => {
     </section>
     `)
     $('.discoverMapsArea').append(newDiv);
+    newDiv.find('.fa-heart').on('click', () => {
+      console.log(`Heart icon clicked for map ID: ${map.id}`);
+    });
+    newDiv.find('.fa-pen-to-square').on('click', () => {
+      renderModal(editMapForm, map.id);
+      console.log(`Edit icon clicked for map ID: ${map.id}`);
+    });
     populateMapArea()
   };
 };
 
 const renderMapArea = () => {
-        const $mapDiv = `
+  const $mapDiv = `
         <div id="googleMap4" style="width:100%;height:100%;"></div>
         <script>
         function initMap() {
@@ -39,6 +46,13 @@ const renderMapArea = () => {
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvCCsFn9dt3dc9kHCrRJvp0D44pNnikvg&callback=initMap"></script>
         `;
-        $('.mapArea').empty();
-        $('.mapArea').append($mapDiv);
+  $('.mapArea').empty();
+  $('.mapArea').append($mapDiv);
 };
+
+
+
+
+
+
+
