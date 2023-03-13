@@ -10,6 +10,7 @@ router.get("/", (req, res) => {
   //   console.log(user);
   //   res.send(user);
   // });
+  // $.class.remove()
 });
 
 module.exports = router;
