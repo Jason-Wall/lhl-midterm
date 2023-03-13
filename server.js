@@ -9,7 +9,7 @@ const morgan = require("morgan");
 const PORT = process.env.PORT || 8080;
 const app = express();
 
-// app.set('view engine', 'ejs');
+// app.set('view engine', 'ejs'); we are not using this, comment it out
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -33,7 +33,7 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 // const userApiRoutes = require("./routes/users-api");
 // const widgetApiRoutes = require("./routes/widgets-api");
-// const usersRoutes = require("./routes/users");
+const homeRoute = require("./routes/home");
 const mapRoutes = require("./routes/maps");
 
 // Mount all resource routes
@@ -41,7 +41,7 @@ const mapRoutes = require("./routes/maps");
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 // app.use("/api/users", userApiRoutes);
 // app.use("/api/widgets", widgetApiRoutes);
-// app.use("/users", usersRoutes);
+app.use("/home", homeRoute);
 app.use("/maps", mapRoutes);
 
 // Note: mount other resources here, using the same pattern above
@@ -53,15 +53,21 @@ app.use("/maps", mapRoutes);
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 
-app.get("/", (req, res) => {
-  const user = req.cookies.user_id;
-  // If logged in, summary of their maps/fav maps/fav pins
-  if (user) {
-    res.redirect("/");
-  }
-  // If not logged in discover maps
-  res.redirect("/maps");
+app.get("/login/:id", (req, res) => {
+  console.log("inside route:");
+  //set plain text cookie
+  res.cookie("user_id", req.params.id);
+  res.redirect("/home");
 });
+
+//please keep this comment here (Jenny) for use in future handlers
+// if (req.cookies.user_id) {
+//   res.redirect("/home");
+// }
+// app.post("/logout", (req, res) => {
+//   res.clearCookie("user_id");
+//   res.redirect("/login");
+// });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
