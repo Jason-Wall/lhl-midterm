@@ -127,7 +127,6 @@ const renderMemberArea = (user) => {
     //receive an object of user data from /myinfo route and use it to populate member page
     $(".myFavPinsTitle").text(`You have ${data.pins.length} pins`);
     for (let map of data.maps) {
-      console.log("maps:", map);
       const $maps = $(`
         <div id = '${map.id}' class="mapList">
           <img class="mapListPic"
@@ -147,15 +146,15 @@ const renderMemberArea = (user) => {
       `);
       $(".myMapsAreaContainer").append($maps);
     }
-    for (let mapFav of data.map_favourites) {
-      const mapId = mapFav.id;
+    for (let mapFav of data.favMaps) {
+      console.log("mapFav", mapFav);
       const $myFavMaps = $(`
-      <div id = '${data.maps[mapId]}' class="mapList">
+      <div id = '${mapFav.map_id}' class="mapList">
         <img class="mapListPic"
-          src=${map.map_url}
+          src=${mapFav.map_url}
           alt="map image">
         <div class="mapListDetails">
-          <div>${map.map_title}</div>
+          <div>${mapFav.map_title}</div>
           <div>Created by: ${data.user[0].name}</div>
           <div class="mapListIcons">
             <i class="fa-solid fa-heart"></i>
@@ -163,7 +162,7 @@ const renderMemberArea = (user) => {
           </div>
         </div>
       </div>
-      <div class"mapDescription">${map.map_description}</div>
+      <div class"mapDescription">${mapFav.map_description}</div>
 
     `);
       $(".myFavMapsAreaContainer").append($myFavMaps);

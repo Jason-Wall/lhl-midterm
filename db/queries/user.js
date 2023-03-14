@@ -28,18 +28,33 @@ const getUserData = (userId) => {
                     .query(`SELECT * FROM users WHERE users.id = $1`, [userId])
                     .then((user) => {
                       console.log(user);
-                      return {
-                        maps: maps.rows,
-                        pins: pins.rows,
-                        pin_favourites: pin_favourites.rows,
-                        map_favourites: map_favourites.rows,
-                        user: user.rows,
-                      };
+                      return db
+                        .query(
+                          `SELECT * FROM maps JOIN map_favourites ON maps.id = map_id WHERE maps.user_id = $1`,
+                          [userId]
+                        )
+                        .then((favMaps) => {
+                          console.log(favMaps);
+                          return {
+                            maps: maps.rows,
+                            pins: pins.rows,
+                            pin_favourites: pin_favourites.rows,
+                            map_favourites: map_favourites.rows,
+                            user: user.rows,
+                            favMaps: favMaps.rows,
+                          };
+                        });
                     });
                 });
             });
         });
     });
 };
+
+// SELECT * FROM maps JOIN map_favourites ON maps.id = map_id WHERE user_id = $1
+// favMaps:
+
+// SELECT * FROM pins JOIN pin_favourites ON pins.id = pin_id WHERE user_id = $1
+// favPins:
 
 module.exports = { getUserData };
