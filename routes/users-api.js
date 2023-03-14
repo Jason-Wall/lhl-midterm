@@ -20,10 +20,10 @@ router.post("/login/:id", (req, res) => {
 
 router.get("/myinfo", (req, res) => {
   const userId = req.cookies.user_id;
+  //3 call getUserData with the userId as a parameter, then 5 send the data receive from the databse to mapHelpers.js .then of renderMemberArea
   getUserData(userId).then((data) => {
-    //3
     console.log("data:", data);
-    res.send(data); //5sends the data to mapHelpers.js renderMemberArea function .then
+    res.send(data);
   });
 });
 

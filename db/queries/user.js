@@ -1,5 +1,6 @@
 const db = require("../connection");
 
+//4this query returns the data to users-api .then of the route /myinfo
 const getUserData = (userId) => {
   return db
     .query(`SELECT * FROM maps WHERE maps.user_id = $1;`, [userId])
@@ -23,17 +24,22 @@ const getUserData = (userId) => {
                 )
                 .then((map_favourites) => {
                   console.log(map_favourites);
-                  return {
-                    maps: maps.rows,
-                    pins: pins.rows,
-                    pin_favourites: pin_favourites.rows,
-                    map_favourites: map_favourites.rows,
-                  };
+                  return db
+                    .query(`SELECT * FROM users WHERE users.id = $1`, [userId])
+                    .then((user) => {
+                      console.log(user);
+                      return {
+                        maps: maps.rows,
+                        pins: pins.rows,
+                        pin_favourites: pin_favourites.rows,
+                        map_favourites: map_favourites.rows,
+                        user: user.rows,
+                      };
+                    });
                 });
             });
         });
     });
 };
-//4this returns the data to users-api
 
 module.exports = { getUserData };

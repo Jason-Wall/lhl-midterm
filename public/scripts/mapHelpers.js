@@ -16,7 +16,7 @@ const renderMapsList = (maps) => {
           </div>
         </div>
       </div>
-      <div>${map.map_description}</div>
+      <div class"mapDescription">${map.map_description}</div>
     </section>
     `);
     $(".discoverMapsArea").append(newDiv);
@@ -100,6 +100,7 @@ const resetNavArea = () => {
 const renderMemberArea = (user) => {
   $(".mainContainer").empty();
   const $memberArea = `
+  <section class="memberAreaContainer">
   <div class="myMapsContainer"><div class="myMapsArea">
   <div class="discoverMapsTitle">My Maps</div>
   <section class="myMapsAreaContainer">
@@ -113,18 +114,61 @@ const renderMemberArea = (user) => {
   <div class="myFavPinsTitle">My fav pins</div>
   <section class="myFavPinsAreaContainer"></section>
 </div>
-</div>`;
+</div>
+  </section>
+`;
   $(".mainContainer").append($memberArea);
   $.ajax({
-    //2
+    //2make an ajax call to get all related user information
     type: "GET",
     url: "/users-api/myinfo",
   }).then((data) => {
     console.log("data:", data);
-    //6this is where the data is ending up and I can create all my new divs
+    //receive an object of user data from /myinfo route and use it to populate member page
     $(".myFavPinsTitle").text(`You have ${data.pins.length} pins`);
-    $(".myMapsAreaContainer").append();
-    $(".myFavMapsAreaContainer").append();
+    for (let map of data.maps) {
+      console.log("maps:", map);
+      const $maps = $(`
+        <div id = '${map.id}' class="mapList">
+          <img class="mapListPic"
+            src=${map.map_url}
+            alt="map image">
+          <div class="mapListDetails">
+            <div>${map.map_title}</div>
+            <div>Created by: ${data.user[0].name}</div>
+            <div class="mapListIcons">
+              <i class="fa-solid fa-heart"></i>
+              <i class="fa-solid fa-pen-to-square"></i>
+            </div>
+          </div>
+        </div>
+        <div class"mapDescription">${map.map_description}</div>
+
+      `);
+      $(".myMapsAreaContainer").append($maps);
+    }
+    for (let mapFav of data.map_favourites) {
+      const mapId = mapFav.id;
+      const $myFavMaps = $(`
+      <div id = '${data.maps[mapId]}' class="mapList">
+        <img class="mapListPic"
+          src=${map.map_url}
+          alt="map image">
+        <div class="mapListDetails">
+          <div>${map.map_title}</div>
+          <div>Created by: ${data.user[0].name}</div>
+          <div class="mapListIcons">
+            <i class="fa-solid fa-heart"></i>
+            <i class="fa-solid fa-pen-to-square"></i>
+          </div>
+        </div>
+      </div>
+      <div class"mapDescription">${map.map_description}</div>
+
+    `);
+      $(".myFavMapsAreaContainer").append($myFavMaps);
+    }
+
     $(".myFavPinsAreaContainer").append();
   });
 };

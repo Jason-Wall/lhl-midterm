@@ -8,6 +8,13 @@
   justify-content: space-around;
 }
 
+.memberAreaContainer {
+  display: flex;
+  flex-direction: rows;
+  justify-content: space-around;
+  width: 93%
+}
+
 .discoverMapsTitle {
   padding: 1em;
 }
@@ -32,9 +39,17 @@
   margin-left: 1em
 }
 
+
+
 .myMapsContainer, .myFavMapsContainer, .myFavPinsContainer {
   height: 700px;
+  width: 33%;
 }
+
+.discoverMapsTitle, .mapList, .mapDescription {
+  margin: 2px
+}
+
 
 //temporary border to see what we are doing
 div, nav {

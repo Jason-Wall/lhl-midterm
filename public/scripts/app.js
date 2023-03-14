@@ -58,21 +58,20 @@ const populateMapsList = () => {
 };
 
 const populateMapArea = (mapID) => {
-  console.log(mapID)
-  $(`#${mapID}`).on('click', () => {
+  console.log(mapID);
+  $(`#${mapID}`).on("click", () => {
     $.ajax({
-      type: 'GET',
-      url: `/maps/${mapID}` //this will be received in the backend route with the help of req.params
+      type: "GET",
+      url: `/maps/${mapID}`, //this will be received in the backend route with the help of req.params
       //data: {mapid: mapID} //This will be received through req.body in the backend route
       // data: {mapid: mapID}
     })
-    .then((map) => {
-    renderMapArea(map)
-    }
-  )
-    .catch(function (xhr, status, error) {
-      console.log("Error: " + error);
-    })
+      .then((map) => {
+        renderMapArea(map);
+      })
+      .catch(function (xhr, status, error) {
+        console.log("Error: " + error);
+      });
   });
 
   //login event listener
@@ -83,7 +82,8 @@ const populateMapArea = (mapID) => {
     }).then((response) => {
       console.log(response);
       renderNavArea();
-      renderMemberArea(response.user); //1
+      //1calls renderMemberArea with the user object
+      renderMemberArea(response.user);
     });
   });
   //the below handler was not working for .logout button because it was created after the document loaded.  I got around this by targeting the parent .buttons and then adding a second parameter to the .on function of .logout
