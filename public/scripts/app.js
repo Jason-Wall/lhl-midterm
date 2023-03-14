@@ -83,10 +83,10 @@ const populateMapArea = (mapID) => {
     }).then((response) => {
       console.log(response);
       renderNavArea();
-      // renderMemberArea(response.user);
+      renderMemberArea(response.user); //1
     });
   });
-  //the below handler was not working for .logout button because it was created after the document loaded.  I got arround this by targeting the parent .buttons and then adding a second parameter to the .on function of .logout
+  //the below handler was not working for .logout button because it was created after the document loaded.  I got around this by targeting the parent .buttons and then adding a second parameter to the .on function of .logout
   $(".buttons").on("click", ".logout", () => {
     $.ajax({
       type: "POST",

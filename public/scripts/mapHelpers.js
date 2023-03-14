@@ -18,17 +18,17 @@ const renderMapsList = (maps) => {
       </div>
       <div>${map.map_description}</div>
     </section>
-    `)
-    $('.discoverMapsArea').append(newDiv);
-    newDiv.find('.fa-heart').on('click', () => {
+    `);
+    $(".discoverMapsArea").append(newDiv);
+    newDiv.find(".fa-heart").on("click", () => {
       console.log(`Heart icon clicked for map ID: ${map.id}`);
     });
-    newDiv.find('.fa-pen-to-square').on('click', () => {
+    newDiv.find(".fa-pen-to-square").on("click", () => {
       renderModal(editMapForm, map.id);
       console.log(`Edit icon clicked for map ID: ${map.id}`);
     });
-    populateMapArea(map.id)
-  };
+    populateMapArea(map.id);
+  }
 };
 
 let mapID;
@@ -38,22 +38,25 @@ let long;
 function initMap() {
   // let geocoder = new google.maps.Geocoder();
   let mapSetUp = {
-    center:new google.maps.LatLng(lat, long),
-    zoom:20,
+    center: new google.maps.LatLng(lat, long),
+    zoom: 20,
   };
-  googleMap = new google.maps.Map(document.getElementById(`googleMap`),mapSetUp);
-};
+  googleMap = new google.maps.Map(
+    document.getElementById(`googleMap`),
+    mapSetUp
+  );
+}
 
 const renderMapArea = (map) => {
-  mapID = map.id
-  lat = 49.281059
-  long = -123.119019
+  mapID = map.id;
+  lat = 49.281059;
+  long = -123.119019;
   // console.log(map)
-  if ($('.googleMap').length > 0) {
-    initMap()
+  if ($(".googleMap").length > 0) {
+    initMap();
     return;
-  };
-        const $mapDiv = `
+  }
+  const $mapDiv = `
         <div id="googleMap" class="googleMap" style="width:100%;height:100%;"></div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvCCsFn9dt3dc9kHCrRJvp0D44pNnikvg&callback=initMap"
  defer></script>
@@ -75,14 +78,53 @@ const renderNavArea = () => {
 
 //resets the nav area when logged out
 const resetNavArea = () => {
+  $(".mainContainer").empty();
   $(".reset").remove();
   const $login = `<button class="login button">Login</button>`;
   $(".buttons").append($login);
+  const $nonMemberArea = `<div class="discoverMapsArea">
+    <div class="discoverMapsTitle">Discover Maps!
+    </div>
+    </section>
+    <section class="mapListContainer">
+    </section>
+  </div>
+  <div class="mapArea">
+    No potatoes here
+  </div>`;
+  $(".mainContainer").append($nonMemberArea);
+  renderMapArea();
 };
 
 //renders the member area
-// const renderMemberArea = (user) => {
-//   $(".mainContainer").empty();
-// };
-
-
+const renderMemberArea = (user) => {
+  $(".mainContainer").empty();
+  const $memberArea = `
+  <div class="myMapsContainer"><div class="myMapsArea">
+  <div class="discoverMapsTitle">My Maps</div>
+  <section class="myMapsAreaContainer">
+  </section></div></div>
+  <div class="myFavMapsContainer"><div class="myMapsArea">
+<div class="myFavMapsTitle">My fav maps</div>
+<section class="myFavMapsAreaContainer">
+</section></div></div>
+<div class="myFavPinsContainer">
+<div class="myMapsArea">
+  <div class="myFavPinsTitle">My fav pins</div>
+  <section class="myFavPinsAreaContainer"></section>
+</div>
+</div>`;
+  $(".mainContainer").append($memberArea);
+  $.ajax({
+    //2
+    type: "GET",
+    url: "/users-api/myinfo",
+  }).then((data) => {
+    console.log("data:", data);
+    //6this is where the data is ending up and I can create all my new divs
+    $(".myFavPinsTitle").text(`You have ${data.pins.length} pins`);
+    $(".myMapsAreaContainer").append();
+    $(".myFavMapsAreaContainer").append();
+    $(".myFavPinsAreaContainer").append();
+  });
+};
