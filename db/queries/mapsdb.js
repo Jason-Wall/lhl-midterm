@@ -22,6 +22,20 @@ const getAMap = (mapID) => {
 
 
 
+const editMap = (mapEdits) => {
+  const queryVars = [mapEdits.map_id, mapEdits.map_title, mapEdits.map_description];
+  return db.query(
+    `UPDATE maps
+    SET map_title = $2,
+        map_description = $3
+    WHERE id = $1
+    RETURNING *;
+    `, queryVars)
+}
+
+
+
 module.exports = {
   getMaps,
-  getAMap };
+  getAMap,
+  editMap };
