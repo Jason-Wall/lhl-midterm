@@ -52,6 +52,14 @@ router.get("/:id", (req, res) => {
 // POST/maps/:id/:pin/favorite - Add favorite to pin. (Stretch)
 
 // PATCH /maps/:id - Edit map info (title, cover photo, desc)
+router.patch("/:id", (req, res) => {
+  const mapEdits =req.body;
+  mapsdb.editMap(mapEdits)
+  .then((returnMap) => {
+    console.log('route maps, returnMap:',returnMap)
+    res.send(returnMap)});
+});
+
 
 // PATCH /maps/:id/:pin - Edit pin info
 

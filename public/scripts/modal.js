@@ -43,34 +43,25 @@ const editMapForm = (id) => {
 
   $('.accept').on('click', () => {
     const mapEdits = {
+      map_id: id,
       map_title: $('#map-title').val(),
       map_description: $('#map-description').val()
     }
-    console.log('accept buttom', mapEdits);
+    console.log('accept button', mapEdits);
     $.ajax({
       method: 'PATCH',
       url: `/maps/${id}`,
       data: mapEdits})
     })
-});
 
-
-
-  $('.cancel').on('click', () => {
+    $('.cancel').on('click', () => {
       $('.modal').remove();
-  });
-
-
-
-
+    });
 
   })
+}
 
 
-
-
-
-};
 
 
 
