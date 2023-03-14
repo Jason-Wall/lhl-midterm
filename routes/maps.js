@@ -33,7 +33,7 @@ router.get("/:id", (req, res) => {
   let mapID = req.params.id;
   mapsdb.getAMap(mapID)
   .then(map => {
-    res.send(map);
+    res.send({map, api: process.env.GOOGLE_MAPS_API_KEY});
   });
 });
 

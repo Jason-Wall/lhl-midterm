@@ -66,8 +66,8 @@ const populateMapArea = (mapID) => {
       //data: {mapid: mapID} //This will be received through req.body in the backend route
       // data: {mapid: mapID}
     })
-      .then((map) => {
-        renderMapArea(map);
+        .then (({map, api}) => {
+        renderMapArea(map, api);
       })
       .catch(function (xhr, status, error) {
         console.log("Error: " + error);
