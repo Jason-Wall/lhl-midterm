@@ -23,11 +23,12 @@ const getAMap = (mapID) => {
 
 
 const editMap = (mapEdits) => {
-  const queryVars = [mapEdits.map_id, mapEdits.map_title, mapEdits.map_description];
+  const queryVars = [mapEdits.map_id, mapEdits.map_title, mapEdits.map_description, mapEdits.map_url];
   return db.query(
     `UPDATE maps
     SET map_title = $2,
-        map_description = $3
+        map_description = $3,
+        map_url = $4
     WHERE id = $1
     RETURNING *;
     `, queryVars)
