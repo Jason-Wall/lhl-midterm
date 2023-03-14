@@ -97,4 +97,15 @@ const populateMapArea = (mapID) => {
       resetNavArea();
     });
   });
+  //when a user clicks Discover Maps button, it loads the maps
+  $(".buttons").on("click", ".discover", () => {
+    $(".mainContainer").empty();
+    const $discoverMaps = `<div class="discoverMapsArea">
+    <div class="discoverMapsTitle">Discover Maps!</div>
+    <section class="mapListContainer">
+    </section>
+  </div>
+  <div class="mapArea">No potatoes here</div>`;
+    $(".mainContainer").append($discoverMaps);
+  });
 };
