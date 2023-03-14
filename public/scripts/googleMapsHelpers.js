@@ -31,6 +31,7 @@ geocoder.geocode({ 'address': address }, function(results, status) {
 
 // updates the maps
 const mapSetUp = (latLong) => {
+  console.log(mapInfo)
   let lat = latLong.lat
   let long = latLong.lng
   let mapSetUp = {
@@ -45,7 +46,7 @@ const mapSetUp = (latLong) => {
   new google.maps.Marker({
     position: latLong,
     map: googleMap,
-    label: "Hello World!",
+    label: "🏁",
   });
 }
 
