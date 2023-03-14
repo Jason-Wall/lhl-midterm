@@ -31,6 +31,40 @@ const renderMapsList = (maps) => {
   }
 };
 
+let mapID;
+let lat;
+let long;
+
+function initMap() {
+  // let geocoder = new google.maps.Geocoder();
+  let mapSetUp = {
+    center: new google.maps.LatLng(lat, long),
+    zoom: 20,
+  };
+  googleMap = new google.maps.Map(
+    document.getElementById(`googleMap`),
+    mapSetUp
+  );
+}
+
+const renderMapArea = (map) => {
+  mapID = map.id;
+  lat = 49.281059;
+  long = -123.119019;
+  // console.log(map)
+  if ($(".googleMap").length > 0) {
+    initMap();
+    return;
+  }
+  const $mapDiv = `
+        <div id="googleMap" class="googleMap" style="width:100%;height:100%;"></div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvCCsFn9dt3dc9kHCrRJvp0D44pNnikvg&callback=initMap"
+ defer></script>
+        `;
+  $(".mapArea").empty();
+  $(".mapArea").append($mapDiv);
+};
+
 //renders nav area when a user is logged in
 const renderNavArea = () => {
   $(".login").remove();
@@ -129,11 +163,11 @@ const renderMemberArea = (user) => {
         </div>
       </div>
       <div class"mapDescription">${mapFav.map_description}</div>
-
     `);
       $(".myFavMapsAreaContainer").append($myFavMaps);
     }
-
-    $(".myFavPinsAreaContainer").append();
+    for (let mapFav of data.favMaps) {
+      $(".myFavPinsAreaContainer").append();
+    }
   });
 };

@@ -35,14 +35,23 @@ const getUserData = (userId) => {
                         )
                         .then((favMaps) => {
                           console.log(favMaps);
-                          return {
-                            maps: maps.rows,
-                            pins: pins.rows,
-                            pin_favourites: pin_favourites.rows,
-                            map_favourites: map_favourites.rows,
-                            user: user.rows,
-                            favMaps: favMaps.rows,
-                          };
+                          return db
+                            .query(
+                              `SELECT * FROM pins JOIN pin_favourites ON pins.id = pin_id WHERE pins.user_id = $1`,
+                              [userId]
+                            )
+                            .then((favPins) => {
+                              console.log(favPins);
+                              return {
+                                maps: maps.rows,
+                                pins: pins.rows,
+                                pin_favourites: pin_favourites.rows,
+                                map_favourites: map_favourites.rows,
+                                user: user.rows,
+                                favMaps: favMaps.rows,
+                                favPins: favPins.rows,
+                              };
+                            });
                         });
                     });
                 });
@@ -50,11 +59,5 @@ const getUserData = (userId) => {
         });
     });
 };
-
-// SELECT * FROM maps JOIN map_favourites ON maps.id = map_id WHERE user_id = $1
-// favMaps:
-
-// SELECT * FROM pins JOIN pin_favourites ON pins.id = pin_id WHERE user_id = $1
-// favPins:
 
 module.exports = { getUserData };
