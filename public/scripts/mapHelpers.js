@@ -21,9 +21,9 @@ const renderMapsList = (maps, container) => {
     $(`.${container}`).append(newDiv);
     // if user is logged in, create icons
     if ($('.logout').length){
-      const icons = `
+      const icons = $(`
       <i class="fa-solid fa-heart"></i>
-      <i class="fa-solid fa-pen-to-square"></i>`;
+      <i class="fa-solid fa-pen-to-square"></i>`);
       newDiv.find('.mapListIcons').append(icons);
 
       icons.find(".fa-heart").on("click", () => {

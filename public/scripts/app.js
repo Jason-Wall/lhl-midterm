@@ -50,7 +50,7 @@ const populateMapsList = () => {
       type: "GET",
       url: "/maps",
     })
-      .then((maps) => renderMapsList(maps, 'mapListContainer'))
+      .then((maps) => renderMapsList(maps, 'discoverMapsArea'))
       .catch(function (xhr, status, error) {
         console.log("Error: " + error);
       });
