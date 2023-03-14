@@ -4,5 +4,7 @@ CREATE TABLE maps (
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   map_title VARCHAR(255) NOT NULL,
   map_description VARCHAR(500) NOT NULL,
-  map_url VARCHAR(255) NOT NULL
+  map_url VARCHAR(255) NOT NULL,
+  city VARCHAR(255) NOT NULL,
+  country VARCHAR(255) NOT NULL
 );
