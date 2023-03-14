@@ -41,6 +41,19 @@ const editMapForm = (id) => {
     </div>`;
   $('.modal-content').append(modalDiv);
 
+  $('.accept').on('click', () => {
+    const mapEdits = {
+      map_title: $('#map-title').val(),
+      map_description: $('#map-description').val()
+    }
+    console.log('accept buttom', mapEdits);
+    $.ajax({
+      method: 'PATCH',
+      url: `/maps/${id}`,
+      data: mapEdits})
+    })
+});
+
 
 
   $('.cancel').on('click', () => {
