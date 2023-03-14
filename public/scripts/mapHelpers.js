@@ -1,7 +1,7 @@
 // Accepts maps as an object of maps, class name of the container
 // to be appended to. eg. <div class="test"> would be 'test'
 const renderMapsList = (maps, container) => {
-  $(`.${container}`).find('.mapListContainer').remove();
+  $(`.${container}`).find(".mapListContainer").remove();
   for (let map of maps) {
     const newDiv = $(`
     <section class="mapListContainer">
@@ -40,14 +40,11 @@ const renderNavArea = () => {
   $(".login").remove();
   const $newButtons = `
   <button class="discover reset button">Discover maps</button>
-  <button class="create reset button">Create a map</button>
+  <button class="createAMap reset button">Create a map</button>
   <button class="myMaps reset button">My maps</button>
   <button class="logout reset button">Logout</button>`;
   $(".buttons").append($newButtons);
-
-
 };
-
 
 //resets the nav area when logged out
 const resetNavArea = () => {
@@ -69,7 +66,7 @@ const resetNavArea = () => {
     type: "GET",
     url: "/maps",
   })
-    .then((maps) => renderMapsList(maps,'discoverMapsArea'))
+    .then((maps) => renderMapsList(maps, "discoverMapsArea"))
     .catch(function (xhr, status, error) {
       console.log("Error: " + error);
     });
@@ -108,60 +105,12 @@ const renderMemberArea = (user) => {
     //receive an object of user data from /myinfo route and use it to populate member page
     console.log("data:", data);
     // My Maps
-    renderMapsList(data.maps, 'myMapsArea');
+    renderMapsList(data.maps, "myMapsArea");
 
     // My Fav Maps
-    renderMapsList(data.favMaps, 'myFavMapsArea');
+    renderMapsList(data.favMaps, "myFavMapsArea");
 
-
-
-// // Jenny's hard code.
-    // for (let map of data.maps) {
-    //   const $maps = $(`
-    //     <div id = '${map.id}' class="mapList">
-    //       <img class="mapListPic"
-    //         src=${map.map_url}
-    //         alt="map image">
-    //       <div class="mapListDetails">
-    //         <div>${map.map_title}</div>
-    //         <div>Created by: ${data.user[0].name}</div>
-    //         <div class="mapListIcons">
-    //           <i class="fa-solid fa-heart"></i>
-    //           <i class="fa-solid fa-pen-to-square"></i>
-    //         </div>
-    //       </div>
-    //     </div>
-    //     <div class"mapDescription">${map.map_description}</div>
-
-    //   `);
-    //   $(".myMapsAreaContainer").append($maps);
-    // }
-
-    // Fav maps
-
-    // Jenny's hard code.
-    // for (let mapFav of data.favMaps) {
-    //   console.log("mapFav", mapFav);
-    //   const $myFavMaps = $(`
-    //   <div id = '${mapFav.map_id}' class="mapList">
-    //     <img class="mapListPic"
-    //       src=${mapFav.map_url}
-    //       alt="map image">
-    //     <div class="mapListDetails">
-    //       <div>${mapFav.map_title}</div>
-    //       <div>Created by: ${data.user[0].name}</div>
-    //       <div class="mapListIcons">
-    //         <i class="fa-solid fa-heart"></i>
-    //         <i class="fa-solid fa-pen-to-square"></i>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <div class"mapDescription">${mapFav.map_description}</div>
-    // `);
-    //   $(".myFavMapsAreaContainer").append($myFavMaps);
-    // }
-
-
+    // My Fav Pins
     for (let pinFav of data.favPins) {
       const $myFavPins = $(`
       <div class="pinList">
