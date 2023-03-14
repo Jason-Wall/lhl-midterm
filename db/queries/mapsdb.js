@@ -10,8 +10,8 @@ const getMaps = () => {
             })
 };
 
-const getAMap = () => {
-  return db.query('SELECT * FROM maps WHERE maps.id = 4;')
+const getAMap = (mapID) => {
+  return db.query(`SELECT * FROM maps WHERE maps.id = ${mapID};`)
     .then(data => {
       return data.rows[0];
     })

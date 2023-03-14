@@ -39,14 +39,19 @@ const populateMapsList = () => {
   })
 }
 
-const populateMapArea = () => {
-  $('#4').on('click', () => {
+const populateMapArea = (mapID) => {
+  $(`#${mapID}`).on('click', () => {
     $.ajax({
       type: 'GET',
-      url: '/maps/:id',
+      url: `/maps/${mapID}` //this will be received in the backend route with the help of req.params
+      //data: {mapid: mapID} //This will be received through req.body in the backend route
+      // data: {mapid: mapID}
     })
-    .then((map) => renderMapArea(map))
+    .then((map) =>
+    renderMapArea(map),
+  )
     .catch(function (xhr, status, error) {
+      console.log("Error:", xhr, status, error);
       console.log("Error: " + error);
     })
   })
