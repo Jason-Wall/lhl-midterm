@@ -12,27 +12,32 @@ const renderMapsList = (maps, container) => {
         <div class="mapListDetails">
           <div>${map.map_title}</div>
           <div>Created by: Test Test</div>
-          <div class="mapListIcons">
-            <i class="fa-solid fa-heart"></i>
-            <i class="fa-solid fa-pen-to-square"></i>
-          </div>
+          <div class="mapListIcons"></div>
         </div>
       </div>
       <div class"mapDescription">${map.map_description}</div>
     </section>
     `);
     $(`.${container}`).append(newDiv);
-    // Need an onclick event that will take you to individual map
+    // if user is logged in, create icons
+    if ($('.logout').length){
+      const icons = `
+      <i class="fa-solid fa-heart"></i>
+      <i class="fa-solid fa-pen-to-square"></i>`;
+      newDiv.find('.mapListIcons').append(icons);
 
-    newDiv.find(".fa-heart").on("click", () => {
-      console.log(`Heart icon clicked for map ID: ${map.id}`);
-    });
+      icons.find(".fa-heart").on("click", () => {
+        console.log(`Heart icon clicked for map ID: ${map.id}`);
+      });
 
-    newDiv.find(".fa-pen-to-square").on("click", () => {
-      renderModal(editMapForm, map.id);
-      console.log(`Edit icon clicked for map ID: ${map.id}`);
-    });
+      icons.find(".fa-pen-to-square").on("click", () => {
+        renderModal(editMapForm, map.id);
+        console.log(`Edit icon clicked for map ID: ${map.id}`);
+      });
+    }
   }
+
+    // Need an onclick event that will take you to individual maps
 };
 
 //renders nav area when a user is logged in
