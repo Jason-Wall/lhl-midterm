@@ -123,7 +123,29 @@ const renderMemberArea = (user) => {
     console.log("data:", data);
     //6this is where the data is ending up and I can create all my new divs
     $(".myFavPinsTitle").text(`You have ${data.pins.length} pins`);
-    $(".myMapsAreaContainer").append();
+    for (let map of data.maps) {
+      console.log("maps:", map);
+      const $maps = $(`
+      <section class="mapListContainer">
+        <div id = '${map.id}' class="mapList">
+          <img class="mapListPic"
+            src=${map.map_url}
+            alt="map image">
+          <div class="mapListDetails">
+            <div>${map.map_title}</div>
+            <div>Created by: ${data.user[0].name}</div>
+            <div class="mapListIcons">
+              <i class="fa-solid fa-heart"></i>
+              <i class="fa-solid fa-pen-to-square"></i>
+            </div>
+          </div>
+        </div>
+        <div>${map.map_description}</div>
+      </section>
+      `);
+      $(".myMapsAreaContainer").append($maps);
+    }
+
     $(".myFavMapsAreaContainer").append();
     $(".myFavPinsAreaContainer").append();
   });

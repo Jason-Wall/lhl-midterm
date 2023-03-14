@@ -23,12 +23,18 @@ const getUserData = (userId) => {
                 )
                 .then((map_favourites) => {
                   console.log(map_favourites);
-                  return {
-                    maps: maps.rows,
-                    pins: pins.rows,
-                    pin_favourites: pin_favourites.rows,
-                    map_favourites: map_favourites.rows,
-                  };
+                  return db
+                    .query(`SELECT * FROM users WHERE users.id = $1`, [userId])
+                    .then((user) => {
+                      console.log(user);
+                      return {
+                        maps: maps.rows,
+                        pins: pins.rows,
+                        pin_favourites: pin_favourites.rows,
+                        map_favourites: map_favourites.rows,
+                        user: user.rows,
+                      };
+                    });
                 });
             });
         });
