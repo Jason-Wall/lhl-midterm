@@ -1,6 +1,7 @@
 // brings the lat and long variables to the global scope
 // let lat;
 // let long;
+let latLong;
 let mapInfo;
 
 //update the maps information / callback from google maps api
@@ -17,8 +18,8 @@ geocoder.geocode({ 'address': address }, function(results, status) {
   if (status == 'OK') {
     let location = results[0].geometry.location;
     lat = location.lat()
-    long = location.lng()
-    latLong = {lat, long}
+    lng = location.lng()
+    latLong = {lat, lng}
     mapSetUp(latLong)
     // console.log(location.lat());
     // console.log('Longitude: ' + location.lng());
@@ -30,8 +31,9 @@ geocoder.geocode({ 'address': address }, function(results, status) {
 
 // updates the maps
 const mapSetUp = (latLong) => {
+  console.log(mapInfo)
   let lat = latLong.lat
-  let long = latLong.long
+  let long = latLong.lng
   let mapSetUp = {
     center: new google.maps.LatLng(lat, long),
     zoom: 10,
@@ -40,6 +42,12 @@ const mapSetUp = (latLong) => {
     document.getElementById(`googleMap`),
     mapSetUp
   );
+  console.log(latLong)
+  new google.maps.Marker({
+    position: latLong,
+    map: googleMap,
+    label: "🏁",
+  });
 }
 
 // updates the map variables and makes a request to the api if no map showing or calls initMap
@@ -62,3 +70,12 @@ const renderMapArea = (map, api) => {
   $(".mapArea").append($mapDiv);
 };
 
+//add a marker
+// const addMarker = () => {
+//   mapSetUp(latLong)
+  // new google.maps.Marker({
+  //   position: latLong,
+  //   map,
+  //   title: "Hello World!",
+  // });
+// }
