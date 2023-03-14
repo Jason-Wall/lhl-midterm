@@ -3,6 +3,7 @@ $(document).ready(() => {
   // addNewDiv();  // This is a sample function for SPA. In the future move all functions into their own helper function files.
   populateMapsList(); // This function establishes all initial event listeners around the page. See below.
   populateMapArea();
+  renderMapArea();
 });
 
 //Jasons demo:
@@ -76,6 +77,7 @@ const populateMapArea = () => {
     }).then((response) => {
       console.log(response);
       renderNavArea();
+      renderMapArea();
     });
   });
   //the below handler was not working for .logout button because it was created after the document loaded.  I got arround this by targeting the parent .buttons and then adding a second parameter to the .on function of .logout

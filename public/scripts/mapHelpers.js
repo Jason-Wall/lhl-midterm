@@ -46,16 +46,16 @@ const renderMapArea = () => {
 const renderNavArea = () => {
   $(".login").remove();
   const $newButtons = `
-  <button class="discover reset">Discover maps</button>
-  <button class="create reset">Create a map</button>
-  <button class="myMaps reset">My maps</button>
-  <button class="logout reset">Logout</button>`;
+  <button class="discover reset button">Discover maps</button>
+  <button class="create reset button">Create a map</button>
+  <button class="myMaps reset button">My maps</button>
+  <button class="logout reset button">Logout</button>`;
   $(".buttons").append($newButtons);
 };
 
 //resets the nav area when logged out
 const resetNavArea = () => {
   $(".reset").remove();
-  const $login = `<button class="login">Login</button>`;
+  const $login = `<button class="login button">Login</button>`;
   $(".buttons").append($login);
 };

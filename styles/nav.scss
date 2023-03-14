@@ -15,11 +15,15 @@ nav {
   position: fixed
 }
 
+.button {
+  margin-left: 4px;
+}
+
 .logo {
   margin-left: 1em;
 }
 
-.login {
+.login, .logout{
   margin-right: 1em;
 }
 
