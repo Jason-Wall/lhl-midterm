@@ -36,7 +36,7 @@ const mapRoutes = require("./routes/maps");
 // Mount all resource routes
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 
-app.use("/api/users", userApiRoutes);
+app.use("/users-api", userApiRoutes);
 app.use("/maps", mapRoutes);
 
 const cookieParser = require("cookie-parser");

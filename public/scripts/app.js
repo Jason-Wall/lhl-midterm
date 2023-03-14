@@ -72,7 +72,7 @@ const populateMapArea = () => {
   $(".buttons").on("click", ".login", () => {
     $.ajax({
       type: "POST",
-      url: "/login/1",
+      url: "/users-api/login/1",
     }).then((response) => {
       console.log(response);
       renderNavArea();
@@ -83,7 +83,7 @@ const populateMapArea = () => {
     $.ajax({
       type: "POST",
       //change the below to /users/logout
-      url: "/logout",
+      url: "/users-api/logout",
     }).then((response) => {
       console.log(response);
       resetNavArea();
