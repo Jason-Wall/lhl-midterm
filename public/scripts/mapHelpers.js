@@ -20,7 +20,7 @@ const renderMapsList = (maps) => {
     </section>
     `);
     $(".discoverMapsArea").append(newDiv);
-    populateMapArea();
+    // populateMapArea();
   }
 };
 
@@ -100,5 +100,8 @@ const renderMemberArea = (user) => {
     console.log("data:", data);
     //6this is where the data is ending up and I can create all my new divs
     $(".myFavPinsTitle").text(`You have ${data.pins.length} pins`);
+    $(".myMapsAreaContainer").append();
+    $(".myFavMapsAreaContainer").append();
+    $(".myFavPinsAreaContainer").append();
   });
 };
