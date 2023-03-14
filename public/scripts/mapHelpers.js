@@ -1,6 +1,5 @@
-
 const renderMapsList = (maps) => {
-  $('.mapListContainer').remove()
+  $(".mapListContainer").remove();
   for (let map of maps) {
     const newDiv = $(`
     <section class="mapListContainer">
@@ -19,14 +18,14 @@ const renderMapsList = (maps) => {
       </div>
       <div>${map.map_description}</div>
     </section>
-    `)
-    $('.discoverMapsArea').append(newDiv);
-    populateMapArea()
-  };
+    `);
+    $(".discoverMapsArea").append(newDiv);
+    populateMapArea();
+  }
 };
 
 const renderMapArea = () => {
-        const $mapDiv = `
+  const $mapDiv = `
         <div id="googleMap4" style="width:100%;height:100%;"></div>
         <script>
         function initMap() {
@@ -39,6 +38,24 @@ const renderMapArea = () => {
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvCCsFn9dt3dc9kHCrRJvp0D44pNnikvg&callback=initMap"></script>
         `;
-        $('.mapArea').empty();
-        $('.mapArea').append($mapDiv);
+  $(".mapArea").empty();
+  $(".mapArea").append($mapDiv);
+};
+
+//renders nav area when a user is logged in
+const renderNavArea = () => {
+  $(".login").remove();
+  const $newButtons = `
+  <button class="discover reset">Discover maps</button>
+  <button class="create reset">Create a map</button>
+  <button class="myMaps reset">My maps</button>
+  <button class="logout reset">Logout</button>`;
+  $(".buttons").append($newButtons);
+};
+
+//resets the nav area when logged out
+const resetNavArea = () => {
+  $(".reset").remove();
+  const $login = `<button class="login">Login</button>`;
+  $(".buttons").append($login);
 };
