@@ -1,5 +1,7 @@
-const renderMapsList = (maps) => {
-  $(".mapListContainer").remove();
+// Accepts maps as an object of maps, class name of the container
+// to be appended to. eg. <div class="test"> would be 'test'
+const renderMapsList = (maps, container) => {
+  $(`.${container}`).find('.mapListContainer').remove();
   for (let map of maps) {
     const newDiv = $(`
     <section class="mapListContainer">
@@ -9,7 +11,7 @@ const renderMapsList = (maps) => {
           alt="map image">
         <div class="mapListDetails">
           <div>${map.map_title}</div>
-          <div>Created by: Jenny!</div>
+          <div>Created by: Test Test</div>
           <div class="mapListIcons">
             <i class="fa-solid fa-heart"></i>
             <i class="fa-solid fa-pen-to-square"></i>
@@ -19,15 +21,17 @@ const renderMapsList = (maps) => {
       <div class"mapDescription">${map.map_description}</div>
     </section>
     `);
-    $(".discoverMapsArea").append(newDiv);
+    $(`.${container}`).append(newDiv);
+    // Need an onclick event that will take you to individual map
+
     newDiv.find(".fa-heart").on("click", () => {
       console.log(`Heart icon clicked for map ID: ${map.id}`);
     });
+
     newDiv.find(".fa-pen-to-square").on("click", () => {
       renderModal(editMapForm, map.id);
       console.log(`Edit icon clicked for map ID: ${map.id}`);
     });
-    populateMapArea(map.id);
   }
 };
 
@@ -40,7 +44,10 @@ const renderNavArea = () => {
   <button class="myMaps reset button">My maps</button>
   <button class="logout reset button">Logout</button>`;
   $(".buttons").append($newButtons);
+
+
 };
+
 
 //resets the nav area when logged out
 const resetNavArea = () => {
@@ -48,18 +55,24 @@ const resetNavArea = () => {
   $(".reset").remove();
   const $login = `<button class="login button">Login</button>`;
   $(".buttons").append($login);
-  const $nonMemberArea = `<div class="discoverMapsArea">
-    <div class="discoverMapsTitle">Discover Maps!
-    </div>
-    </section>
-    <section class="mapListContainer">
-    </section>
+  const $nonMemberArea = `
+  <div class="discoverMapsArea">
+    <div class="discoverMapsTitle">Discover Maps!</div>
   </div>
   <div class="mapArea">
     No potatoes here
   </div>`;
   $(".mainContainer").append($nonMemberArea);
   // renderMapArea(); need to try and figure out how to get a map object put inside
+  // populate Discover maps
+  $.ajax({
+    type: "GET",
+    url: "/maps",
+  })
+    .then((maps) => renderMapsList(maps,'discoverMapsArea'))
+    .catch(function (xhr, status, error) {
+      console.log("Error: " + error);
+    });
 };
 
 //renders the member area
@@ -67,70 +80,88 @@ const renderMemberArea = (user) => {
   $(".mainContainer").empty();
   const $memberArea = `
   <section class="memberAreaContainer">
-  <div class="myMapsContainer"><div class="myMapsArea">
-  <div class="discoverMapsTitle">My Maps</div>
-  <section class="myMapsAreaContainer">
-  </section></div></div>
-  <div class="myFavMapsContainer"><div class="myMapsArea">
-<div class="myFavMapsTitle">My fav maps</div>
-<section class="myFavMapsAreaContainer">
-</section></div></div>
-<div class="myFavPinsContainer">
-<div class="myMapsArea">
-  <div class="myFavPinsTitle">My fav pins</div>
-  <section class="myFavPinsAreaContainer"></section>
-</div>
-</div>
+    <div class="myMapsContainer">
+      <div class="myMapsArea">
+        <section class="myMapsAreaContainer"></section>
+      </div>
+    </div>
+    <div class="myFavMapsContainer">
+      <div class="myFavMapsArea">
+        <div class="myFavMapsTitle">My fav maps</div>
+        <section class="myFavMapsAreaContainer"></section>
+      </div>
+    </div>
+    <div class="myFavPinsContainer">
+      <div class="myPinsArea">
+        <div class="myFavPinsTitle">My fav pins</div>
+        <section class="myFavPinsAreaContainer"></section>
+      </div>
+    </div>
   </section>
 `;
   $(".mainContainer").append($memberArea);
+  //2make an ajax call to get all related user information
   $.ajax({
-    //2make an ajax call to get all related user information
     type: "GET",
     url: "/users-api/myinfo",
   }).then((data) => {
-    console.log("data:", data);
     //receive an object of user data from /myinfo route and use it to populate member page
-    for (let map of data.maps) {
-      const $maps = $(`
-        <div id = '${map.id}' class="mapList">
-          <img class="mapListPic"
-            src=${map.map_url}
-            alt="map image">
-          <div class="mapListDetails">
-            <div>${map.map_title}</div>
-            <div>Created by: ${data.user[0].name}</div>
-            <div class="mapListIcons">
-              <i class="fa-solid fa-heart"></i>
-              <i class="fa-solid fa-pen-to-square"></i>
-            </div>
-          </div>
-        </div>
-        <div class"mapDescription">${map.map_description}</div>
+    console.log("data:", data);
+    // My Maps
+    renderMapsList(data.maps, 'myMapsArea');
 
-      `);
-      $(".myMapsAreaContainer").append($maps);
-    }
-    for (let mapFav of data.favMaps) {
-      console.log("mapFav", mapFav);
-      const $myFavMaps = $(`
-      <div id = '${mapFav.map_id}' class="mapList">
-        <img class="mapListPic"
-          src=${mapFav.map_url}
-          alt="map image">
-        <div class="mapListDetails">
-          <div>${mapFav.map_title}</div>
-          <div>Created by: ${data.user[0].name}</div>
-          <div class="mapListIcons">
-            <i class="fa-solid fa-heart"></i>
-            <i class="fa-solid fa-pen-to-square"></i>
-          </div>
-        </div>
-      </div>
-      <div class"mapDescription">${mapFav.map_description}</div>
-    `);
-      $(".myFavMapsAreaContainer").append($myFavMaps);
-    }
+    // My Fav Maps
+    renderMapsList(data.favMaps, 'myFavMapsArea');
+
+
+
+// // Jenny's hard code.
+    // for (let map of data.maps) {
+    //   const $maps = $(`
+    //     <div id = '${map.id}' class="mapList">
+    //       <img class="mapListPic"
+    //         src=${map.map_url}
+    //         alt="map image">
+    //       <div class="mapListDetails">
+    //         <div>${map.map_title}</div>
+    //         <div>Created by: ${data.user[0].name}</div>
+    //         <div class="mapListIcons">
+    //           <i class="fa-solid fa-heart"></i>
+    //           <i class="fa-solid fa-pen-to-square"></i>
+    //         </div>
+    //       </div>
+    //     </div>
+    //     <div class"mapDescription">${map.map_description}</div>
+
+    //   `);
+    //   $(".myMapsAreaContainer").append($maps);
+    // }
+
+    // Fav maps
+
+    // Jenny's hard code.
+    // for (let mapFav of data.favMaps) {
+    //   console.log("mapFav", mapFav);
+    //   const $myFavMaps = $(`
+    //   <div id = '${mapFav.map_id}' class="mapList">
+    //     <img class="mapListPic"
+    //       src=${mapFav.map_url}
+    //       alt="map image">
+    //     <div class="mapListDetails">
+    //       <div>${mapFav.map_title}</div>
+    //       <div>Created by: ${data.user[0].name}</div>
+    //       <div class="mapListIcons">
+    //         <i class="fa-solid fa-heart"></i>
+    //         <i class="fa-solid fa-pen-to-square"></i>
+    //       </div>
+    //     </div>
+    //   </div>
+    //   <div class"mapDescription">${mapFav.map_description}</div>
+    // `);
+    //   $(".myFavMapsAreaContainer").append($myFavMaps);
+    // }
+
+
     for (let pinFav of data.favPins) {
       const $myFavPins = $(`
       <div class="pinList">
