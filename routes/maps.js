@@ -29,7 +29,10 @@ router.get("/", (req, res) => {
 // GET /maps/:id/   - Get individual map
 
 router.get("/:id", (req, res) => {
-  mapsdb.getAMap().then((map) => {
+  // console.log(req.body);
+  let mapID = req.params.id;
+  mapsdb.getAMap(mapID)
+  .then(map => {
     res.send(map);
   });
 });

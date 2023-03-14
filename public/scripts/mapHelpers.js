@@ -27,23 +27,36 @@ const renderMapsList = (maps) => {
       renderModal(editMapForm, map.id);
       console.log(`Edit icon clicked for map ID: ${map.id}`);
     });
-    populateMapArea()
+    populateMapArea(map.id)
   };
 };
 
-const renderMapArea = () => {
-  const $mapDiv = `
-        <div id="googleMap4" style="width:100%;height:100%;"></div>
-        <script>
-        function initMap() {
-          let mapProp = {
-            center:new google.maps.LatLng(49.281059, -123.119019),
-            zoom:20,
-          };
-          let map = new google.maps.Map(document.getElementById("googleMap4"),mapProp);
-          }
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvCCsFn9dt3dc9kHCrRJvp0D44pNnikvg&callback=initMap"></script>
+let mapID;
+let lat;
+let long;
+
+function initMap() {
+  // let geocoder = new google.maps.Geocoder();
+  let mapSetUp = {
+    center:new google.maps.LatLng(lat, long),
+    zoom:20,
+  };
+  googleMap = new google.maps.Map(document.getElementById(`googleMap`),mapSetUp);
+};
+
+const renderMapArea = (map) => {
+  mapID = map.id
+  lat = 49.281059
+  long = -123.119019
+  console.log(map)
+  if ($('.googleMap').length > 0) {
+    initMap()
+    return;
+  };
+        const $mapDiv = `
+        <div id="googleMap" class="googleMap" style="width:100%;height:100%;"></div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvCCsFn9dt3dc9kHCrRJvp0D44pNnikvg&callback=initMap"
+ defer></script>
         `;
   $(".mapArea").empty();
   $(".mapArea").append($mapDiv);
@@ -71,3 +84,5 @@ const resetNavArea = () => {
 // const renderMemberArea = (user) => {
 //   $(".mainContainer").empty();
 // };
+
+
