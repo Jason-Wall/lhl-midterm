@@ -37,15 +37,6 @@ router.get("/:id", (req, res) => {
   });
 });
 
-// GET /maps/:id/   - Get individual map
-
-router.get("/:id", (req, res) => {
-  mapsdb.getARandomMap()
-  .then(map => {
-    res.send(map);
-  });
-});
-
 // GET /maps/:id/:pin - Take you to the pin information
 
 // GET /maps/:id/edit - Take you to map edit
