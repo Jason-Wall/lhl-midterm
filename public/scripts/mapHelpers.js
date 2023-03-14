@@ -125,7 +125,6 @@ const renderMemberArea = (user) => {
   }).then((data) => {
     console.log("data:", data);
     //receive an object of user data from /myinfo route and use it to populate member page
-    $(".myFavPinsTitle").text(`You have ${data.pins.length} pins`);
     for (let map of data.maps) {
       const $maps = $(`
         <div id = '${map.id}' class="mapList">
@@ -166,8 +165,13 @@ const renderMemberArea = (user) => {
     `);
       $(".myFavMapsAreaContainer").append($myFavMaps);
     }
-    for (let mapFav of data.favMaps) {
-      $(".myFavPinsAreaContainer").append();
+    for (let pinFav of data.favPins) {
+      const $myFavPins = $(`
+      <div class="pinList">
+      <div>${pinFav.pin_title}</div>
+      <div>${pinFav.pin_description}</div>
+      </div>`);
+      $(".myFavPinsAreaContainer").append($myFavPins);
     }
   });
 };
