@@ -97,4 +97,27 @@ const populateMapArea = (mapID) => {
       resetNavArea();
     });
   });
+  //when a user clicks Discover Maps button, it loads the maps
+  $(".buttons").on("click", ".discover", () => {
+    $(".mainContainer").empty();
+    const $discoverMaps = `<div class="discoverMapsArea">
+    <div class="discoverMapsTitle">Discover Maps!</div>
+    <section class="mapListContainer">
+    </section>
+  </div>
+  <div class="mapArea">No potatoes here</div>`;
+    $(".mainContainer").append($discoverMaps);
+  });
+
+  //when a user clicks My Maps button, it loads their maps
+  $(".buttons").on("click", ".myMaps", () => {
+    $.ajax({
+      type: "POST",
+      url: "/users-api/login/1",
+    }).then((response) => {
+      console.log(response);
+      //1calls renderMemberArea with the user object
+      renderMemberArea(response.user);
+    });
+  });
 };
