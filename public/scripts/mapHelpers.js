@@ -35,9 +35,8 @@ const renderMapsList = (maps, container) => {
         console.log(`Edit icon clicked for map ID: ${map.id}`);
       });
     }
+    populateMapArea(map.id)
   }
-
-    // Need an onclick event that will take you to individual maps
 };
 
 //renders nav area when a user is logged in
