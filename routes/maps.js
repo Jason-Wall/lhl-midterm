@@ -29,11 +29,9 @@ router.get("/", (req, res) => {
 // GET /maps/:id/   - Get individual map
 
 router.get("/:id", (req, res) => {
-  // console.log(req.body);
   let mapID = req.params.id;
-  mapsdb.getAMap(mapID)
-  .then(map => {
-    res.send({map, api: process.env.GOOGLE_MAPS_API_KEY});
+  mapsdb.getAMap(mapID).then((map) => {
+    res.send({ map, api: process.env.GOOGLE_MAPS_API_KEY });
   });
 });
 
@@ -44,6 +42,9 @@ router.get("/:id", (req, res) => {
 // GET /maps/:id/:pin/edit - Take you to the pin edit page
 
 // POST /maps - Create new map
+router.post("/:id/create", (req, res) => {
+  res.send();
+});
 
 // POST  /maps/:id - Create a pin
 
@@ -53,13 +54,12 @@ router.get("/:id", (req, res) => {
 
 // PATCH /maps/:id - Edit map info (title, cover photo, desc)
 router.patch("/:id", (req, res) => {
-  const mapEdits =req.body;
-  mapsdb.editMap(mapEdits)
-  .then((returnMap) => {
-    console.log('route maps, returnMap:',returnMap)
-    res.send(returnMap)});
+  const mapEdits = req.body;
+  mapsdb.editMap(mapEdits).then((returnMap) => {
+    console.log("route maps, returnMap:", returnMap);
+    res.send(returnMap);
+  });
 });
-
 
 // PATCH /maps/:id/:pin - Edit pin info
 
