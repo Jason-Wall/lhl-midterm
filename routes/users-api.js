@@ -7,13 +7,23 @@
 
 const express = require("express");
 const router = express.Router();
-const userQueries = require("../db/queries/users");
+const { getUserData } = require("../db/queries/user");
 
 router.post("/login/:id", (req, res) => {
   //set plain text cookie
   res.cookie("user_id", req.params.id).send({
     message: "user logged in",
     user: req.params.id,
+  });
+  // getUser(req.params.id).then();
+});
+
+router.get("/myinfo", (req, res) => {
+  const userId = req.cookies.user_id;
+  getUserData(userId).then((data) => {
+    //3
+    console.log("data:", data);
+    res.send(data); //5sends the data to mapHelpers.js renderMemberArea function .then
   });
 });
 

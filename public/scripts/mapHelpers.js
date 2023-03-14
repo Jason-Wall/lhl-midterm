@@ -55,12 +55,50 @@ const renderNavArea = () => {
 
 //resets the nav area when logged out
 const resetNavArea = () => {
+  $(".mainContainer").empty();
   $(".reset").remove();
   const $login = `<button class="login button">Login</button>`;
   $(".buttons").append($login);
+  const $nonMemberArea = `<div class="discoverMapsArea">
+    <div class="discoverMapsTitle">Discover Maps!
+    </div>
+    </section>
+    <section class="mapListContainer">
+    </section>
+  </div>
+  <div class="mapArea">
+    No potatoes here
+  </div>`;
+  $(".mainContainer").append($nonMemberArea);
+  renderMapArea();
 };
 
 //renders the member area
-// const renderMemberArea = (user) => {
-//   $(".mainContainer").empty();
-// };
+const renderMemberArea = (user) => {
+  $(".mainContainer").empty();
+  const $memberArea = `
+  <div class="myMapsContainer"><div class="myMapsArea">
+  <div class="discoverMapsTitle">My Maps</div>
+  <section class="myMapsAreaContainer">
+  </section></div></div>
+  <div class="myFavMapsContainer"><div class="myMapsArea">
+<div class="myFavMapsTitle">My fav maps</div>
+<section class="myFavMapsAreaContainer">
+</section></div></div>
+<div class="myFavPinsContainer">
+<div class="myMapsArea">
+  <div class="myFavPinsTitle">My fav pins</div>
+  <section class="myFavPinsAreaContainer"></section>
+</div>
+</div>`;
+  $(".mainContainer").append($memberArea);
+  $.ajax({
+    //2
+    type: "GET",
+    url: "/users-api/myinfo",
+  }).then((data) => {
+    console.log("data:", data);
+    //6this is where the data is ending up and I can create all my new divs
+    $(".myFavPinsTitle").text(`You have ${data.pins.length} pins`);
+  });
+};

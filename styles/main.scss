@@ -32,6 +32,10 @@
   margin-left: 1em
 }
 
+.myMapsContainer, .myFavMapsContainer, .myFavPinsContainer {
+  height: 700px;
+}
+
 //temporary border to see what we are doing
 div, nav {
   border: solid 1px;
