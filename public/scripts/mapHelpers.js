@@ -93,7 +93,7 @@ const resetNavArea = () => {
     No potatoes here
   </div>`;
   $(".mainContainer").append($nonMemberArea);
-  renderMapArea();
+  // renderMapArea(); need to try and figure out how to get a map object put inside
 };
 
 //renders the member area
