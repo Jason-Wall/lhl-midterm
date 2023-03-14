@@ -59,3 +59,8 @@ const resetNavArea = () => {
   const $login = `<button class="login button">Login</button>`;
   $(".buttons").append($login);
 };
+
+//renders the member area
+// const renderMemberArea = (user) => {
+//   $(".mainContainer").empty();
+// };

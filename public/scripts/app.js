@@ -77,6 +77,7 @@ const populateMapArea = () => {
     }).then((response) => {
       console.log(response);
       renderNavArea();
+      // renderMemberArea(response.user);
     });
   });
   //the below handler was not working for .logout button because it was created after the document loaded.  I got arround this by targeting the parent .buttons and then adding a second parameter to the .on function of .logout
