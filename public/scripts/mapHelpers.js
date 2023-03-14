@@ -23,7 +23,7 @@ let lat;
 let long;
 
 function initMap() {
-  let geocoder = new google.maps.Geocoder();
+  // let geocoder = new google.maps.Geocoder();
   let mapSetUp = {
     center:new google.maps.LatLng(lat, long),
     zoom:20,
