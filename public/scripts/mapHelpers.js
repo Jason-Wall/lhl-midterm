@@ -32,6 +32,7 @@ const renderMapsList = (maps, container) => {
       renderModal(editMapForm, map.id);
       console.log(`Edit icon clicked for map ID: ${map.id}`);
     });
+    populateMapArea(map.id)
   }
 };
 
