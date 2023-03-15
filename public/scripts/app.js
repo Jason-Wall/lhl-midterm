@@ -83,7 +83,6 @@ const populateMapsList = () => {
 };
 
 const populateMapArea = (mapID) => {
-  console.log('hey');
   console.log(mapID);
   $(`#${mapID}`).on("click", () => {
     $.ajax({

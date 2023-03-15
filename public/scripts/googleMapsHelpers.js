@@ -11,7 +11,6 @@ function initMap() {
 
 //gets the maps latLong from its city and country
 const geocode = () => {
-  console.log(mapInfo);
   let geocoder = new google.maps.Geocoder();
   let address = `${mapInfo.city}, ${mapInfo.country}`;
 geocoder.geocode({ 'address': address }, function(results, status) {
@@ -31,6 +30,8 @@ geocoder.geocode({ 'address': address }, function(results, status) {
 
 // updates the maps
 const mapSetUp = (latLong) => {
+  const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+let labelIndex = 0;
   console.log(mapInfo)
   let lat = latLong.lat
   let long = latLong.lng
@@ -42,17 +43,29 @@ const mapSetUp = (latLong) => {
     document.getElementById(`googleMap`),
     mapSetUp
   );
-  console.log(latLong)
-  new google.maps.Marker({
-    position: latLong,
-    map: googleMap,
-    label: "🏁",
+   // This event listener calls addMarker() when the map is clicked.
+   google.maps.event.addListener(googleMap, "click", (event) => {
+    addMarker(event.latLng, googleMap);
   });
+  // Adds a marker to the map.
+function addMarker(location, map) {
+  // Add the marker at the clicked location, and add the next-available label
+  // from the array of alphabetical characters.
+  new google.maps.Marker({
+    position: location,
+    label: labels[labelIndex++ % labels.length],
+    map: googleMap,
+  });
+  // new google.maps.Marker({
+  //   position: latLong,
+  //   map: googleMap,
+  //   label: "🏁",
+  // });
+}
 }
 
 // updates the map variables and makes a request to the api if no map showing or calls initMap
 const renderMapArea = (map, api) => {
-  console.log('hey')
   mapID = map.id;
   mapInfo = map
   // lat = 49.281059;
