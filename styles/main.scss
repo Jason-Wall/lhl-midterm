@@ -1,10 +1,20 @@
 /* style main content */
+@import "variables";
+
+/* define strong class */
+.strong {
+  font-weight: bold;
+  font-size: large;
+}
+
+// use an image element, make it position absolute height and width 100% and top and left 0(the parent must be position relative)
 
 .mainContainer {
+  background-image: url("/images/diagmonds-light.png");
+  background-color: $light;
   font-family: 'PT Sans', sans-serif;
   padding-top: 100px;
   display: flex;
-  flex-direction: rows;
   justify-content: space-around;
 }
 
@@ -12,21 +22,28 @@
   display: flex;
   flex-direction: rows;
   justify-content: space-around;
-  width: 93%
-}
-
-.discoverMapsTitle {
-  padding: 1em;
+  width: 93%;
 }
 
 .discoverMapsArea {
-  height: 100000px;
+  // height: 100000px; //commented out so that the height of the container is determined by how many maps we have
+  background-color: $medium;
+  background-image: url("/images/diagmonds-light.png");
   width: 33%;
   margin-left: 2em;
-  margin-right: 1em
+  margin-right: 1em;
+  border: solid 1px;
+}
+
+.discoverMapsTitle, .mapListContainer, .myMapsTitle, .myFavMapsTitle, .myFavPinsTitle {
+ border: solid 1px;
+ background-color: $light;
+ padding: 1em;
+ margin: 2px;
 }
 
 .mapArea {
+  border: ridge 3px;
   display: flex;
   justify-content:center;
   align-items: center;
@@ -36,22 +53,19 @@
   width: 66%;
   padding: 1em;
   margin-right: 2em;
-  margin-left: 1em
+  margin-left: 1em;
 }
-
-
 
 .myMapsContainer, .myFavMapsContainer, .myFavPinsContainer {
-  height: 700px;
+  // height: 700px;
   width: 33%;
-}
-
-.discoverMapsTitle, .mapList, .mapDescription, .myMapsTitle, .myFavMapsTitle, .myFavPinsTitle, .pinList {
-  margin: 2px
+  border: solid 1px;
+  background-color: $medium;
+  background-image: url("/images/diagmonds-light.png");
 }
 
 
 //temporary border to see what we are doing
-div, nav {
-  border: solid 1px;
-}
+// div {
+//   border: solid 1px;
+// }

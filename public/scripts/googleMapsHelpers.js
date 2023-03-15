@@ -21,19 +21,18 @@ const geoCode = (info) => {
   geocoder.geocode({ address: address }, function (results, status) {
     if (status == "OK") {
       let location = results[0].geometry.location;
-      console.log(results[0].geometry.location.lat())
+      console.log(results[0].geometry.location.lat());
       lat = location.lat();
       long = location.lng();
-      pinLatLng = {lat, long}
-    createMarker(pinLatLng, info)
+      pinLatLng = { lat, long };
+      createMarker(pinLatLng, info);
     } else {
       console.log(
         "Geocode was not successful for the following reason: " + status
-        );
-      }
-    });
-  };
-
+      );
+    }
+  });
+};
 
 const geoCodeMarker = () => {
   // let pinArr = []
@@ -50,17 +49,17 @@ const geoCodeMarker = () => {
   // console.log(pinArr)
 
   // Loop through pinInfo to create markers and info windows
-for (let i = 0; i < pinInfo.length; i++) {
-  let pin = pinInfo[i];
-  pinTitle = pin.pin_title;
-  pinDescription = pin.pin_description
-  geoCode(pin);
-}
-}
+  for (let i = 0; i < pinInfo.length; i++) {
+    let pin = pinInfo[i];
+    pinTitle = pin.pin_title;
+    pinDescription = pin.pin_description;
+    geoCode(pin);
+  }
+};
 
-  // Create a marker
-  const createMarker = (pinLatLng, info) => {
-    console.log('hey', pinLatLng)
+// Create a marker
+const createMarker = (pinLatLng, info) => {
+  console.log("hey", pinLatLng);
   const marker = new google.maps.Marker({
     position: { lat: pinLatLng.lat, lng: pinLatLng.long },
     map: googleMap,
@@ -128,32 +127,30 @@ for (let i = 0; i < pinInfo.length; i++) {
 //   infoWindow.open(googleMap, marker3);
 // });
 
+// // Create an info window to share between markers.
+// const infoWindow = new google.maps.InfoWindow();
 
-  // // Create an info window to share between markers.
-  // const infoWindow = new google.maps.InfoWindow();
+// // Create the markers.
+// markerPositions.forEach(({ position, title }, i) => {
+//   const pinView = new google.maps.marker.PinView({
+//     glyph: `${i + 1}`,
+//   });
+//   const marker = new google.maps.marker.AdvancedMarkerView({
+//     position,
+//     googleMap,
+//     title: `${i + 1}. ${title}`,
+//     content: pinView.element,
+//   });
 
-  // // Create the markers.
-  // markerPositions.forEach(({ position, title }, i) => {
-  //   const pinView = new google.maps.marker.PinView({
-  //     glyph: `${i + 1}`,
-  //   });
-  //   const marker = new google.maps.marker.AdvancedMarkerView({
-  //     position,
-  //     googleMap,
-  //     title: `${i + 1}. ${title}`,
-  //     content: pinView.element,
-  //   });
+//   // Add a click listener for each marker, and set up the info window.
+//   marker.addListener("click", ({ domEvent, latLng }) => {
+//     const { target } = domEvent;
 
-  //   // Add a click listener for each marker, and set up the info window.
-  //   marker.addListener("click", ({ domEvent, latLng }) => {
-  //     const { target } = domEvent;
-
-  //     infoWindow.close();
-  //     infoWindow.setContent(marker.title);
-  //     infoWindow.open(marker.googleMap, marker);
-  //   });
-  // });
-
+//     infoWindow.close();
+//     infoWindow.setContent(marker.title);
+//     infoWindow.open(marker.googleMap, marker);
+//   });
+// });
 
 //gets the maps latLong from its city and country
 const geoCodeMap = () => {
@@ -189,28 +186,28 @@ const mapSetUp = (latLong) => {
     document.getElementById(`googleMap`),
     mapSetUp
   );
-  geoCodeMarker()
+  geoCodeMarker();
 };
 
 // updates the map variables and makes a request to the api if no map showing or calls initMap
 const renderMapArea = (mapObj, api) => {
-  mapInfo = mapObj.mapData
-  pinInfo = mapObj.pinsData
+  mapInfo = mapObj.mapData;
+  pinInfo = mapObj.pinsData;
   mapID = mapObj.mapData.id;
-  console.log(mapObj)
+  console.log(mapObj);
   // lat = 49.281059;
   // long = -123.119019;
   // console.log(map)
-  if ($(".mapArea").length === 0){
-    console.log('hey')
+  if ($(".mapArea").length === 0) {
+    console.log("hey");
     const $discoverMaps = `<div class="discoverMapsArea">
-    <div class="discoverMapsTitle">Discover Maps!</div>
+    <div class="discoverMapsTitle strong">Discover Maps!</div>
     <section class="mapListContainer">
     </section>
   </div>
   <div class="mapArea"></div>`;
     $(".mainContainer").empty();
-   $(".mainContainer").append($discoverMaps);
+    $(".mainContainer").append($discoverMaps);
   }
   if ($(".googleMap").length > 0) {
     initMap();

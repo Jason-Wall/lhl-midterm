@@ -1,11 +1,11 @@
 /* style nav bar */
+@import "variables";
 
 // font-family: 'Sen', sans-serif;
 // font-family: 'Source Sans Pro', sans-serif;
 
 nav {
   font-family: 'Sen', sans-serif;
-  font-size: x-large;
   padding: 1em;
   background-color: white;
   width: 100%;
@@ -16,11 +16,14 @@ nav {
 }
 
 .button {
+  font-size:x-large;
   margin-left: 4px;
+  background-color: $light;
 }
 
 .logo {
   margin-left: 1em;
+  font-size:xx-large;
 }
 
 .login, .logout{

@@ -10,8 +10,8 @@ const renderMapsList = (maps, container) => {
           src=${map.map_url}
           alt="map image">
         <div class="mapListDetails">
-          <div>${map.map_title}</div>
-          <div>Created by: ${map.name}</div>
+          <div class="title">${map.map_title}</div>
+          <div class="createdBy">Created by: ${map.name}</div>
           <div class="mapListIcons"></div>
         </div>
       </div>
@@ -22,9 +22,9 @@ const renderMapsList = (maps, container) => {
     // if user is logged in, create icons
     if ($(".logout").length) {
       const icons = $(`
-      <i class="fa-solid fa-heart"></i>
-      <i class="fa-solid fa-pen-to-square"></i>
-      <i class="fa-regular fa-trash-can"></i>`);
+      <i class="icon fa-solid fa-heart"></i>
+      <i class="icon fa-solid fa-pen-to-square"></i>
+      <i class="icon fa-regular fa-trash-can"></i>`);
       newDiv.find(".mapListIcons").append(icons);
 
       newDiv.find(".fa-heart").on("click", () => {
@@ -43,6 +43,3 @@ const renderMapsList = (maps, container) => {
     populateMapArea(map.id);
   }
 };
-
-
-
