@@ -23,11 +23,8 @@ const renderMapArea = (mapObj, api) => {
   renderMapInfo(mapInfo);
   for (pin of pinInfo) {
     renderPinInfo(pin);
-// if user is logged in, create icons
-if ($(".logout").length) {
-  renderPinIcons(pin)
-  }
 }
+renderPinIcons(pin)
   if ($(".googleMap").length > 0) {
     initMap();
     return;
@@ -66,23 +63,27 @@ const renderPinInfo = (pin) => {
 <div class"mapDescription pinDesciption">${pin.pin_description}</div>
 `;
 $('.mapListContainer').append($pinDetails);
+// // if user is logged in, create icons
+// if ($(".logout").length) {
+//   renderPinIcons(pin)
+//   }
 }
 
 const renderPinIcons = (pin) => {
-  const icons = $(`
+  const $icons = (`
   <i class="fa-solid fa-pen-to-square"></i>
   <i class="fa-regular fa-trash-can"></i>`);
-  $pinDetails.find(".pinIcons").append(icons);
+  $(".pinIcons").append($icons);
 
-  $pinDetails.find(".fa-pen-to-square").on("click", () => {
-    renderModal(editMapForm, map.id);
-    console.log(`Edit icon clicked for pin ID: ${pin.id}`);
-  });
+  // $pinDetails.find(".fa-pen-to-square").on("click", () => {
+  //   renderModal(editMapForm, map.id);
+  //   console.log(`Edit icon clicked for pin ID: ${pin.id}`);
+  // });
 
-  $pinDetails.find(".fa-trash-can").on("click", () => {
-    console.log("clicked trash can");
-    renderModal(deleteMapForm, map.id);
-  });
+  // $pinDetails.find(".fa-trash-can").on("click", () => {
+  //   console.log("clicked trash can");
+  //   renderModal(deleteMapForm, map.id);
+  // });
 }
 
 //update the maps information / callback from google maps api
