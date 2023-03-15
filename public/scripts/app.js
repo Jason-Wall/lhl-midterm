@@ -1,6 +1,6 @@
 // Client facing scripts here
 $(document).ready(() => {
-  populateMapsList(); // This function establishes all initial event listeners around the page. See below.
+  viewAllMaps();
   populateMapArea();
 
   //login event listener
@@ -10,8 +10,8 @@ $(document).ready(() => {
       url: "/users-api/login/1",
     }).then((response) => {
       renderNavArea();
-      //1calls renderMemberArea with the user object
-      renderMemberArea(response.user);
+      //1calls viewMemberArea with the user object
+      viewMemberArea(response.user);
     });
   });
 
@@ -27,14 +27,7 @@ $(document).ready(() => {
 
   //discover maps listener
   $(".buttons").on("click", ".discover", () => {
-    $(".mainContainer").empty();
-    const $discoverMaps = `<div class="discoverMapsArea">
-      <div class="discoverMapsTitle">Discover Maps!</div>
-      <section class="mapListContainer">
-      </section>
-    </div>
-    <div class="mapArea">No potatoes here</div>`;
-    $(".mainContainer").append($discoverMaps);
+   viewAllMaps();
   });
 
   //my maps listener
@@ -44,8 +37,8 @@ $(document).ready(() => {
       url: "/users-api/login/1",
     }).then((response) => {
       // console.log(response);
-      //1calls renderMemberArea with the user object
-      renderMemberArea(response.user);
+      //1calls viewMemberArea with the user object
+      viewMemberArea(response.user);
     });
   });
 
@@ -60,18 +53,9 @@ $(document).ready(() => {
   });
 });
 
-const populateMapsList = () => {
   $(".logo").on("click", () => {
-    $.ajax({
-      type: "GET",
-      url: "/maps",
-    })
-      .then((maps) => renderMapsList(maps, "discoverMapsArea"))
-      .catch(function (xhr, status, error) {
-        console.log("Error: " + error);
-      });
+    viewAllMaps();
   });
-};
 
 const populateMapArea = (mapID) => {
   // console.log(mapID);
