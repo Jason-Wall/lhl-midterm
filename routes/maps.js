@@ -19,13 +19,19 @@ router.get("/", (req, res) => {
 });
 
 // GET /maps/:id/   - Get individual map
-
 router.get("/:id", (req, res) => {
   let mapID = req.params.id;
-  mapsdb.getAMap(mapID).then((map) => {
-    res.send({ map, api: process.env.GOOGLE_MAPS_API_KEY });
+  mapsdb.getMapData(mapID)
+  .then((mapObj) => {
+    res.send({ mapObj, api: process.env.GOOGLE_MAPS_API_KEY });
   });
 });
+// router.get("/:id", (req, res) => {
+//   let mapID = req.params.id;
+//   mapsdb.getAMap(mapID).then((map) => {
+//     res.send({ map, api: process.env.GOOGLE_MAPS_API_KEY });
+//   });
+// });
 
 // GET /maps/:id/:pin - Take you to the pin information
 

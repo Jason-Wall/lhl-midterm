@@ -68,10 +68,40 @@ const createMap = (data) => {
   );
 };
 
+const getPins = (mapID) => {
+  return db
+    .query(`SELECT * FROM pins WHERE map_id = ${mapID};`)
+    .then((data) => {
+      console.log(data.rows)
+      return data.rows;
+    })
+    .catch(function (xhr, status, error) {
+      console.log("Error: " + error);
+    });
+};
+
+const getMapData = (mapID) => {
+  mapInfo = {};
+  return getAMap(mapID)
+  .then((data) => {
+    mapInfo.mapData = data
+    return getPins(mapID)
+  })
+    .then((pinData) => {
+      mapInfo.pinsData = pinData
+      console.log(mapInfo)
+      return mapInfo;
+    })
+  .catch(function (xhr, status, error) {
+    console.log("Error: " + error)
+  })
+};
+
 module.exports = {
   getMaps,
   getAMap,
   editMap,
   getARandomMap,
   createMap,
+  getMapData
 };

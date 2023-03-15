@@ -8,7 +8,8 @@ CREATE TABLE pins (
   pin_title VARCHAR(255) NOT NULL,
   pin_description VARCHAR(255) NOT NULL,
   pin_url VARCHAR(255) NOT NULL,
-  latitude NUMERIC NOT NULL,
-  longitude NUMERIC NOT NULL
+  street_address VARCHAR(255) NOT NULL,
+  city VARCHAR(255) NOT NULL,
+  country VARCHAR(255) NOT NULL
 );
 
