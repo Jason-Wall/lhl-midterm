@@ -1,5 +1,5 @@
 //renders the member area
-const viewMemberArea = (user) => {
+const viewMemberArea = () => {
   $(".mainContainer").empty();
   const $memberArea = `
   <section class="memberAreaContainer">
@@ -48,8 +48,6 @@ const viewMemberArea = (user) => {
     }
   });
 };
-
-
 
 const viewAllMaps = () => {
   $(".mainContainer").empty();

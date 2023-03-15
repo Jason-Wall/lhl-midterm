@@ -57,13 +57,16 @@ const editMapForm = (id) => {
           url: `/maps/${id}`,
           data: mapEdits,
         }).then(() => {
+          $(".modal").off();
           $(".modal").remove();
+          viewMemberArea();
           // Need to refresh the maps column. Work with Jenny on this.
         });
       });
 
       // Event listener - close modal on cancel.
       $(".cancel").on("click", () => {
+        $(".modal").off();
         $(".modal").remove();
       });
     });

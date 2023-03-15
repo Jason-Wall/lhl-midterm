@@ -43,12 +43,15 @@ const createMapForm = (id) => {
       data: mapCreation,
     }).then(() => {
       // need to refesh the maps column talk about with Jason
+      $(".modal").off();
       $(".modal").remove();
+      viewMemberArea();
     });
   });
 
   // Event listener - close modal on cancel.
   $(".cancel").on("click", () => {
+    $(".modal").off();
     $(".modal").remove();
   });
 };
