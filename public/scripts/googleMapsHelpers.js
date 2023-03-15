@@ -1,6 +1,7 @@
 // brings the lat and long variables to the global scope
 // let lat;
 // let long;
+let latLong;
 let mapInfo;
 
 //update the maps information / callback from google maps api
@@ -51,6 +52,17 @@ const renderMapArea = (map, api) => {
   // lat = 49.281059;
   // long = -123.119019;
   // console.log(map)
+  if ($(".mapArea").length === 0){
+    console.log('hey')
+    const $discoverMaps = `<div class="discoverMapsArea">
+    <div class="discoverMapsTitle">Discover Maps!</div>
+    <section class="mapListContainer">
+    </section>
+  </div>
+  <div class="mapArea"></div>`;
+    $(".mainContainer").empty();
+   $(".mainContainer").append($discoverMaps);
+  }
   if ($(".googleMap").length > 0) {
     initMap();
     return;
