@@ -8,7 +8,7 @@ $(document).ready(() => {
 
 const populateMapArea = (mapID) => {
   // console.log(mapID);
-  $(`#${mapID}`).on("click", () => {
+  $(`.map_id_${mapID}`).on("click", () => {
     $.ajax({
       type: "GET",
       url: `/maps/${mapID}`, //this will be received in the backend route with the help of req.params
