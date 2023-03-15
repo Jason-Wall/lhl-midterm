@@ -57,7 +57,12 @@ router.patch("/:id", (req, res) => {
 
 // PATCH /maps/:id/:pin - Edit pin info
 
-// DELETE /maps/:id - Delete a map
+// DELETE /maps/delete - Delete a map
+router.delete("/delete", (req, res) => {
+  mapsdb.deleteMap(req.body.map_id).then((response) => {
+    res.send(response);
+  });
+});
 
 // DELETE /maps/:id/:pin - Delete a pin
 

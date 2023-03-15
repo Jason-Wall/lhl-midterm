@@ -1,21 +1,6 @@
 // create modal for creating a new map:
-const renderMapModal = (modalForm, id) => {
-  const modalDiv = `
-    <div class="modal">
-      <div class="modal-content">
-      </div>
-    </div>`;
-  $("body").prepend(modalDiv);
 
-  $(".modal").on("click", (event) => {
-    if (event.target == $(".modal")[0]) {
-      $(".modal").remove();
-    }
-  });
-  modalForm(id);
-};
-
-// Render Edit Map Form
+// Render Edit Map Form into modal
 const createMapForm = (id) => {
   // Create a series of text boxes
   const modalDiv = `

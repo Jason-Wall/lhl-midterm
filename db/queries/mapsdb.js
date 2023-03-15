@@ -68,10 +68,15 @@ const createMap = (data) => {
   );
 };
 
+const deleteMap = (mapId) => {
+  return db.query(`DELETE FROM maps WHERE id = $1;`, [mapId]);
+};
+
 module.exports = {
   getMaps,
   getAMap,
   editMap,
   getARandomMap,
   createMap,
+  deleteMap,
 };
