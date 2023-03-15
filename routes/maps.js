@@ -74,7 +74,7 @@ router.patch("/:id", (req, res) => {
 
 
 // PATCH /maps/:id/fav - Toggle map favourite
-router.patch("/:id/fav", (req, res) => {
+router.patch("/:id/favs", (req, res) => {
   const map_id = req.params.id;
   const user_id = req.cookies.user_id;
   favsdb.toggleMapFav(user_id,map_id).then((returnFav) => {

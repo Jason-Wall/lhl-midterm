@@ -19,7 +19,7 @@ const getUserData = (userId) => {
             .then((pin_favourites) => {
               return db
                 .query(
-                  `SELECT * FROM map_favourites WHERE map_favourites.user_id = $1`,
+                  `SELECT * FROM map_favourites WHERE map_favourites.user_id = $1 AND fav_status = TRUE`,
                   [userId]
                 )
                 .then((map_favourites) => {
@@ -28,7 +28,7 @@ const getUserData = (userId) => {
                     .then((user) => {
                       return db
                         .query(
-                          `SELECT maps.*, users.name FROM maps JOIN users ON user_id = users.id JOIN map_favourites ON maps.id = map_id WHERE map_favourites.user_id = $1`,
+                          `SELECT maps.*, users.name FROM maps JOIN users ON user_id = users.id JOIN map_favourites ON maps.id = map_id WHERE map_favourites.user_id = $1 AND fav_status = TRUE`,
                           [userId]
                         )
                         .then((favMaps) => {

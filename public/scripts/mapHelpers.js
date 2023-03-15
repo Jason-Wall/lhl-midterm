@@ -27,21 +27,27 @@ const renderMapsList = (maps, container) => {
       <i class="icon fa-regular fa-trash-can"></i>`);
       newDiv.find(".mapListIcons").append(icons);
 
-      newDiv.find(".fa-heart").on("click", () => {
-        console.log(`Heart icon clicked for map ID: ${map.id}`);
+      newDiv.find(".fa-heart").on("click", function() {
+        $.ajax({
+          method: "PATCH",
+          url: `/maps/${map.id}/favs`
+        }).then(() => {
+          viewMemberArea();
+          // Need to refresh the maps column. Work with Jenny on this.
+        });
+        $(`.map_id_${map.id}`).removeClass('favourite');
       });
 
       newDiv.find(".fa-pen-to-square").on("click", () => {
         renderModal(editMapForm, map.id);
-        console.log(`Edit icon clicked for map ID: ${map.id}`);
       });
       newDiv.find(".fa-trash-can").on("click", () => {
-        console.log("clicked trash can");
         renderModal(deleteMapForm, map.id);
       });
     }
     populateMapArea(map.id);
   }
+
   //Assign favourite class
   if ($(".logout").length) {
     $.ajax({

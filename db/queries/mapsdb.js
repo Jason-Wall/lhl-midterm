@@ -82,7 +82,6 @@ const deleteMap = (mapId) => {
   return db
     .query(`SELECT * FROM pins WHERE map_id = ${mapID};`)
     .then((data) => {
-      console.log(data.rows)
       return data.rows;
     })
     .catch(function (xhr, status, error) {
@@ -99,7 +98,6 @@ const getMapData = (mapID) => {
   })
     .then((pinData) => {
       mapInfo.pinsData = pinData
-      console.log(mapInfo)
       return mapInfo;
     })
   .catch(function (xhr, status, error) {

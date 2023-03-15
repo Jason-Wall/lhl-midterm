@@ -8,13 +8,3 @@ CREATE TABLE map_favourites (
 
   CONSTRAINT unique_favourite UNIQUE (user_id, map_id)
 );
-
-
-INSERT INTO map_favourites (user_id, map_id)
-VALUES (1,3);
-
-ON CONFLICT ON CONSTRAINT unique_favourite DO
-
-UPDATE SET fav_status = NOT fav_status
-WHERE user_id = 1
-AND map_id = 3;

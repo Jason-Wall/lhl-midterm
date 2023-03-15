@@ -51,7 +51,7 @@ const editMapForm = (id) => {
           map_description: $("#map-description").val(),
           map_url: $("#cover-photo").val(),
         };
-        console.log("accept button", mapEdits);
+        // console.log("accept button", mapEdits);
         $.ajax({
           method: "PATCH",
           url: `/maps/${id}`,

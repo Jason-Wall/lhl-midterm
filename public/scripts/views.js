@@ -1,6 +1,7 @@
 //renders the member area
 const viewMemberArea = () => {
   $(".mainContainer").empty();
+  $(".mainContainer").off();
   const $memberArea = `
   <section class="memberAreaContainer">
     <div class="myMapsContainer">
@@ -51,6 +52,8 @@ const viewMemberArea = () => {
 
 const viewAllMaps = () => {
   $(".mainContainer").empty();
+  $(".mainContainer").off();
+
   const $discoverMaps = `<div class="discoverMapsArea">
     <div class="discoverMapsTitle strong">Discover Maps!</div>
     <section class="mapListContainer">
