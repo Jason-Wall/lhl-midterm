@@ -55,7 +55,7 @@ $(document).ready(() => {
       type: "GET",
       url: "/users-api/myinfo",
     }).then((data) => {
-      renderMapModal(createMapForm, data.user[0].id);
+      renderModal(createMapForm, data.user[0].id);
     });
   });
 });
@@ -74,7 +74,7 @@ const populateMapsList = () => {
 };
 
 const populateMapArea = (mapID) => {
-  console.log(mapID);
+  // console.log(mapID);
   $(`#${mapID}`).on("click", () => {
     $.ajax({
       type: "GET",

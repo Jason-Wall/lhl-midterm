@@ -11,7 +11,7 @@ const renderMapsList = (maps, container) => {
           alt="map image">
         <div class="mapListDetails">
           <div>${map.map_title}</div>
-          <div>Created by: Test Test</div>
+          <div>Created by: ${map.name}</div>
           <div class="mapListIcons"></div>
         </div>
       </div>
@@ -23,16 +23,21 @@ const renderMapsList = (maps, container) => {
     if ($(".logout").length) {
       const icons = $(`
       <i class="fa-solid fa-heart"></i>
-      <i class="fa-solid fa-pen-to-square"></i>`);
+      <i class="fa-solid fa-pen-to-square"></i>
+      <i class="fa-regular fa-trash-can"></i>`);
       newDiv.find(".mapListIcons").append(icons);
 
-      icons.find(".fa-heart").on("click", () => {
+      newDiv.find(".fa-heart").on("click", () => {
         console.log(`Heart icon clicked for map ID: ${map.id}`);
       });
 
-      icons.find(".fa-pen-to-square").on("click", () => {
+      newDiv.find(".fa-pen-to-square").on("click", () => {
         renderModal(editMapForm, map.id);
         console.log(`Edit icon clicked for map ID: ${map.id}`);
+      });
+      newDiv.find(".fa-trash-can").on("click", () => {
+        console.log("clicked trash can");
+        renderModal(deleteMapForm, map.id);
       });
     }
     populateMapArea(map.id);
@@ -83,6 +88,7 @@ const renderMemberArea = (user) => {
   <section class="memberAreaContainer">
     <div class="myMapsContainer">
       <div class="myMapsArea">
+      <div class="myMapsTitle">My maps</div>
         <section class="myMapsAreaContainer"></section>
       </div>
     </div>
