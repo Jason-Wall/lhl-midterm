@@ -1,37 +1,45 @@
-const db = require('../connection');
+const db = require("../connection");
 
 const getMaps = () => {
-  return db.query('SELECT * FROM maps;')
-    .then(maps => {
+  return db
+    .query("SELECT * FROM maps;")
+    .then((maps) => {
       return maps.rows;
     })
     .catch(function (xhr, status, error) {
-              console.log("Error: " + error);
-            })
+      console.log("Error: " + error);
+    });
 };
 
 const getAMap = (mapID) => {
-  return db.query(`SELECT * FROM maps WHERE maps.id = ${mapID};`)
-    .then(data => {
+  return db
+    .query(`SELECT * FROM maps WHERE maps.id = ${mapID};`)
+    .then((data) => {
       return data.rows[0];
     })
     .catch(function (xhr, status, error) {
       console.log("Error: " + error);
-    })
-  };
+    });
+};
 
 const getARandomMap = () => {
-  return db.query(`SELECT id FROM maps`)
-  .then(data => {
-    return data
-  })
-  .catch(function (xhr, status, error) {
-    console.log("Error: " + error);
-  })
+  return db
+    .query(`SELECT id FROM maps`)
+    .then((data) => {
+      return data;
+    })
+    .catch(function (xhr, status, error) {
+      console.log("Error: " + error);
+    });
 };
 
 const editMap = (mapEdits) => {
-  const queryVars = [mapEdits.map_id, mapEdits.map_title, mapEdits.map_description, mapEdits.map_url];
+  const queryVars = [
+    mapEdits.map_id,
+    mapEdits.map_title,
+    mapEdits.map_description,
+    mapEdits.map_url,
+  ];
   return db.query(
     `UPDATE maps
     SET map_title = $2,
@@ -39,13 +47,31 @@ const editMap = (mapEdits) => {
         map_url = $4
     WHERE id = $1
     RETURNING *;
-    `, queryVars)
-}
+    `,
+    queryVars
+  );
+};
 
-
+const createMap = (data) => {
+  const queryVars = [
+    data.user_id,
+    data.map_title,
+    data.map_description,
+    data.map_url,
+    data.city,
+    data.country,
+  ];
+  return db.query(
+    `INSERT INTO maps (user_id, map_title, map_description, map_url, city, country)
+    VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
+    queryVars
+  );
+};
 
 module.exports = {
   getMaps,
   getAMap,
   editMap,
-  getARandomMap };
+  getARandomMap,
+  createMap,
+};

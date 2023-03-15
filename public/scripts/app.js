@@ -3,71 +3,62 @@ $(document).ready(() => {
   populateMapsList(); // This function establishes all initial event listeners around the page. See below.
   populateMapArea();
 
-
-
-//login event listener
-$(".buttons").on("click", ".login", () => {
-  $.ajax({
-    type: "POST",
-    url: "/users-api/login/1",
-  }).then((response) => {
-    console.log(response);
-    renderNavArea();
-    //1calls renderMemberArea with the user object
-    renderMemberArea(response.user);
+  //login event listener
+  $(".buttons").on("click", ".login", () => {
+    $.ajax({
+      type: "POST",
+      url: "/users-api/login/1",
+    }).then((response) => {
+      renderNavArea();
+      //1calls renderMemberArea with the user object
+      renderMemberArea(response.user);
+    });
   });
-});
 
-//logout event listener
-$(".buttons").on("click", ".logout", () => {
-  $.ajax({
-    type: "POST",
-    url: "/users-api/logout",
-  }).then((response) => {
-    console.log(response);
-    resetNavArea();
+  //logout event listener
+  $(".buttons").on("click", ".logout", () => {
+    $.ajax({
+      type: "POST",
+      url: "/users-api/logout",
+    }).then((response) => {
+      resetNavArea();
+    });
   });
-});
 
-//discover maps listener
-$(".buttons").on("click", ".discover", () => {
-  $(".mainContainer").empty();
-  const $discoverMaps = `<div class="discoverMapsArea">
+  //discover maps listener
+  $(".buttons").on("click", ".discover", () => {
+    $(".mainContainer").empty();
+    const $discoverMaps = `<div class="discoverMapsArea">
       <div class="discoverMapsTitle">Discover Maps!</div>
       <section class="mapListContainer">
       </section>
     </div>
     <div class="mapArea">No potatoes here</div>`;
-  $(".mainContainer").append($discoverMaps);
-});
+    $(".mainContainer").append($discoverMaps);
+  });
 
-//my maps listener
-$(".buttons").on("click", ".myMaps", () => {
-  $.ajax({
-    type: "POST",
-    url: "/users-api/login/1",
-  }).then((response) => {
-    console.log(response);
-    //1calls renderMemberArea with the user object
-    renderMemberArea(response.user);
+  //my maps listener
+  $(".buttons").on("click", ".myMaps", () => {
+    $.ajax({
+      type: "POST",
+      url: "/users-api/login/1",
+    }).then((response) => {
+      // console.log(response);
+      //1calls renderMemberArea with the user object
+      renderMemberArea(response.user);
+    });
+  });
+
+  //create a map listener (takes you to createMapModal)
+  $(".buttons").on("click", ".createAMap", () => {
+    $.ajax({
+      type: "GET",
+      url: "/users-api/myinfo",
+    }).then((data) => {
+      renderMapModal(createMapForm, data.user[0].id);
+    });
   });
 });
-
-//create a map listener (takes you to createMapModal)
-$(".buttons").on("click", ".createAMap", () => {
-  $.ajax({
-    type: "GET",
-    url: "/users-api/myinfo",
-  }).then((data) => {
-    renderMapModal(createMapForm, data.user[0].id);
-  });
-});
-
-
-
-
-});
-
 
 const populateMapsList = () => {
   $(".logo").on("click", () => {
@@ -75,7 +66,7 @@ const populateMapsList = () => {
       type: "GET",
       url: "/maps",
     })
-      .then((maps) => renderMapsList(maps, 'discoverMapsArea'))
+      .then((maps) => renderMapsList(maps, "discoverMapsArea"))
       .catch(function (xhr, status, error) {
         console.log("Error: " + error);
       });
@@ -96,10 +87,9 @@ const populateMapArea = (mapID) => {
       })
       .catch(function (xhr, status, error) {
         console.log("Error: " + error);
-      })
-  })
+      });
+  });
 };
-
 
 //Jasons demo:
 // const addNewDiv = () => {

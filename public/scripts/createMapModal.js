@@ -1,4 +1,4 @@
-// create modal for edit:
+// create modal for creating a new map:
 const renderMapModal = (modalForm, id) => {
   const modalDiv = `
     <div class="modal">
@@ -21,45 +21,45 @@ const createMapForm = (id) => {
   const modalDiv = `
     <section>
     <div><label for="map-title">Title:</label>
-    <input type="text" name="map-title" value="" placeholder="title"/>
+    <input class="newTitle" type="text" name="map-title" value="" placeholder="title"/>
 
     <label for="map-city">City:</label>
-    <input type="text" name="map-city" value="" placeholder="city"/>
+    <input class="newCity" type="text" name="map-city" value="" placeholder="city"/>
 
     <label for="map-country">Country:</label>
-    <input type="text" name="map-country" value="" placeholder="country"/></div>
-
+    <input class="newCountry" type="text" name="map-country" value="" placeholder="country"/></div><br>
     <div><label for="map-description">Description:</label>
-    <input type="text" name="map-description" value="" placeholder="description"/>
+    <input class="newDescription" type="text" name="map-description" value="" placeholder="description"/>
 
     <label for="map-url">Url:</label>
-    <input type="text" name="map-url" value="" placeholder="url"/></div>
+    <input class="newUrl" type="text" name="map-url" value="" placeholder="url"/></div>
 
     </section>
     <div class="modal-buttons">
-      <span class="accept">Accept Changes</span>
+      <span class="create">Create Map!</span>
       <span class="cancel">Cancel</span>
     </div>`;
   $(".modal-content").append(modalDiv);
 
   //create map listener -creates a map (updates maps db table) and closes modal
-  $(".buttons").on("click", ".create", () => {
-    // const mapCreation = {
-    //   map_id: id,
-    //   map_title: $("#map-title").val(),
-    //   map_description: $("#map-description").val(),
-    //   map_url: $("#cover-photo").val(),
-    // };
-    //   //updates maps db table
-    //   $.ajax({
-    //     type: "POST",
-    //     url: `/maps/${id}/create`,
-    //     data: mapCreate,
-    //   }).then((response) => {
-    //     console.log(response);
-    //     // need to refesh the maps column
-    //     $(".modal").remove();
-    //   });
+  $(".create").on("click", () => {
+    const mapCreation = {
+      user_id: id,
+      map_title: $(".newTitle").val(),
+      map_description: $(".newDescription").val(),
+      map_url: $(".newUrl").val(),
+      city: $(".newCity").val(),
+      country: $(".newCountry").val(),
+    };
+    //updates maps db table
+    $.ajax({
+      type: "POST",
+      url: `/maps/${id}/create`,
+      data: mapCreation,
+    }).then(() => {
+      // need to refesh the maps column talk about with Jason
+      $(".modal").remove();
+    });
   });
 
   // Event listener - close modal on cancel.

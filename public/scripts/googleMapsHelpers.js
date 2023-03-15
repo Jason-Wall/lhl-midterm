@@ -5,33 +5,35 @@ let mapInfo;
 
 //update the maps information / callback from google maps api
 function initMap() {
-  geocode()
-  }
+  geocode();
+}
 
 //gets the maps latLong from its city and country
 const geocode = () => {
-  console.log(mapInfo);
+  // console.log(mapInfo);
   let geocoder = new google.maps.Geocoder();
   let address = `${mapInfo.city}, ${mapInfo.country}`;
-geocoder.geocode({ 'address': address }, function(results, status) {
-  if (status == 'OK') {
-    let location = results[0].geometry.location;
-    lat = location.lat()
-    long = location.lng()
-    latLong = {lat, long}
-    mapSetUp(latLong)
-    // console.log(location.lat());
-    // console.log('Longitude: ' + location.lng());
-  } else {
-    console.log('Geocode was not successful for the following reason: ' + status);
-  }
-});
-}
+  geocoder.geocode({ address: address }, function (results, status) {
+    if (status == "OK") {
+      let location = results[0].geometry.location;
+      lat = location.lat();
+      long = location.lng();
+      latLong = { lat, long };
+      mapSetUp(latLong);
+      // console.log(location.lat());
+      // console.log('Longitude: ' + location.lng());
+    } else {
+      console.log(
+        "Geocode was not successful for the following reason: " + status
+      );
+    }
+  });
+};
 
 // updates the maps
 const mapSetUp = (latLong) => {
-  let lat = latLong.lat
-  let long = latLong.long
+  let lat = latLong.lat;
+  let long = latLong.long;
   let mapSetUp = {
     center: new google.maps.LatLng(lat, long),
     zoom: 10,
@@ -40,12 +42,12 @@ const mapSetUp = (latLong) => {
     document.getElementById(`googleMap`),
     mapSetUp
   );
-}
+};
 
 // updates the map variables and makes a request to the api if no map showing or calls initMap
 const renderMapArea = (map, api) => {
   mapID = map.id;
-  mapInfo = map
+  mapInfo = map;
   // lat = 49.281059;
   // long = -123.119019;
   // console.log(map)
@@ -61,4 +63,3 @@ const renderMapArea = (map, api) => {
   $(".mapArea").empty();
   $(".mapArea").append($mapDiv);
 };
-

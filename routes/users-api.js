@@ -22,7 +22,7 @@ router.get("/myinfo", (req, res) => {
   const userId = req.cookies.user_id;
   //3 call getUserData with the userId as a parameter, then 5 send the data receive from the databse to mapHelpers.js .then of renderMemberArea
   getUserData(userId).then((data) => {
-    console.log("data:", data);
+    // console.log("data:", data);
     res.send(data);
   });
 });

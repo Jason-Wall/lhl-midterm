@@ -20,11 +20,11 @@ const renderMapsList = (maps, container) => {
     `);
     $(`.${container}`).append(newDiv);
     // if user is logged in, create icons
-    if ($('.logout').length){
+    if ($(".logout").length) {
       const icons = $(`
       <i class="fa-solid fa-heart"></i>
       <i class="fa-solid fa-pen-to-square"></i>`);
-      newDiv.find('.mapListIcons').append(icons);
+      newDiv.find(".mapListIcons").append(icons);
 
       icons.find(".fa-heart").on("click", () => {
         console.log(`Heart icon clicked for map ID: ${map.id}`);
@@ -35,7 +35,7 @@ const renderMapsList = (maps, container) => {
         console.log(`Edit icon clicked for map ID: ${map.id}`);
       });
     }
-    populateMapArea(map.id)
+    populateMapArea(map.id);
   }
 };
 
@@ -107,7 +107,7 @@ const renderMemberArea = (user) => {
     url: "/users-api/myinfo",
   }).then((data) => {
     //receive an object of user data from /myinfo route and use it to populate member page
-    console.log("data:", data);
+    // console.log("data:", data);
     // My Maps
     renderMapsList(data.maps, "myMapsArea");
 

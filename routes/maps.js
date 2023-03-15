@@ -10,14 +10,6 @@ const router = express.Router();
 const usersdb = require("../db/queries/users");
 const mapsdb = require("../db/queries/mapsdb");
 
-// Jasons example function - Note - conflict with below get/
-// router.get("/", (req, res) => {
-//   usersdb.getUsers()
-//   .then(users => {
-//     res.send(users);
-//   })
-// });
-
 // GET /maps   - Gets all maps
 
 router.get("/", (req, res) => {
@@ -43,7 +35,9 @@ router.get("/:id", (req, res) => {
 
 // POST /maps - Create new map
 router.post("/:id/create", (req, res) => {
-  res.send();
+  mapsdb.createMap(req.body).then((response) => {
+    res.send(response.rows[0]);
+  });
 });
 
 // POST  /maps/:id - Create a pin
