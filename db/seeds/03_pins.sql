@@ -17,7 +17,7 @@ INSERT INTO pins (map_id, user_id, pin_title, pin_description, pin_url, street_a
 VALUES (2, 3, 'Barberian"s Steak House', 'Amazing steakhouse, with amazing wine pairings', 'pin_url', '7 Elm St', 'Toronto', 'canada');
 
 INSERT INTO pins (map_id, user_id, pin_title, pin_description, pin_url, street_address, city, country)
-VALUES (2, 3, 'Pearl Diver', 'Great seafood place that isnt as fancy as the others', 'pin_url', '100 Adelaide St E', 'Toronto', 'canada');
+VALUES (2, 1, 'Pearl Diver', 'Great seafood place that isnt as fancy as the others', 'pin_url', '100 Adelaide St E', 'Toronto', 'canada');
 
 
 -- pins for map 3 (jasons map)

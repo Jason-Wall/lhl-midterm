@@ -12,14 +12,14 @@ const viewMemberArea = () => {
     </div>
     <div class="myFavMapsContainer">
       <div class="myFavMapsArea">
-        <div class="myFavMapsTitle strong">My fav maps</div>
+        <div class="myFavMapsTitle strong">My favourite maps</div>
         <section class="myFavMapsAreaContainer"></section>
       </div>
     </div>
-    <div class="myFavPinsContainer">
-      <div class="myPinsArea">
-        <div class="myFavPinsTitle strong">My fav pins</div>
-        <section class="myFavPinsAreaContainer"></section>
+    <div class="myMapContributions">
+      <div class="myContributionsArea">
+        <div class="myContributions strong">Map's I contribute to</div>
+        <section class="myContributionsAreaContainer"></section>
       </div>
     </div>
   </section>
@@ -39,16 +39,10 @@ const viewMemberArea = () => {
     renderMapsList(data.favMaps, "myFavMapsArea");
 
     // My Fav Pins
-    for (let pinFav of data.favPins) {
-      const $myFavPins = $(`
-      <div class="pinList">
-      <div>${pinFav.pin_title}</div>
-      <div>${pinFav.pin_description}</div>
-      </div>`);
-      $(".myFavPinsAreaContainer").append($myFavPins);
+    renderMapsList(data.contributeMaps, "myContributionsArea");
+
     }
-  });
-};
+  )};
 
 const viewAllMaps = () => {
   $(".mainContainer").empty();
