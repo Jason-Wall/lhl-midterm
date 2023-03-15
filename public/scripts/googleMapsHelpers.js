@@ -52,11 +52,23 @@ const mapSetUp = (latLong) => {
 
 // updates the map variables and makes a request to the api if no map showing or calls initMap
 const renderMapArea = (map, api) => {
+  console.log('hey')
   mapID = map.id;
   mapInfo = map
   // lat = 49.281059;
   // long = -123.119019;
   // console.log(map)
+  if ($(".mapArea").length === 0){
+    console.log('hey')
+    const $discoverMaps = `<div class="discoverMapsArea">
+    <div class="discoverMapsTitle">Discover Maps!</div>
+    <section class="mapListContainer">
+    </section>
+  </div>
+  <div class="mapArea"></div>`;
+    $(".mainContainer").empty();
+   $(".mainContainer").append($discoverMaps);
+  }
   if ($(".googleMap").length > 0) {
     initMap();
     return;
