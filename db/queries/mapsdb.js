@@ -25,6 +25,18 @@ const getAMap = (mapID) => {
     });
 };
 
+
+const getFavMaps = (user_id) => {
+  return db
+    .query(`SELECT maps.id FROM maps JOIN map_favourites ON map_id = maps.id WHERE map_favourites.user_id = ${user_id};`)
+    .then((data) => {
+      return data.rows;
+    })
+    .catch(function (xhr, status, error) {
+      console.log("Error: " + error);
+    });
+};
+
 const getARandomMap = () => {
   return db
     .query(`SELECT id FROM maps`)
@@ -106,6 +118,7 @@ const getMapData = (mapID) => {
 
 module.exports = {
   getMaps,
+  getFavMaps,
   getAMap,
   editMap,
   getARandomMap,

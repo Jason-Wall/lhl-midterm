@@ -5,7 +5,7 @@ const renderMapsList = (maps, container) => {
   for (let map of maps) {
     const newDiv = $(`
     <section class="mapListContainer">
-      <div id = '${map.id}' class="mapList">
+      <div id = '${map.id}' class="mapList map_id_${map.id}">
         <img class="mapListPic"
           src=${map.map_url}
           alt="map image">
@@ -15,7 +15,7 @@ const renderMapsList = (maps, container) => {
           <div class="mapListIcons"></div>
         </div>
       </div>
-      <div class"mapDescription">${map.map_description}</div>
+      <div class = "mapDescription">${map.map_description}</div>
     </section>
     `);
     $(`.${container}`).append(newDiv);
@@ -41,8 +41,27 @@ const renderMapsList = (maps, container) => {
       });
     }
     populateMapArea(map.id);
+
+  }
+  //Assign favourite class
+  if ($(".logout").length) {
+    $.ajax({
+      type: "GET",
+      url: `/maps/favs`
+    })
+      .then((favmaps) => {
+        for (let favmap of favmaps) {
+          $(`.map_id_${favmap.id}`).each(function () {
+            $(this).find('.fa-heart').addClass('favourite')
+          })
+        }
+      })
+      .catch(function (xhr, status, error) {
+        console.log("Error: " + error, status, xhr);
+      });
   }
 };
+
 
 
 

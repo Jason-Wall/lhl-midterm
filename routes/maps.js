@@ -18,6 +18,17 @@ router.get("/", (req, res) => {
   });
 });
 
+
+// GET /maps/favs/   - Get list of favorite maps
+router.get("/favs", (req, res) => {
+  let user_id = req.cookies.user_id;
+  mapsdb.getFavMaps(user_id)
+  .then((maps) => {
+    res.send(maps);
+  });
+});
+
+
 // GET /maps/:id/   - Get individual map
 router.get("/:id", (req, res) => {
   let mapID = req.params.id;
