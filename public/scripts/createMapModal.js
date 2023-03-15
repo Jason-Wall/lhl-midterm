@@ -1,6 +1,6 @@
 // create modal for creating a new map:
 
-// Render Edit Map Form into modal
+// Render Create Map Form into modal
 const createMapForm = (id) => {
   // Create a series of text boxes
   const modalDiv = `

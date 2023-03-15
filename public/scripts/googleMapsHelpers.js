@@ -6,11 +6,11 @@ let pinLatLng;
 
 // updates the map variables and makes a request to the api if no map showing or calls initMap
 const renderMapArea = (mapObj, api) => {
-  mapInfo = mapObj.mapData
-  pinInfo = mapObj.pinsData
+  mapInfo = mapObj.mapData;
+  pinInfo = mapObj.pinsData;
   mapID = mapObj.mapData.id;
-  if ($(".mapArea").length === 0){
-    console.log('hey')
+  if ($(".mapArea").length === 0) {
+    console.log("hey");
     const $discoverMaps = `<div class="discoverMapsArea">
     <div class="discoverMapsTitle">Discover Maps!</div>
     <section class="mapListContainer">
@@ -18,13 +18,13 @@ const renderMapArea = (mapObj, api) => {
   </div>
   <div class="mapArea"></div>`;
     $(".mainContainer").empty();
-   $(".mainContainer").append($discoverMaps);
+    $(".mainContainer").append($discoverMaps);
   }
   renderMapInfo(mapInfo);
   for (pin of pinInfo) {
     renderPinInfo(pin);
-}
-renderPinIcons(pin)
+  }
+  renderPinIcons(pin);
   if ($(".googleMap").length > 0) {
     initMap();
     return;
@@ -45,8 +45,8 @@ const renderMapInfo = (mapInfo) => {
   <section class="mapListContainer pinContainer">
   </section>
 `;
-$(".discoverMapsArea").empty();
-$(".discoverMapsArea").append($discoverMaps);
+  $(".discoverMapsArea").empty();
+  $(".discoverMapsArea").append($discoverMaps);
 };
 
 const renderPinInfo = (pin) => {
@@ -62,25 +62,29 @@ const renderPinInfo = (pin) => {
 </div>
 <div class"mapDescription pinDesciption">${pin.pin_description}</div>
 `;
-$('.mapListContainer').append($pinDetails);
-}
+  $(".mapListContainer").append($pinDetails);
+};
 
 const renderPinIcons = (pin) => {
-  const $icons = (`
+  const $icons = `
   <i class="fa-solid fa-pen-to-square"></i>
-  <i class="fa-regular fa-trash-can"></i>`);
+  <i class="fa-regular fa-trash-can"></i>`;
   $(".pinIcons").append($icons);
 
-  $(".pinIcons").find(".fa-pen-to-square").on("click", () => {
-    // renderModal(editMapForm, map.id);
-    console.log(`Edit icon clicked for pin ID: ${pin.id}`);
-  });
+  $(".pinIcons")
+    .find(".fa-pen-to-square")
+    .on("click", () => {
+      // renderModal(editMapForm, map.id);
+      console.log(`Edit icon clicked for pin ID: ${pin.id}`);
+    });
 
-  $(".pinIcons").find(".fa-trash-can").on("click", () => {
-    console.log("clicked trash can");
-    // renderModal(deleteMapForm, map.id);
-  });
-}
+  $(".pinIcons")
+    .find(".fa-trash-can")
+    .on("click", () => {
+      console.log("clicked trash can");
+      // renderModal(deleteMapForm, map.id);
+    });
+};
 
 //update the maps information / callback from google maps api
 function initMap() {
@@ -118,18 +122,18 @@ const mapSetUp = (latLong) => {
     document.getElementById(`googleMap`),
     mapSetUp
   );
-  geoCodeMarker()
+  geoCodeMarker();
 };
 
 const geoCodeMarker = () => {
   // Loop through pinInfo to create markers and info windows
-for (let i = 0; i < pinInfo.length; i++) {
-  let pin = pinInfo[i];
-  pinTitle = pin.pin_title;
-  pinDescription = pin.pin_description
-  geoCode(pin);
-}
-}
+  for (let i = 0; i < pinInfo.length; i++) {
+    let pin = pinInfo[i];
+    pinTitle = pin.pin_title;
+    pinDescription = pin.pin_description;
+    geoCode(pin);
+  }
+};
 
 // find lat long based off of pin info
 const geoCode = (info) => {
@@ -140,18 +144,18 @@ const geoCode = (info) => {
       let location = results[0].geometry.location;
       lat = location.lat();
       long = location.lng();
-      pinLatLng = {lat, long}
-    createMarker(pinLatLng, info)
+      pinLatLng = { lat, long };
+      createMarker(pinLatLng, info);
     } else {
       console.log(
         "Geocode was not successful for the following reason: " + status
-        );
-      }
-    });
-  };
+      );
+    }
+  });
+};
 
-  // Create a marker
-  const createMarker = (pinLatLng, info) => {
+// Create a marker
+const createMarker = (pinLatLng, info) => {
   const marker = new google.maps.Marker({
     position: { lat: pinLatLng.lat, lng: pinLatLng.long },
     map: googleMap,
@@ -168,6 +172,3 @@ const geoCode = (info) => {
     infoWindow.open(googleMap, marker);
   });
 };
-
-
-

@@ -5,19 +5,19 @@ const viewMemberArea = () => {
   <section class="memberAreaContainer">
     <div class="myMapsContainer">
       <div class="myMapsArea">
-      <div class="myMapsTitle">My maps</div>
+      <div class="myMapsTitle strong">My maps</div>
         <section class="myMapsAreaContainer"></section>
       </div>
     </div>
     <div class="myFavMapsContainer">
       <div class="myFavMapsArea">
-        <div class="myFavMapsTitle">My fav maps</div>
+        <div class="myFavMapsTitle strong">My fav maps</div>
         <section class="myFavMapsAreaContainer"></section>
       </div>
     </div>
     <div class="myFavPinsContainer">
       <div class="myPinsArea">
-        <div class="myFavPinsTitle">My fav pins</div>
+        <div class="myFavPinsTitle strong">My fav pins</div>
         <section class="myFavPinsAreaContainer"></section>
       </div>
     </div>
@@ -52,7 +52,7 @@ const viewMemberArea = () => {
 const viewAllMaps = () => {
   $(".mainContainer").empty();
   const $discoverMaps = `<div class="discoverMapsArea">
-    <div class="discoverMapsTitle">Discover Maps!</div>
+    <div class="discoverMapsTitle strong">Discover Maps!</div>
     <section class="mapListContainer">
     </section>
   </div>
@@ -67,5 +67,4 @@ const viewAllMaps = () => {
     .catch(function (xhr, status, error) {
       console.log("Error: " + error);
     });
-
-}
+};
