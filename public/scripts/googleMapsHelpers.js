@@ -20,6 +20,11 @@ const renderMapArea = (mapObj, api) => {
     $(".mainContainer").empty();
    $(".mainContainer").append($discoverMaps);
   }
+  renderMapInfo(mapInfo);
+  for (pin of pinInfo) {
+    renderPinInfo(pin);
+}
+renderPinIcons(pin)
   if ($(".googleMap").length > 0) {
     initMap();
     return;
@@ -32,6 +37,50 @@ const renderMapArea = (mapObj, api) => {
   $(".mapArea").empty();
   $(".mapArea").append($mapDiv);
 };
+
+const renderMapInfo = (mapInfo) => {
+  const $discoverMaps = `
+  <div class="discoverMapsTitle mapInfoTitle"><h1>${mapInfo.map_title}!</h1></div>
+  <div class="discoverMapsTitle mapInfoDescription"><p>${mapInfo.map_description}!</p></div>
+  <section class="mapListContainer pinContainer">
+  </section>
+`;
+$(".discoverMapsArea").empty();
+$(".discoverMapsArea").append($discoverMaps);
+};
+
+const renderPinInfo = (pin) => {
+  const $pinDetails = `<div id ="${pin.id}" class="mapList">
+  <img class="mapListPic"
+    src=${pin.map_url}
+    alt="map image">
+  <div class="mapListDetails pinDetails">
+    <div>${pin.pin_title}</div>
+    <div>Created by: ${pin.user_id}</div>
+    <div class="mapListIcons pinIcons"></div>
+  </div>
+</div>
+<div class"mapDescription pinDesciption">${pin.pin_description}</div>
+`;
+$('.mapListContainer').append($pinDetails);
+}
+
+const renderPinIcons = (pin) => {
+  const $icons = (`
+  <i class="fa-solid fa-pen-to-square"></i>
+  <i class="fa-regular fa-trash-can"></i>`);
+  $(".pinIcons").append($icons);
+
+  $(".pinIcons").find(".fa-pen-to-square").on("click", () => {
+    // renderModal(editMapForm, map.id);
+    console.log(`Edit icon clicked for pin ID: ${pin.id}`);
+  });
+
+  $(".pinIcons").find(".fa-trash-can").on("click", () => {
+    console.log("clicked trash can");
+    // renderModal(deleteMapForm, map.id);
+  });
+}
 
 //update the maps information / callback from google maps api
 function initMap() {
