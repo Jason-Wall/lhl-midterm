@@ -4,94 +4,129 @@
 let latLong;
 let mapInfo;
 let pinInfo;
+let pinLatLng;
+let pin;
+let pinTitle;
+let pinDescription;
 
 //update the maps information / callback from google maps api
 function initMap() {
   geoCodeMap();
 }
 
+// find lat long based off of pin info
+const geoCode = (info) => {
+  let geocoder = new google.maps.Geocoder();
+  let address = `${info.street_address}, ${info.city}, ${info.country}`;
+  geocoder.geocode({ address: address }, function (results, status) {
+    if (status == "OK") {
+      let location = results[0].geometry.location;
+      console.log(results[0].geometry.location.lat())
+      lat = location.lat();
+      long = location.lng();
+      pinLatLng = {lat, long}
+    createMarker(pinLatLng, info)
+    } else {
+      console.log(
+        "Geocode was not successful for the following reason: " + status
+        );
+      }
+    });
+  };
+
+
 const geoCodeMarker = () => {
-  let pinArr = []
-  for (pin of pinInfo) {
-    console.log(pin)
-    let tempArr = [];
-    tempArr.push(pin.pin_title)
-    tempArr.push(pin.pin_description)
-    tempArr.push(pin.address)
-    tempArr.push(pin.city)
-    tempArr.push(pin.country)
-    pinArr.push(tempArr);
-  }
-  console.log(pinArr)
-  // const markerPositions = [
-  //   {
-  //     position: { lat: 34.8791806, lng: -111.8265049 },
-  //     title: `${pinArr[0][0]}`,
-  //   },
-  //   {
-  //     position: { lat: 34.8559195, lng: -111.7988186 },
-  //     title: `${pinArr[1][0]}`,
-  //   },
-  //   {
-  //     position: { lat: 34.832149, lng: -111.7695277 },
-  //     title: `${pinArr[2][0]}`,
-  //   },
-  //   {
-  //     position: { lat: 34.823736, lng: -111.8001857 },
-  //     title: `${pinArr[3][0]}`,
-  //   },
-  //   {
-  //     position: { lat: 34.800326, lng: -111.7665047 },
-  //     title: "Bell Rock",
-  //   },
-  // ];
-// Create a marker
-const marker1 = new google.maps.Marker({
-  position: { lat: 49.2827, lng: -123.1207 },
-  map: googleMap,
-  title: `${pinArr[0][0]}`
-});
+  // let pinArr = []
+  // for (pin of pinInfo) {
+  //   console.log(pin)
+  //   let tempArr = [];
+  //   tempArr.push(pin.pin_title)
+  //   tempArr.push(pin.pin_description)
+  //   tempArr.push(pin.address)
+  //   tempArr.push(pin.city)
+  //   tempArr.push(pin.country)
+  //   pinArr.push(tempArr);
+  // }
+  // console.log(pinArr)
 
-// Add a click listener for the marker
-marker1.addListener('click', () => {
-  // Open an info window
-  const infoWindow = new google.maps.InfoWindow({
-    content: `${pinArr[0][1]}`
+  // Loop through pinInfo to create markers and info windows
+for (let i = 0; i < pinInfo.length; i++) {
+  let pin = pinInfo[i];
+  pinTitle = pin.pin_title;
+  pinDescription = pin.pin_description
+  geoCode(pin);
+}
+}
+
+  // Create a marker
+  const createMarker = (pinLatLng, info) => {
+    console.log('hey', pinLatLng)
+  const marker = new google.maps.Marker({
+    position: { lat: pinLatLng.lat, lng: pinLatLng.long },
+    map: googleMap,
+    title: info.pin_title,
   });
-  infoWindow.open(googleMap, marker1);
-});
 
-// Create a marker
-const marker2 = new google.maps.Marker({
-  position: {lat: 49.2857, lng: -123.1201 },
-  map: googleMap,
-  title: `${pinArr[1][0]}`
-});
-
-// Add a click listener for the marker
-marker2.addListener('click', () => {
-  // Open an info window
-  const infoWindow = new google.maps.InfoWindow({
-    content: `${pinArr[1][1]}`
+  // Add a click listener for the marker
+  marker.addListener("click", () => {
+    // Open an info window
+    const infoWindow = new google.maps.InfoWindow({
+      content: `<h1>${info.pin_title}</h1>${info.pin_description}`,
+    });
+    infoWindow.open(googleMap, marker);
   });
-  infoWindow.open(googleMap, marker2);
-});
+};
 
-// Create a marker
-const marker3 = new google.maps.Marker({
-  position: { lat: 49.2821, lng: -123.1217 },
-  map: googleMap,
-  title: `${pinArr[2][0]}`
-});
+// // Create a marker
+// const marker1 = new google.maps.Marker({
+//   position: { lat: 49.2827, lng: -123.1207 },
+//   map: googleMap,
+//   title: `${pinArr[0][0]}`
+// });
 
-// Add a click listener for the marker
-marker3.addListener('click', () => {
-  // Open an info window
-  const infoWindow = new google.maps.InfoWindow({
-    content: `${pinArr[2][1]}`
-  });
-  infoWindow.open(googleMap, marker3);
-});
+// // Add a click listener for the marker
+// marker1.addListener('click', () => {
+//   // Open an info window
+//   const infoWindow = new google.maps.InfoWindow({
+//     content: `<h1>${pinArr[0][0]}</h1>
+//     ${pinArr[0][1]}`
+//   });
+//   infoWindow.open(googleMap, marker1);
+// });
+
+// // Create a marker
+// const marker2 = new google.maps.Marker({
+//   position: {lat: 49.2857, lng: -123.1201 },
+//   map: googleMap,
+//   title: `${pinArr[1][0]}`
+// });
+
+// // Add a click listener for the marker
+// marker2.addListener('click', () => {
+//   // Open an info window
+//   const infoWindow = new google.maps.InfoWindow({
+//     content: `<h1>${pinArr[1][0]}</h1>
+//     ${pinArr[1][1]}`
+//   });
+//   infoWindow.open(googleMap, marker2);
+// });
+
+// // Create a marker
+// const marker3 = new google.maps.Marker({
+//   position: { lat: 49.2821, lng: -123.1217 },
+//   map: googleMap,
+//   title: `${pinArr[2][0]}`
+// });
+
+// // Add a click listener for the marker
+// marker3.addListener('click', () => {
+//   // Open an info window
+//   const infoWindow = new google.maps.InfoWindow({
+//     content: `<h1>${pinArr[2][0]}</h1>
+//     ${pinArr[2][1]}`
+//   });
+//   infoWindow.open(googleMap, marker3);
+// });
 
 
   // // Create an info window to share between markers.
@@ -118,7 +153,7 @@ marker3.addListener('click', () => {
   //     infoWindow.open(marker.googleMap, marker);
   //   });
   // });
-}
+
 
 //gets the maps latLong from its city and country
 const geoCodeMap = () => {
