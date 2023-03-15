@@ -44,41 +44,5 @@ const renderMapsList = (maps, container) => {
   }
 };
 
-//renders nav area when a user is logged in
-const renderNavArea = () => {
-  $(".login").remove();
-  const $newButtons = `
-  <button class="discover reset button">Discover maps</button>
-  <button class="createAMap reset button">Create a map</button>
-  <button class="myMaps reset button">My maps</button>
-  <button class="logout reset button">Logout</button>`;
-  $(".buttons").append($newButtons);
-};
-
-//resets the nav area when logged out
-const resetNavArea = () => {
-  $(".mainContainer").empty();
-  $(".reset").remove();
-  const $login = `<button class="login button">Login</button>`;
-  $(".buttons").append($login);
-  const $nonMemberArea = `
-  <div class="discoverMapsArea">
-    <div class="discoverMapsTitle">Discover Maps!</div>
-  </div>
-  <div class="mapArea">
-    No potatoes here
-  </div>`;
-  $(".mainContainer").append($nonMemberArea);
-  // renderMapArea(); need to try and figure out how to get a map object put inside
-  // populate Discover maps
-  $.ajax({
-    type: "GET",
-    url: "/maps",
-  })
-    .then((maps) => renderMapsList(maps, "discoverMapsArea"))
-    .catch(function (xhr, status, error) {
-      console.log("Error: " + error);
-    });
-};
 
 

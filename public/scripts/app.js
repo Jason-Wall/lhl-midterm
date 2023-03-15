@@ -1,61 +1,10 @@
-// Client facing scripts here
+// Scripts that run on page load.
 $(document).ready(() => {
+  resetNavArea();
   viewAllMaps();
   populateMapArea();
-
-  //login event listener
-  $(".buttons").on("click", ".login", () => {
-    $.ajax({
-      type: "POST",
-      url: "/users-api/login/1",
-    }).then((response) => {
-      renderNavArea();
-      //1calls viewMemberArea with the user object
-      viewMemberArea(response.user);
-    });
-  });
-
-  //logout event listener
-  $(".buttons").on("click", ".logout", () => {
-    $.ajax({
-      type: "POST",
-      url: "/users-api/logout",
-    }).then((response) => {
-      resetNavArea();
-    });
-  });
-
-  //discover maps listener
-  $(".buttons").on("click", ".discover", () => {
-   viewAllMaps();
-  });
-
-  //my maps listener
-  $(".buttons").on("click", ".myMaps", () => {
-    $.ajax({
-      type: "POST",
-      url: "/users-api/login/1",
-    }).then((response) => {
-      // console.log(response);
-      //1calls viewMemberArea with the user object
-      viewMemberArea(response.user);
-    });
-  });
-
-  //create a map listener (takes you to createMapModal)
-  $(".buttons").on("click", ".createAMap", () => {
-    $.ajax({
-      type: "GET",
-      url: "/users-api/myinfo",
-    }).then((data) => {
-      renderModal(createMapForm, data.user[0].id);
-    });
-  });
 });
 
-  $(".logo").on("click", () => {
-    viewAllMaps();
-  });
 
 const populateMapArea = (mapID) => {
   // console.log(mapID);
@@ -74,41 +23,3 @@ const populateMapArea = (mapID) => {
       });
   });
 };
-
-//Jasons demo:
-// const addNewDiv = () => {
-//   $('.discoverMapsTitle').on('click', () => {
-//     $.ajax({
-//       type: 'GET',
-//       url: '/maps',
-//     })
-//       .then((names) => {
-//         console.log(names);
-//         for (let entry of names) {
-//           const newDiv = $('<div>').text(entry.name);
-//           $('.discoverMapsArea').append(newDiv);
-//         };
-//       })
-//       .catch(function (xhr, status, error) {
-//         console.log("Error: " + error);
-//       })
-//   })
-// }
-
-//users example
-// Client facing scripts here
-// $(() => {
-//   $(".login").on("click", () => {
-//     $.ajax({
-//       method: "GET",
-//       url: "/api/users",
-//     }).done((response) => {
-//       const $usersList = $("#users");
-//       $usersList.empty();
-
-//       for (const user of response.users) {
-//         $(`<li class="user">`).text(user.name).appendTo($usersList);
-//       }
-//     });
-//   });
-// });
