@@ -68,10 +68,21 @@ router.post("/:id/create", (req, res) => {
 router.patch("/:id", (req, res) => {
   const mapEdits = req.body;
   mapsdb.editMap(mapEdits).then((returnMap) => {
-    console.log("route maps, returnMap:", returnMap);
     res.send(returnMap);
   });
 });
+
+
+// PATCH /maps/:id/fav - Toggle map favourite
+router.patch("/:id/fav", (req, res) => {
+  const map_id = req.params.id;
+  const user_id = req.cookies.user_id;
+  favsdb.toggleMapFav(user_id,map_id).then((returnFav) => {
+    console.log('returnFav:  ',returnFav);
+    res.send(returnFav);
+  });
+});
+
 
 // PATCH /maps/:id/:pin - Edit pin info
 

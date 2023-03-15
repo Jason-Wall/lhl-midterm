@@ -17,7 +17,8 @@ const toggleMapFav = (user_id,map_id) => {
     ON CONFLICT ON CONSTRAINT unique_favourite DO
     UPDATE
     SET fav_status = NOT map_favourites.fav_status
-    WHERE map_favourites.user_id = ${user_id} AND map_favourites.map_id = ${map_id};
+    WHERE map_favourites.user_id = ${user_id} AND map_favourites.map_id = ${map_id}
+    RETURNING *;
     `)
     .then((data) => {
       return data.rows;
