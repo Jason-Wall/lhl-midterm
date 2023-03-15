@@ -63,10 +63,6 @@ const renderPinInfo = (pin) => {
 <div class"mapDescription pinDesciption">${pin.pin_description}</div>
 `;
 $('.mapListContainer').append($pinDetails);
-// // if user is logged in, create icons
-// if ($(".logout").length) {
-//   renderPinIcons(pin)
-//   }
 }
 
 const renderPinIcons = (pin) => {
@@ -75,15 +71,15 @@ const renderPinIcons = (pin) => {
   <i class="fa-regular fa-trash-can"></i>`);
   $(".pinIcons").append($icons);
 
-  // $pinDetails.find(".fa-pen-to-square").on("click", () => {
-  //   renderModal(editMapForm, map.id);
-  //   console.log(`Edit icon clicked for pin ID: ${pin.id}`);
-  // });
+  $(".pinIcons").find(".fa-pen-to-square").on("click", () => {
+    // renderModal(editMapForm, map.id);
+    console.log(`Edit icon clicked for pin ID: ${pin.id}`);
+  });
 
-  // $pinDetails.find(".fa-trash-can").on("click", () => {
-  //   console.log("clicked trash can");
-  //   renderModal(deleteMapForm, map.id);
-  // });
+  $(".pinIcons").find(".fa-trash-can").on("click", () => {
+    console.log("clicked trash can");
+    // renderModal(deleteMapForm, map.id);
+  });
 }
 
 //update the maps information / callback from google maps api
