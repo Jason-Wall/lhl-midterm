@@ -8,7 +8,7 @@ INSERT INTO pin_favourites (user_id, pin_id)
 VALUES (3, 3);
 
 INSERT INTO pin_favourites (user_id, pin_id)
-VALUES (4, 4);
+VALUES (1, 4);
 
 INSERT INTO pin_favourites (user_id, pin_id)
-VALUES (5, 5);
+VALUES (2, 5);
