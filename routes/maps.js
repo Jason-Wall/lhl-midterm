@@ -9,6 +9,7 @@ const express = require("express");
 const router = express.Router();
 const usersdb = require("../db/queries/users");
 const mapsdb = require("../db/queries/mapsdb");
+const favsdb = require("../db/queries/favsdb");
 
 // GET /maps   - Gets all maps
 
@@ -22,7 +23,7 @@ router.get("/", (req, res) => {
 // GET /maps/favs/   - Get list of favorite maps
 router.get("/favs", (req, res) => {
   let user_id = req.cookies.user_id;
-  mapsdb.getFavMaps(user_id)
+  favsdb.getFavMaps(user_id)
   .then((maps) => {
     res.send(maps);
   });
@@ -67,10 +68,21 @@ router.post("/:id/create", (req, res) => {
 router.patch("/:id", (req, res) => {
   const mapEdits = req.body;
   mapsdb.editMap(mapEdits).then((returnMap) => {
-    console.log("route maps, returnMap:", returnMap);
     res.send(returnMap);
   });
 });
+
+
+// PATCH /maps/:id/fav - Toggle map favourite
+router.patch("/:id/favs", (req, res) => {
+  const map_id = req.params.id;
+  const user_id = req.cookies.user_id;
+  favsdb.toggleMapFav(user_id,map_id).then((returnFav) => {
+    console.log('returnFav:  ',returnFav);
+    res.send(returnFav);
+  });
+});
+
 
 // PATCH /maps/:id/:pin - Edit pin info
 

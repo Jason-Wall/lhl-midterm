@@ -26,16 +26,7 @@ const getAMap = (mapID) => {
 };
 
 
-const getFavMaps = (user_id) => {
-  return db
-    .query(`SELECT maps.id FROM maps JOIN map_favourites ON map_id = maps.id WHERE map_favourites.user_id = ${user_id};`)
-    .then((data) => {
-      return data.rows;
-    })
-    .catch(function (xhr, status, error) {
-      console.log("Error: " + error);
-    });
-};
+
 
 const getARandomMap = () => {
   return db
@@ -91,7 +82,6 @@ const deleteMap = (mapId) => {
   return db
     .query(`SELECT * FROM pins WHERE map_id = ${mapID};`)
     .then((data) => {
-      console.log(data.rows)
       return data.rows;
     })
     .catch(function (xhr, status, error) {
@@ -108,7 +98,6 @@ const getMapData = (mapID) => {
   })
     .then((pinData) => {
       mapInfo.pinsData = pinData
-      console.log(mapInfo)
       return mapInfo;
     })
   .catch(function (xhr, status, error) {
@@ -118,7 +107,6 @@ const getMapData = (mapID) => {
 
 module.exports = {
   getMaps,
-  getFavMaps,
   getAMap,
   editMap,
   getARandomMap,
