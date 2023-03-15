@@ -9,6 +9,7 @@ const express = require("express");
 const router = express.Router();
 const usersdb = require("../db/queries/users");
 const mapsdb = require("../db/queries/mapsdb");
+const favsdb = require("../db/queries/favsdb");
 
 // GET /maps   - Gets all maps
 
@@ -22,7 +23,7 @@ router.get("/", (req, res) => {
 // GET /maps/favs/   - Get list of favorite maps
 router.get("/favs", (req, res) => {
   let user_id = req.cookies.user_id;
-  mapsdb.getFavMaps(user_id)
+  favsdb.getFavMaps(user_id)
   .then((maps) => {
     res.send(maps);
   });
