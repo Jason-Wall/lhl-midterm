@@ -183,7 +183,7 @@ const mapSetUp = (latLong) => {
   let long = latLong.long;
   let mapSetUp = {
     center: new google.maps.LatLng(lat, long),
-    zoom: 10,
+    zoom: 12,
   };
   googleMap = new google.maps.Map(
     document.getElementById(`googleMap`),
