@@ -3,7 +3,7 @@ const db = require("../connection");
 //4this query returns the data to users-api .then of the route /myinfo
 const getUserData = (userId) => {
   return db
-    .query(`SELECT * FROM maps WHERE maps.user_id = $1;`, [userId])
+    .query(`SELECT maps.*, users.name FROM maps JOIN users ON user_id = users.id WHERE maps.user_id = $1;`, [userId])
     .then((maps) => {
       return db
         .query(`SELECT * FROM pins WHERE pins.user_id = $1;`, [userId])
@@ -25,7 +25,7 @@ const getUserData = (userId) => {
                     .then((user) => {
                       return db
                         .query(
-                          `SELECT * FROM maps JOIN map_favourites ON maps.id = map_id WHERE maps.user_id = $1`,
+                          `SELECT maps.*, users.name FROM maps JOIN users ON user_id = users.id JOIN map_favourites ON maps.id = map_id WHERE maps.user_id = $1`,
                           [userId]
                         )
                         .then((favMaps) => {
