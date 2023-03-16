@@ -83,3 +83,38 @@ const assignFavouritesClass = () => {
       console.log("Error: " + error, status, xhr);
     });
 };
+
+// add all the elements inside modal which you want to make focusable
+const forceFocusOnModal = () => {
+  const focusableElements = "input";
+  const modal = $(".modal"); // select the modal by it's id
+
+  const firstFocusableElement = modal.find(focusableElements)[0]; // get first element to be focused inside modal
+  const focusableContent = modal.find(focusableElements);
+  const lastFocusableElement =
+    modal.find(focusableElements)[focusableContent.length - 1]; // get last element to be focused inside modal
+
+  $(document).on("keydown", function (e) {
+    let isTabPressed = e.key === "Tab" || e.keyCode === 9;
+
+    if (!isTabPressed) {
+      return;
+    }
+    if (e.shiftKey) {
+      // if shift key pressed for shift + tab combination
+      if (document.activeElement === firstFocusableElement) {
+        lastFocusableElement.focus(); // add focus for the last focusable element
+        e.preventDefault();
+      }
+    } else {
+      // if tab key is pressed
+      if (document.activeElement === lastFocusableElement) {
+        // if focused has reached to last focusable element then focus first focusable element after pressing tab
+        firstFocusableElement.focus(); // add focus for the first focusable element
+        e.preventDefault();
+      }
+    }
+  });
+
+  firstFocusableElement.focus();
+};
