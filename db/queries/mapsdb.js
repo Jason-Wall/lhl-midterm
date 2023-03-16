@@ -105,6 +105,50 @@ const getMapData = (mapID) => {
   })
 }
 
+const editPin = (data) => {
+  queryVars = [
+    data.id,
+    data.pin_title,
+    data.pin_description,
+    data.pin_url,
+    data.street_address,
+    data.city,
+    data.country
+  ]
+  return db
+  .query( `
+  UPDATE pins
+  SET pin_title = $2,
+  pin_description = $3,
+  pin_url = $4,
+  street_address = $5,
+  city = $6,
+  country = $7
+  WHERE id = $1
+  RETURNING *;
+  `,
+  queryVars)
+  .then((data) => {
+    return data
+  })
+}
+
+const deletePin = (pinID) => {
+  return db
+  .query(`DELETE FROM pins WHERE pins.id = $1`, [pinID])
+}
+
+const getPinData = (pinID) => {
+  return db
+    .query(`SELECT * FROM pins WHERE pins.id = ${pinID};`)
+    .then((data) => {
+      return data.rows[0];
+    })
+    .catch(function (xhr, status, error) {
+      console.log("Error: " + error);
+    });
+}
+
 module.exports = {
   getMaps,
   getAMap,
@@ -112,5 +156,8 @@ module.exports = {
   getARandomMap,
   createMap,
   deleteMap,
-  getMapData
+  getMapData,
+  editPin,
+  deletePin,
+  getPinData
 };

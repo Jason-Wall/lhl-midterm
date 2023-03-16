@@ -4,6 +4,27 @@ let mapInfo;
 let pinInfo;
 let pinLatLng;
 
+// renders a map
+const renderMap1 = () => {
+  // $.ajax({
+  //   type: "GET",
+  //   url: `/maps`,
+  // })
+  //   .then((maps) => {
+  //     let id = maps[0].id
+      $.ajax({
+        type: "GET",
+        url: `/maps/1`,
+      })
+    .then(({ mapObj, api }) => {
+      console.log(mapObj)
+      renderMapArea(mapObj, api);
+    })
+    .catch(function (xhr, status, error) {
+      console.log("Error: " + error, status, xhr);
+    });
+};
+
 // updates the map variables and makes a request to the api if no map showing or calls initMap
 const renderMapArea = (mapObj, api) => {
   mapInfo = mapObj.mapData;
@@ -23,8 +44,7 @@ const renderMapArea = (mapObj, api) => {
   renderMapInfo(mapInfo);
   for (pin of pinInfo) {
     renderPinInfo(pin);
-  }
-  renderPinIcons(pin);
+}
   if ($(".googleMap").length > 0) {
     initMap();
     return;
@@ -50,7 +70,7 @@ const renderMapInfo = (mapInfo) => {
 };
 
 const renderPinInfo = (pin) => {
-  const $pinDetails = `<div id ="${pin.id}" class="mapList">
+  const pinDetails = $(`<div id ="${pin.id}" class="mapList">
   <img class="mapListPic"
     src=${pin.map_url}
     alt="map image">
@@ -61,30 +81,23 @@ const renderPinInfo = (pin) => {
   </div>
 </div>
 <div class"mapDescription pinDesciption">${pin.pin_description}</div>
-`;
-  $(".mapListContainer").append($pinDetails);
-};
-
-const renderPinIcons = (pin) => {
-  const $icons = `
+`);
+$('.mapListContainer').append(pinDetails);
+  const $icons = (`
   <i class="fa-solid fa-pen-to-square"></i>
-  <i class="fa-regular fa-trash-can"></i>`;
-  $(".pinIcons").append($icons);
+  <i class="fa-regular fa-trash-can"></i>`);
+  pinDetails.find(".pinIcons").append($icons);
 
-  $(".pinIcons")
-    .find(".fa-pen-to-square")
-    .on("click", () => {
-      // renderModal(editMapForm, map.id);
-      console.log(`Edit icon clicked for pin ID: ${pin.id}`);
-    });
+  pinDetails.find(".fa-pen-to-square").on("click", () => {
+    renderModal(editPinForm, pin);
+    console.log(`Edit icon clicked for pin ID: ${pin.id}`);
+  });
 
-  $(".pinIcons")
-    .find(".fa-trash-can")
-    .on("click", () => {
-      console.log("clicked trash can");
-      // renderModal(deleteMapForm, map.id);
-    });
-};
+  pinDetails.find(".fa-trash-can").on("click", () => {
+    console.log("clicked trash can");
+    renderModal(deletePin, pin);
+  });
+}
 
 //update the maps information / callback from google maps api
 function initMap() {

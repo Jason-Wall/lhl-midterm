@@ -38,14 +38,17 @@ router.get("/:id", (req, res) => {
     res.send({ mapObj, api: process.env.GOOGLE_MAPS_API_KEY });
   });
 });
-// router.get("/:id", (req, res) => {
-//   let mapID = req.params.id;
-//   mapsdb.getAMap(mapID).then((map) => {
-//     res.send({ map, api: process.env.GOOGLE_MAPS_API_KEY });
-//   });
-// });
 
 // GET /maps/:id/:pin - Take you to the pin information
+// router.get("/:id/:pinID", (req, res) => {
+//   console.log('hi')
+//   let pinID = req.params.id;
+//   mapsdb.getPinData(pinID)
+//   .then((pinObj) => {
+//     console.log('pinObj', pinObj)
+//     res.send(pinObj);
+//   });
+// });
 
 // GET /maps/:id/edit - Take you to map edit
 
@@ -85,6 +88,13 @@ router.patch("/:id/favs", (req, res) => {
 
 
 // PATCH /maps/:id/:pin - Edit pin info
+// router.patch("/:id/:pin", (req, res) => {
+//   const PinEdits = req.body;
+//   mapsdb.editPin(PinEdits).then((returnPin) => {
+//     console.log("route maps, returnPin:", returnPin);
+//     res.send(returnPin);
+//   });
+// });
 
 // DELETE /maps/delete - Delete a map
 router.delete("/delete", (req, res) => {
