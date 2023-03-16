@@ -75,7 +75,6 @@ const getPins = (mapID) => {
   return db
     .query(`SELECT pins.*, users.name FROM pins JOIN users ON user_id = users.id WHERE map_id = ${mapID};`)
     .then((data) => {
-      console.log('hey', data.rows)
       return data.rows;
     })
     .catch(function (xhr, status, error) {
@@ -130,7 +129,13 @@ const editPin = (data) => {
 };
 
 const deletePin = (pinID) => {
-  return db.query(`DELETE FROM pins WHERE pins.id = $1`, [pinID]);
+  return db.query(`DELETE FROM pins WHERE pins.id = $1 RETURNING map_id`, [pinID])
+  .then((mapId) => {
+    return mapId.rows[0].map_id
+  })
+  .catch(function (xhr, status, error) {
+      console.log("Error: " + error);
+    });
 };
 
 const getPinData = (pinID) => {

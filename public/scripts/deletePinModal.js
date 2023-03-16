@@ -21,11 +21,11 @@ const deletePin = (pinId) => {
       type: "DELETE",
       url: `/pins/delete`,
       data: pinDeletion,
-    }).then(() => {
+    }).then(({mapObj, api}) => {
       // need to refesh the maps column talk about with Jason
       $(".modal").off();
       $(".modal").remove();
-      renderMap1()
+      renderMapArea(mapObj, api);
     });
   });
 
