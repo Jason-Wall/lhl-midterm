@@ -27,7 +27,8 @@ const renderMapsList = (maps, container) => {
       <i class="icon fa-regular fa-trash-can"></i>`);
       newDiv.find(".mapListIcons").append(icons);
 
-      newDiv.find(".fa-heart").on("click", function() {
+      newDiv.find(".fa-heart").on("click", function(event) {
+        event.stopPropagation();
         $.ajax({
           method: "PATCH",
           url: `/maps/${map.id}/favs`
@@ -38,10 +39,12 @@ const renderMapsList = (maps, container) => {
         $(`.map_id_${map.id}`).removeClass('favourite');
       });
 
-      newDiv.find(".fa-pen-to-square").on("click", () => {
+      newDiv.find(".fa-pen-to-square").on("click", function(event) {
+        event.stopPropagation();
         renderModal(editMapForm, map.id);
       });
-      newDiv.find(".fa-trash-can").on("click", () => {
+      newDiv.find(".fa-trash-can").on("click", function(event) {
+        event.stopPropagation();
         renderModal(deleteMapForm, map.id);
       });
     }
