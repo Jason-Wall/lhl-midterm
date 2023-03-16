@@ -19,6 +19,29 @@ const renderMap1 = () => {
     });
 };
 
+const renderBlankMap = () => {
+  const $mapDiv = $(`
+  <div id="googleMap" class="googleMap" style="width:100%;height:100%;"></div>
+<script src="https://maps.googleapis.com/maps/api/js?key=${api}&callback=blankMap"
+defer></script>
+  `);
+$(".mapArea").empty();
+$(".mapArea").append($mapDiv);
+}
+
+function blankMap() {
+  lat = 40.3399
+  long = -127.5101
+  let mapSetUp = {
+    center: new google.maps.LatLng(lat, long),
+    zoom: 10,
+  };
+  googleMap = new google.maps.Map(
+    document.getElementById(`googleMap`),
+    mapSetUp
+  );
+}
+
 // updates the map variables and makes a request to the api if no map showing or calls initMap
 const renderMapArea = (mapObj, api) => {
   mapInfo = mapObj.mapData;
