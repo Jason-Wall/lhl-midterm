@@ -38,7 +38,7 @@
 }
 //60vh
 
-.discoverMapsTitle, .mapListContainer, .myMapsTitle, .myFavMapsTitle, .myFavPinsTitle, .mapList {
+.discoverMapsTitle, .mapListContainer, .myMapsTitle, .myFavMapsTitle, .myContributions, .mapList {
  border: solid 1px;
  background-color: $light;
  padding: 1em;
@@ -59,7 +59,7 @@
   margin-left: 1em;
 }
 
-.myMapsContainer, .myFavMapsContainer, .myFavPinsContainer {
+.myMapsContainer, .myFavMapsContainer, .myMapContributions{
   // height: 700px;
   width: 33%;
   border: solid 1px;
