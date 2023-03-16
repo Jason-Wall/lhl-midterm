@@ -84,6 +84,8 @@ const createMapEventListen = () => {
   });
 };
 
-$(".logo").on("click", () => {
-  viewAllMaps();
-});
+const logoOnClick = () =>{
+  $(".logo").on("click", () => {
+    viewAllMaps();
+  })
+};
