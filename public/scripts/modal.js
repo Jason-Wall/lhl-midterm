@@ -47,6 +47,7 @@ const editMapForm = (id) => {
       <span class="cancel">Cancel</span>
     </div>`;
       $(".modal-content").append(modalDiv);
+      $('.modal-content').find('input')[0].focus();
 
       // Event listener, accept changes and write to db. Close modal and update maps table.
       $(".accept").on("click", () => {
@@ -111,6 +112,7 @@ const editPinForm = (pin) => {
       <span class="cancel">Cancel</span>
     </div>`;
       $(".modal-content").append(modalDiv);
+      $('.modal-content').find('input')[0].focus();
 
       // Event listener, accept changes and write to db. Close modal and update maps table.
       $(".acceptPinEdit").on("click", () => {
