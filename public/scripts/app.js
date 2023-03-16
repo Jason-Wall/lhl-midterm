@@ -3,6 +3,7 @@ $(document).ready(() => {
   resetNavArea();
   viewAllMaps();
   populateMapArea();
+  // renderMap1();
 });
 
 

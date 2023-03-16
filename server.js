@@ -34,11 +34,13 @@ app.use(cookieParser());
 // Separated Routes for each Resource
 const userApiRoutes = require("./routes/users-api");
 const mapRoutes = require("./routes/maps");
+const pinRoutes = require("./routes/pins");
 
 // Mount all resource routes
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 app.use("/users-api", userApiRoutes);
 app.use("/maps", mapRoutes);
+app.use("/pins", pinRoutes);
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
