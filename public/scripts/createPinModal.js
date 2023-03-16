@@ -9,13 +9,13 @@ const createPin = (mapId) => {
     <input type="text" id="pin-title" name="pin-title" value="" placeholder="title"/>
 
     <label for="pin-description">Pin Description:</label>
-    <input type="text" id="pin-description" name="pin-description" value="" placeholder="description"/>
+    <input type="text" id="pin-description" name="pin-description" value="" placeholder="description"/><br>
 
     <label for="pin-street-address">Street Address:</label>
     <input type="text" id="pin-street-address" name="pin-street-address" value="" placeholder="1589 main st"/>
 
     <label for="pin-city">City:</label>
-    <input type="text" id="pin-city" name="pin-city" value="" placeholder="city"/>
+    <input type="text" id="pin-city" name="pin-city" value="" placeholder="city"/><br>
 
     <label for="pin-country">Country:</label>
     <input type="text" id="pin-country" name="pin-country" value="" placeholder="country"/>

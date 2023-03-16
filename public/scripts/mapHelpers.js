@@ -10,7 +10,7 @@ const renderMapsList = (maps, container) => {
           src=${map.map_url}
           alt="map image">
         <div class="mapListDetails">
-          <div class="title">${map.map_title}</div>
+          <div class="title strong">${map.map_title}</div>
           <div class="createdBy">Created by: ${map.name}</div>
           <div class="mapListIcons"></div>
         </div>
@@ -27,23 +27,23 @@ const renderMapsList = (maps, container) => {
       <i class="icon fa-regular fa-trash-can"></i>`);
       newDiv.find(".mapListIcons").append(icons);
 
-      newDiv.find(".fa-heart").on("click", function(event) {
+      newDiv.find(".fa-heart").on("click", function (event) {
         event.stopPropagation();
         $.ajax({
           method: "PATCH",
-          url: `/maps/${map.id}/favs`
+          url: `/maps/${map.id}/favs`,
         }).then(() => {
           viewMemberArea();
           // Need to refresh the maps column. Work with Jenny on this.
         });
-        $(`.map_id_${map.id}`).removeClass('favourite');
+        $(`.map_id_${map.id}`).removeClass("favourite");
       });
 
-      newDiv.find(".fa-pen-to-square").on("click", function(event) {
+      newDiv.find(".fa-pen-to-square").on("click", function (event) {
         event.stopPropagation();
         renderModal(editMapForm, map.id);
       });
-      newDiv.find(".fa-trash-can").on("click", function(event) {
+      newDiv.find(".fa-trash-can").on("click", function (event) {
         event.stopPropagation();
         renderModal(deleteMapForm, map.id);
       });
