@@ -6,12 +6,12 @@ const renderMap1 = () => {
   // })
   //   .then((maps) => {
   //     let id = maps[0].id
-      $.ajax({
-        type: "GET",
-        url: `/maps/1`,
-      })
+  $.ajax({
+    type: "GET",
+    url: `/maps/1`,
+  })
     .then(({ mapObj, api }) => {
-      console.log(mapObj)
+      console.log(mapObj);
       renderMapArea(mapObj, api);
     })
     .catch(function (xhr, status, error) {
@@ -25,13 +25,13 @@ const renderBlankMap = () => {
 <script src="https://maps.googleapis.com/maps/api/js?key=${api}&callback=blankMap"
 defer></script>
   `);
-$(".mapArea").empty();
-$(".mapArea").append($mapDiv);
-}
+  $(".mapArea").empty();
+  $(".mapArea").append($mapDiv);
+};
 
 function blankMap() {
-  lat = 40.3399
-  long = -127.5101
+  lat = 40.3399;
+  long = -127.5101;
   let mapSetUp = {
     center: new google.maps.LatLng(lat, long),
     zoom: 10,
@@ -48,7 +48,7 @@ const renderMapArea = (mapObj, api) => {
   mapInfo = mapObj.mapData;
   pinInfo = mapObj.pinsData;
   mapID = mapObj.mapData.id;
-  console.log(pinInfo)
+  console.log(pinInfo);
   if ($(".mapArea").length === 0) {
     const $discoverMaps = `<div class="discoverMapsArea">
     <div class="discoverMapsTitle">Discover Maps!</div>
@@ -62,7 +62,7 @@ const renderMapArea = (mapObj, api) => {
   renderMapInfo(mapInfo);
   for (pin of pinInfo) {
     renderPinInfo(pin);
-}
+  }
   if ($(".googleMap").length > 0) {
     initMap();
     return;
@@ -78,8 +78,8 @@ const renderMapArea = (mapObj, api) => {
 
 const renderMapInfo = (mapInfo) => {
   const $discoverMaps = `
-  <div class="discoverMapsTitle mapInfoTitle"><h1>${mapInfo.map_title}!</h1></div>
-  <div class="discoverMapsTitle mapInfoDescription"><p>${mapInfo.map_description}!</p></div>
+  <div class="discoverMapsTitle mapInfoTitle strong">${mapInfo.map_title}!</div>
+  <div class="mapInfoDescription">${mapInfo.map_description}!</div>
   <section class="mapListContainer pinContainer">
   </section>
 `;
@@ -88,24 +88,24 @@ const renderMapInfo = (mapInfo) => {
 };
 
 const renderPinInfo = (pin) => {
-  console.log(pin)
+  console.log(pin);
   const pinDetails = $(`<div id ="${pin.id}" class="mapList">
   <img class="mapListPic"
     src=${pin.pin_url}
     alt="map image">
   <div class="mapListDetails pinDetails">
-    <div>${pin.pin_title}</div>
-    <div>Created by: ${pin.name}</div>
+    <div class="title strong">${pin.pin_title}</div>
+    <div class="createdBy">Created by: ${pin.name}</div>
     <div class="mapListIcons pinIcons"></div>
   </div>
 </div>
 <div class"mapDescription pinDesciption">${pin.pin_description}</div>
 `);
-$('.mapListContainer').append(pinDetails);
-  const $icons = (`
-  <i class="fa-solid fa-location-dot"></i>
-  <i class="fa-solid fa-pen-to-square"></i>
-  <i class="fa-regular fa-trash-can"></i>`);
+  $(".mapListContainer").append(pinDetails);
+  const $icons = `
+  <i class="icon fa-solid fa-location-dot"></i>
+  <i class="icon fa-solid fa-pen-to-square"></i>
+  <i class="icon fa-regular fa-trash-can"></i>`;
   pinDetails.find(".pinIcons").append($icons);
 
   pinDetails.find(".fa-location-dot").on("click", () => {
@@ -122,4 +122,4 @@ $('.mapListContainer').append(pinDetails);
     console.log("clicked trash can");
     renderModal(deletePin, pin.id);
   });
-}
+};

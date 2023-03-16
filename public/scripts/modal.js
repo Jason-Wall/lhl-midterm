@@ -31,7 +31,6 @@ const editMapForm = (id) => {
           <label for="cover-photo">Map Description:</label>
           <input type="text" id="cover-photo" name="map-url" value="${map.map_url}" />
       <section>
-      <br>
       <label for="map-title">Map Title:</label>
       <input type="text" id="map-title" name="map-title" value="${map.map_title}" />
       <label for="map-description">Map Description:</label>
@@ -83,18 +82,19 @@ const editPinForm = (pin) => {
     // Create a series of text boxes with prepopulated map info
     .then((pin) => {
       const modalDiv = `
-    <img class="PinListPic"
-          src=${pin.map_url}
-          alt="Pin image">
-          <label for="cover-photo">Pin Description:</label>
-          <input type="text" id="cover-photo" name="map-url" value="${pin.pin_url}" />
+
     <section>
+    <img class="PinListPic"
+    src=${pin.map_url}
+    alt="Pin image">
+    <label for="cover-photo">Pin Description:</label>
+    <input type="text" id="cover-photo" name="map-url" value="${pin.pin_url}" />
       <label for="pin-title">Pin Title:</label>
-      <input type="text" id="pin-title" name="pin-title" value="${pin.pin_title}" />
+      <input type="text" id="pin-title" name="pin-title" value="${pin.pin_title}" /><br>
       <label for="pin-description">Pin Description:</label>
       <input type="text" id="pin-description" name="pin-description" value="${pin.pin_description}" />
       <label for="street-address">Street Address:</label>
-      <input type="text" id="pin-street-address" name="pin-street-address" value="${pin.street_address}" />
+      <input type="text" id="pin-street-address" name="pin-street-address" value="${pin.street_address}" /> <br>
       <label for="city">City:</label>
       <input type="text" id="pin-city" name="pin-city" value="${pin.city}" />
       <label for="country">Country:</label>
@@ -103,7 +103,6 @@ const editPinForm = (pin) => {
     <div class="modal-buttons">
       <span class="acceptPinEdit">Accept Changes</span>
       <span class="cancel">Cancel</span>
-      <span class="delete">Delete</span>
     </div>`;
       $(".modal-content").append(modalDiv);
 
@@ -116,15 +115,15 @@ const editPinForm = (pin) => {
           pin_url: $("#cover-photo").val(),
           street_address: $("#pin-street-address").val(),
           city: $("#pin-city").val(),
-          country: $("#pin-country").val()
+          country: $("#pin-country").val(),
         };
         console.log("accept button", pinEdits);
         $.ajax({
           method: "PATCH",
           url: `/pins/${pin.id}`,
           data: pinEdits,
-        }).then(({mapObj, api}) => {
-          console.log(mapObj)
+        }).then(({ mapObj, api }) => {
+          console.log(mapObj);
           $(".modal").off();
           $(".modal").remove();
           //may need to change viewMemberArea()
@@ -140,4 +139,3 @@ const editPinForm = (pin) => {
       });
     });
 };
-

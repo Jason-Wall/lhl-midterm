@@ -10,7 +10,7 @@ const renderMapsList = (maps, container) => {
           src=${map.map_url}
           alt="map image">
         <div class="mapListDetails">
-          <div class="title">${map.map_title}</div>
+          <div class="title strong">${map.map_title}</div>
           <div class="createdBy">Created by: ${map.name}</div>
           <div class="mapListIcons"></div>
         </div>
@@ -29,21 +29,20 @@ const renderMapsList = (maps, container) => {
 
       newDiv.find(".fa-heart").on("click", function (event) {
         event.stopPropagation();
-        toggleFavourite(map.id)
-          .then(() => {
-            if ($('.myFavMapsContainer').length) {
-              return $.ajax({
-                type: "GET",
-                url: "/users-api/myinfo",
-              }).then((data) => {
-                renderMapsList(data.favMaps, "myFavMapsArea");
-              })
-            } else {
-              assignFavouritesClass();
-            };
-          });
-      })
-    };
+        toggleFavourite(map.id).then(() => {
+          if ($(".myFavMapsContainer").length) {
+            return $.ajax({
+              type: "GET",
+              url: "/users-api/myinfo",
+            }).then((data) => {
+              renderMapsList(data.favMaps, "myFavMapsArea");
+            });
+          } else {
+            assignFavouritesClass();
+          }
+        });
+      });
+    }
 
     newDiv.find(".fa-pen-to-square").on("click", function (event) {
       event.stopPropagation();
@@ -60,15 +59,15 @@ const renderMapsList = (maps, container) => {
 
 // toggles favourite status in db for individual map.
 const toggleFavourite = (map_id) => {
- return $.ajax({
+  return $.ajax({
     method: "PATCH",
-    url: `/maps/${map_id}/favs`
-  })
+    url: `/maps/${map_id}/favs`,
+  });
 };
 
 //Assign favourite class to all available maps with favourite status = true.
 const assignFavouritesClass = () => {
-  $('.map-fav').removeClass('favourite');
+  $(".map-fav").removeClass("favourite");
   $.ajax({
     type: "GET",
     url: `/maps/favs`,

@@ -2,7 +2,7 @@
 const deletePin = (pinId) => {
   // Create buttons
   const modalDiv = `
-  <section><p>Are you sure you want to delete this pin?</p></section>
+  <section><h3>Are you sure you want to delete this pin?</h3></section>
     </section>
     <div class="modal-buttons">
       <span class="deletePin">DELETE</span>
@@ -21,7 +21,7 @@ const deletePin = (pinId) => {
       type: "DELETE",
       url: `/pins/delete`,
       data: pinDeletion,
-    }).then(({mapObj, api}) => {
+    }).then(({ mapObj, api }) => {
       // need to refesh the maps column talk about with Jason
       $(".modal").off();
       $(".modal").remove();

@@ -24,6 +24,7 @@
 }
 
 input {
+  margin: 4px;
   background-color: $medium;
 }
 
@@ -38,7 +39,10 @@ input {
   padding: 4px;
 }
 
-.accept, .cancel, .create, .deleteMap{
+.accept, .cancel, .create, .deleteMap, .deletePin, .acceptPinEdit, .createNewPin {
   border: 1px solid #888;
   margin-left: 3px;
+  border-radius: 16px;
+  padding: 4px;
+  cursor: default;
 }
