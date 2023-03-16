@@ -1,7 +1,10 @@
 // See: https://sass-lang.com/
 
+@import "variables";
+
 html {
   box-sizing: border-box;
+  background-color: $dark;
 }
 *, *:before, *:after {
   box-sizing: inherit;

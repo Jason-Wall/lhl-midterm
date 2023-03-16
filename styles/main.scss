@@ -7,8 +7,6 @@
   font-size: large;
 }
 
-// use an image element, make it position absolute height and width 100% and top and left 0(the parent must be position relative)
-
 .mainContainer {
   background-image: url("/images/diagmonds-light.png");
   background-color: $light;
@@ -16,6 +14,9 @@
   padding-top: 100px;
   display: flex;
   justify-content: space-around;
+  min-height: 800px;
+  // I put flex start below so that I could modify the height of the children, I will show you how!
+  align-items: flex-start;
 }
 
 .memberAreaContainer {
@@ -26,16 +27,18 @@
 }
 
 .discoverMapsArea {
-  // height: 100000px; //commented out so that the height of the container is determined by how many maps we have
+  // height: 100000px; //Tyler this is commented out so that the height of the container is determined by how many maps we have
   background-color: $medium;
   background-image: url("/images/diagmonds-light.png");
   width: 33%;
   margin-left: 2em;
   margin-right: 1em;
   border: solid 1px;
+  min-height: 600px;
 }
+//60vh
 
-.discoverMapsTitle, .mapListContainer, .myMapsTitle, .myFavMapsTitle, .myFavPinsTitle {
+.discoverMapsTitle, .mapListContainer, .myMapsTitle, .myFavMapsTitle, .myFavPinsTitle, .mapList {
  border: solid 1px;
  background-color: $light;
  padding: 1em;
@@ -62,6 +65,7 @@
   border: solid 1px;
   background-color: $medium;
   background-image: url("/images/diagmonds-light.png");
+  min-height: 600px;
 }
 
 
@@ -69,3 +73,5 @@
 // div {
 //   border: solid 1px;
 // }
+
+

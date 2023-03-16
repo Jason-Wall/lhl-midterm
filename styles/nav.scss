@@ -7,7 +7,7 @@
 nav {
   font-family: 'Sen', sans-serif;
   padding: 1em;
-  background-color: white;
+  background-color:$dark;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -23,6 +23,7 @@ nav {
 
 .logo {
   margin-left: 1em;
+  color: $light;
   font-size:xx-large;
 }
 
