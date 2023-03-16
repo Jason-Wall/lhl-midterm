@@ -11,6 +11,7 @@ const deleteMapForm = (mapId) => {
       <span class="cancel">Cancel</span>
     </div>`;
   $(".modal-content").append(modalDiv);
+  $('.modal-content').find('.cancel').focus();
 
   //create map listener -deletes the map (updates maps db table) and closes modal
   $(".deleteMap").on("click", () => {

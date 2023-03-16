@@ -23,24 +23,31 @@ const editMapForm = (id) => {
     url: `/maps/${id}`,
   })
     // Create a series of text boxes with prepopulated map info
-    .then((map) => {
+    .then(({ mapObj, api }) => {
+      map = mapObj.mapData
       const modalDiv = `
     <img class="mapListPic"
           src=${map.map_url}
           alt="map image">
-          <label for="cover-photo">Map Description:</label>
+          <label for="cover-photo">Map Url:</label>
           <input type="text" id="cover-photo" name="map-url" value="${map.map_url}" />
       <section>
       <label for="map-title">Map Title:</label>
       <input type="text" id="map-title" name="map-title" value="${map.map_title}" />
       <label for="map-description">Map Description:</label>
       <input type="text" id="map-description" name="map-description" value="${map.map_description}" />
+
+      <label for="city">city:</label>
+      <input type="text" id="map-city" name="city" value="${map.city}" />
+      <label for="country">country:</label>
+      <input type="text" id="map-country" name="country" value="${map.country}" />
     </section>
     <div class="modal-buttons">
       <span class="accept">Accept Changes</span>
       <span class="cancel">Cancel</span>
     </div>`;
       $(".modal-content").append(modalDiv);
+      $('.modal-content').find('input')[0].focus();
 
       // Event listener, accept changes and write to db. Close modal and update maps table.
       $(".accept").on("click", () => {
@@ -105,6 +112,7 @@ const editPinForm = (pin) => {
       <span class="cancel">Cancel</span>
     </div>`;
       $(".modal-content").append(modalDiv);
+      $('.modal-content').find('input')[0].focus();
 
       // Event listener, accept changes and write to db. Close modal and update maps table.
       $(".acceptPinEdit").on("click", () => {

@@ -19,7 +19,7 @@ const renderMap1 = () => {
     });
 };
 
-const renderBlankMap = () => {
+const renderBlankMap = (api) => {
   const $mapDiv = $(`
   <div id="googleMap" class="googleMap" style="width:100%;height:100%;"></div>
 <script src="https://maps.googleapis.com/maps/api/js?key=${api}&callback=blankMap"
@@ -30,8 +30,8 @@ defer></script>
 };
 
 function blankMap() {
-  lat = 40.3399;
-  long = -127.5101;
+  lat = 37.3875
+  long = -122.0575
   let mapSetUp = {
     center: new google.maps.LatLng(lat, long),
     zoom: 10,

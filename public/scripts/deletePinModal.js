@@ -9,6 +9,7 @@ const deletePin = (pinId) => {
       <span class="cancel">Cancel</span>
     </div>`;
   $(".modal-content").append(modalDiv);
+  $('.modal-content').find('.cancel').focus();
 
   //create pin listener -deletes the pin (updates maps db table) and closes modal
   $(".deletePin").on("click", () => {
