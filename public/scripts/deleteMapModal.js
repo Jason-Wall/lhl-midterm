@@ -4,7 +4,7 @@
 const deleteMapForm = (mapId) => {
   // Create buttons
   const modalDiv = `
-  <section><p>Are you sure you want to delete this map?</p></section>
+  <section><h3>Are you sure you want to delete this map?</h3></section>
     </section>
     <div class="modal-buttons">
       <span class="deleteMap">DELETE</span>

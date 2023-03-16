@@ -30,7 +30,8 @@ const editMapForm = (id) => {
           alt="map image">
           <label for="cover-photo">Map Description:</label>
           <input type="text" id="cover-photo" name="map-url" value="${map.map_url}" />
-    <section>
+      <section>
+      <br>
       <label for="map-title">Map Title:</label>
       <input type="text" id="map-title" name="map-title" value="${map.map_title}" />
       <label for="map-description">Map Description:</label>
@@ -39,7 +40,6 @@ const editMapForm = (id) => {
     <div class="modal-buttons">
       <span class="accept">Accept Changes</span>
       <span class="cancel">Cancel</span>
-      <span class="delete">Delete</span>
     </div>`;
       $(".modal-content").append(modalDiv);
 
