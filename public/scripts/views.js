@@ -61,7 +61,11 @@ const viewAllMaps = () => {
     type: "GET",
     url: "/maps",
   })
-    .then((maps) => renderMapsList(maps, "discoverMapsArea"))
+    .then(({maps, api}) => {
+      console.log(maps)
+    renderMapsList(maps, "discoverMapsArea")
+    renderBlankMap(api)
+})
     .catch(function (xhr, status, error) {
       console.log("Error: " + error);
     });
