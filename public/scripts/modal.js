@@ -1,3 +1,5 @@
+$(document).ready(() => {});
+
 // create modal for edit:
 const renderModal = (modalForm, id) => {
   const modalDiv = `
@@ -13,6 +15,7 @@ const renderModal = (modalForm, id) => {
     }
   });
   modalForm(id);
+  forceFocusOnModal();
 };
 
 // Render Edit Map Form
