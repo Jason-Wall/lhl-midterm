@@ -1,4 +1,3 @@
-
 //renders nav area when a user is logged in
 const renderNavArea = () => {
   $(".login").remove();
@@ -25,23 +24,22 @@ const resetNavArea = () => {
   loginEventListen();
 };
 
-
 //EVENT LISTENERS
-const loginEventListen = () =>{
-$('.login').on("click", () => {
-  $.ajax({
-    type: "POST",
-    url: "/users-api/login/1",
-  }).then((response) => {
-    renderNavArea();
-    viewMemberArea(response.user);
+const loginEventListen = () => {
+  $(".login").on("click", () => {
+    $.ajax({
+      type: "POST",
+      url: "/users-api/login/1",
+    }).then((response) => {
+      renderNavArea();
+      viewMemberArea(response.user);
+    });
   });
-});
 };
 
 //logout event listener
-const logoutEventListen = () =>{
-  $('.logout').on("click", () => {
+const logoutEventListen = () => {
+  $(".logout").on("click", () => {
     $.ajax({
       type: "POST",
       url: "/users-api/logout",
@@ -53,14 +51,14 @@ const logoutEventListen = () =>{
 };
 
 //discover maps listener
-const discoverMapsEventListen = () =>{
-$(".buttons").on("click", ".discover", () => {
-  viewAllMaps();
-});
-}
+const discoverMapsEventListen = () => {
+  $(".buttons").on("click", ".discover", () => {
+    viewAllMaps();
+  });
+};
 
 //my maps listener
-const myMapsEventListen = () =>{
+const myMapsEventListen = () => {
   $(".buttons").on("click", ".myMaps", () => {
     $.ajax({
       type: "POST",
@@ -80,10 +78,12 @@ const createMapEventListen = () => {
       type: "GET",
       url: "/users-api/myinfo",
     }).then((data) => {
-      renderModal(createMapForm, data.user[0].id);
+      console.log("data,", data);
+      renderModal(createMapForm, data.maps[0].user_id);
     });
   });
 };
 
 $(".logo").on("click", () => {
-  viewAllMaps()});
+  viewAllMaps();
+});
