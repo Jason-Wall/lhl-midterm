@@ -18,6 +18,7 @@ const getAMap = (mapID) => {
   return db
     .query(`SELECT * FROM maps WHERE maps.id = ${mapID};`)
     .then((data) => {
+      console.log(data.rows[0])
       return data.rows[0];
     })
     .catch(function (xhr, status, error) {

@@ -22,13 +22,13 @@ const createPin = (mapId) => {
 
     </section>
     <div class="modal-buttons">
-      <span class="create">Create Pin!</span>
+      <span class="createNewPin">Create Pin!</span>
       <span class="cancel">Cancel</span>
     </div>`;
   $(".modal-content").append(modalDiv);
 
   //create map listener -creates a map (updates maps db table) and closes modal
-  $(".create").on("click", () => {
+  $(".createNewPin").on("click", () => {
     const pinCreation = {
           map_id: mapId,
           user_id: 1,
@@ -44,11 +44,11 @@ const createPin = (mapId) => {
       type: "POST",
       url: `/pins/${id}/create`,
       data: pinCreation,
-    }).then(() => {
+    }).then(({ mapObj, api }) => {
       // need to refesh the maps column talk about with Jason
       $(".modal").off();
       $(".modal").remove();
-      renderMap1();
+      renderMapArea(mapObj, api);
     });
   });
 

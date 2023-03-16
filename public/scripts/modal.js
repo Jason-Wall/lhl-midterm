@@ -101,14 +101,14 @@ const editPinForm = (pin) => {
       <input type="text" id="pin-country" name="pin-country" value="${pin.country}" />
     </section>
     <div class="modal-buttons">
-      <span class="accept">Accept Changes</span>
+      <span class="acceptPinEdit">Accept Changes</span>
       <span class="cancel">Cancel</span>
       <span class="delete">Delete</span>
     </div>`;
       $(".modal-content").append(modalDiv);
 
       // Event listener, accept changes and write to db. Close modal and update maps table.
-      $(".accept").on("click", () => {
+      $(".acceptPinEdit").on("click", () => {
         const pinEdits = {
           id: pin.id,
           pin_title: $("#pin-title").val(),
@@ -123,11 +123,12 @@ const editPinForm = (pin) => {
           method: "PATCH",
           url: `/pins/${pin.id}`,
           data: pinEdits,
-        }).then(() => {
+        }).then(({mapObj, api}) => {
+          console.log(mapObj)
           $(".modal").off();
           $(".modal").remove();
           //may need to change viewMemberArea()
-          renderMap1()
+          renderMapArea(mapObj, api);
           // Need to refresh the maps column. Work with Jenny on this.
         });
       });
