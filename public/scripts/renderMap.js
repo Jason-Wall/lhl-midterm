@@ -77,14 +77,22 @@ const renderMapArea = (mapObj, api) => {
 };
 
 const renderMapInfo = (mapInfo) => {
-  const $discoverMaps = `
+  const $discoverMaps = $(`
+  <div>
   <div class="discoverMapsTitle mapInfoTitle strong">${mapInfo.map_title}!</div>
-  <div class="mapInfoDescription">${mapInfo.map_description}!</div>
+  <i class="icon fa-solid fa-location-dot">Add A Pin</i></div>
+  </div>
+  <div class="mapInfoDescription">${mapInfo.map_description}!
   <section class="mapListContainer pinContainer">
   </section>
-`;
+`);
   $(".discoverMapsArea").empty();
   $(".discoverMapsArea").append($discoverMaps);
+
+  $discoverMaps.find(".fa-location-dot").on("click", () => {
+    console.log("clicked add pin");
+    renderModal(createPin, mapInfo.id);
+  });
 };
 
 const renderPinInfo = (pin) => {
@@ -103,15 +111,9 @@ const renderPinInfo = (pin) => {
 `);
   $(".mapListContainer").append(pinDetails);
   const $icons = `
-  <i class="icon fa-solid fa-location-dot"></i>
   <i class="icon fa-solid fa-pen-to-square"></i>
   <i class="icon fa-regular fa-trash-can"></i>`;
   pinDetails.find(".pinIcons").append($icons);
-
-  pinDetails.find(".fa-location-dot").on("click", () => {
-    console.log("clicked add pin");
-    renderModal(createPin, pin.map_id);
-  });
 
   pinDetails.find(".fa-pen-to-square").on("click", () => {
     renderModal(editPinForm, pin);
