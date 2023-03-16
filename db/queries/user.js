@@ -16,7 +16,7 @@ const getUserData = (userId) => {
         .then((favMaps) => {
           return db
             .query(
-              `SELECT maps.* FROM maps JOIN pins ON map_id = maps.id WHERE pins.user_id = $1`,
+              `SELECT maps.*, users.name FROM maps JOIN pins ON map_id = maps.id JOIN users ON maps.user_id = users.id WHERE pins.user_id = $1`,
               [userId]
             )
             .then((contributeMaps) => {
