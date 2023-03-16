@@ -30,13 +30,8 @@ defer></script>
 };
 
 function blankMap() {
-<<<<<<< HEAD
-  lat = 40.3399;
-  long = -127.5101;
-=======
   lat = 37.3875
   long = -122.0575
->>>>>>> fixEditMap
   let mapSetUp = {
     center: new google.maps.LatLng(lat, long),
     zoom: 10,
