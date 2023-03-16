@@ -2,10 +2,12 @@ const db = require("../connection");
 
 const getMaps = () => {
   return db
-    .query(`
+    .query(
+      `
     SELECT maps.*, users.name FROM maps
     JOIN users ON user_id = users.id;
-    `)
+    `
+    )
     .then((maps) => {
       return maps.rows;
     })
@@ -45,6 +47,10 @@ const editMap = (mapEdits) => {
 };
 
 const createMap = (data) => {
+  if (data.map_url === "") {
+    data.map_url =
+      "https://images.pexels.com/photos/1078850/pexels-photo-1078850.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+  }
   const queryVars = [
     data.user_id,
     data.map_title,
@@ -64,7 +70,7 @@ const deleteMap = (mapId) => {
   return db.query(`DELETE FROM maps WHERE id = $1;`, [mapId]);
 };
 
-  const getPins = (mapID) => {
+const getPins = (mapID) => {
   return db
     .query(`SELECT * FROM pins WHERE map_id = ${mapID};`)
     .then((data) => {
@@ -78,18 +84,18 @@ const deleteMap = (mapId) => {
 const getMapData = (mapID) => {
   mapInfo = {};
   return getAMap(mapID)
-  .then((data) => {
-    mapInfo.mapData = data
-    return getPins(mapID)
-  })
+    .then((data) => {
+      mapInfo.mapData = data;
+      return getPins(mapID);
+    })
     .then((pinData) => {
-      mapInfo.pinsData = pinData
+      mapInfo.pinsData = pinData;
       return mapInfo;
     })
-  .catch(function (xhr, status, error) {
-    console.log("Error: " + error)
-  })
-}
+    .catch(function (xhr, status, error) {
+      console.log("Error: " + error);
+    });
+};
 
 const editPin = (data) => {
   queryVars = [
@@ -99,10 +105,11 @@ const editPin = (data) => {
     data.pin_url,
     data.street_address,
     data.city,
-    data.country
-  ]
+    data.country,
+  ];
   return db
-  .query( `
+    .query(
+      `
   UPDATE pins
   SET pin_title = $2,
   pin_description = $3,
@@ -113,16 +120,16 @@ const editPin = (data) => {
   WHERE id = $1
   RETURNING *;
   `,
-  queryVars)
-  .then((data) => {
-    return data
-  })
-}
+      queryVars
+    )
+    .then((data) => {
+      return data;
+    });
+};
 
 const deletePin = (pinID) => {
-  return db
-  .query(`DELETE FROM pins WHERE pins.id = $1`, [pinID])
-}
+  return db.query(`DELETE FROM pins WHERE pins.id = $1`, [pinID]);
+};
 
 const getPinData = (pinID) => {
   return db
@@ -133,7 +140,7 @@ const getPinData = (pinID) => {
     .catch(function (xhr, status, error) {
       console.log("Error: " + error);
     });
-}
+};
 
 module.exports = {
   getMaps,
@@ -144,5 +151,5 @@ module.exports = {
   getMapData,
   editPin,
   deletePin,
-  getPinData
+  getPinData,
 };
