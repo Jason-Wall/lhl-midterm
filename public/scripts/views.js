@@ -56,7 +56,8 @@ const viewAllMaps = () => {
     <section class="mapListContainer">
     </section>
   </div>
-  <div class="mapArea">No potatoes here</div>`;
+  <div class="mapArea">
+  No potatoes here</div>`;
   $(".mainContainer").append($discoverMaps);
 
   $.ajax({
