@@ -91,7 +91,7 @@ const renderPinInfo = (pin) => {
   console.log(pin)
   const pinDetails = $(`<div id ="${pin.id}" class="mapList">
   <img class="mapListPic"
-    src=${pin.map_url}
+    src=${pin.pin_url}
     alt="map image">
   <div class="mapListDetails pinDetails">
     <div>${pin.pin_title}</div>

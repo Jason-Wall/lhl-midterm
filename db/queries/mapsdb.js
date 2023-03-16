@@ -148,7 +148,7 @@ const addPin = (pinCreation) => {
   console.log("pinCreation", pinCreation);
   if (pinCreation.pin_url === "") {
     pinCreation.pin_url =
-      "https://www.google.com/search?q=map+pin+image&rlz=1C5CHFA_enCA1018CA1034&oq=map+pin+image&aqs=chrome..69i57j0i512l2j0i22i30l6j0i390.3313j0j9&sourceid=chrome&ie=UTF-8#imgrc=5_-s2erHVD703M";
+      "https://img.freepik.com/free-vector/location_53876-25530.jpg?t=st=1678987209~exp=1678987809~hmac=67360a480d47250c074b3a292783c7876973ff673daa994fd0113c008498365f";
   }
   pinInfo = [
     pinCreation.map_id,
@@ -160,6 +160,7 @@ const addPin = (pinCreation) => {
     pinCreation.city,
     pinCreation.country,
   ];
+  console.log('pinurl', pinCreation.pin_url)
   return db.query(
     `INSERT INTO pins (map_id, user_id, pin_title, pin_description, pin_url, street_address, city, country)
   VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
