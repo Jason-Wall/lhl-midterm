@@ -44,6 +44,7 @@ function blankMap() {
 
 // updates the map variables and makes a request to the api if no map showing or calls initMap
 const renderMapArea = (mapObj, api) => {
+  console.log(mapObj)
   mapInfo = mapObj.mapData;
   pinInfo = mapObj.pinsData;
   mapID = mapObj.mapData.id;

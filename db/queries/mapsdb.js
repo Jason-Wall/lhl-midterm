@@ -20,6 +20,7 @@ const getAMap = (mapID) => {
   return db
     .query(`SELECT * FROM maps WHERE maps.id = ${mapID};`)
     .then((data) => {
+      console.log(data.rows[0]);
       return data.rows[0];
     })
     .catch(function (xhr, status, error) {
@@ -142,6 +143,29 @@ const getPinData = (pinID) => {
     });
 };
 
+const addPin = (pinCreation) => {
+  console.log("pinCreation", pinCreation);
+  if (pinCreation.pin_url === "") {
+    pinCreation.pin_url =
+      "https://www.google.com/search?q=map+pin+image&rlz=1C5CHFA_enCA1018CA1034&oq=map+pin+image&aqs=chrome..69i57j0i512l2j0i22i30l6j0i390.3313j0j9&sourceid=chrome&ie=UTF-8#imgrc=5_-s2erHVD703M";
+  }
+  pinInfo = [
+    pinCreation.map_id,
+    pinCreation.user_id,
+    pinCreation.pin_title,
+    pinCreation.pin_description,
+    pinCreation.pin_url,
+    pinCreation.street_address,
+    pinCreation.city,
+    pinCreation.country,
+  ];
+  return db.query(
+    `INSERT INTO pins (map_id, user_id, pin_title, pin_description, pin_url, street_address, city, country)
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
+    pinInfo
+  );
+};
+
 module.exports = {
   getMaps,
   getAMap,
@@ -152,4 +176,5 @@ module.exports = {
   editPin,
   deletePin,
   getPinData,
+  addPin,
 };
