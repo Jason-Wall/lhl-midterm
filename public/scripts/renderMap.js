@@ -44,12 +44,12 @@ function blankMap() {
 
 // updates the map variables and makes a request to the api if no map showing or calls initMap
 const renderMapArea = (mapObj, api) => {
+  console.log('renderMapArea/mapObj', mapObj)
   mapInfo = mapObj.mapData;
   pinInfo = mapObj.pinsData;
   mapID = mapObj.mapData.id;
   console.log(pinInfo)
   if ($(".mapArea").length === 0) {
-    console.log("hey");
     const $discoverMaps = `<div class="discoverMapsArea">
     <div class="discoverMapsTitle">Discover Maps!</div>
     <section class="mapListContainer">
@@ -91,7 +91,7 @@ const renderPinInfo = (pin) => {
   console.log(pin)
   const pinDetails = $(`<div id ="${pin.id}" class="mapList">
   <img class="mapListPic"
-    src=${pin.map_url}
+    src=${pin.pin_url}
     alt="map image">
   <div class="mapListDetails pinDetails">
     <div>${pin.pin_title}</div>

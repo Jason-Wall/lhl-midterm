@@ -52,8 +52,14 @@ router.patch("/:id", (req, res) => {
 
 // DELETE
 router.delete("/delete", (req, res) => {
-  mapsdb.deletePin(req.body.pin_id).then((response) => {
-    res.send(response);
+  mapsdb.deletePin(req.body.pin_id)
+  .then((mapId) => {
+    console.log('deletePinReturn', mapId)
+    return mapsdb.getMapData(mapId)
+  })
+  .then((mapObj) => {
+    console.log('getmapdataReturn', mapObj)
+    res.send({ mapObj, api: process.env.GOOGLE_MAPS_API_KEY });
   });
 });
 
