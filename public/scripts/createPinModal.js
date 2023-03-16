@@ -39,10 +39,10 @@ const createPin = (mapId) => {
           city: $("#pin-city").val(),
           country: $("#pin-country").val()
     };
-    //updates maps db table
+    //updates pins db table
     $.ajax({
       type: "POST",
-      url: `/pins/${id}/create`,
+      url: `/pins/${mapId}/create`,
       data: pinCreation,
     }).then(({ mapObj, api }) => {
       // need to refesh the maps column talk about with Jason

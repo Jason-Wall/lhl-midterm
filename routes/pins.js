@@ -25,7 +25,17 @@ router.get("/:id", (req, res) => {
 
 
 // POST  /pins/:id - Create a pin
-
+router.post("/:id/create", (req, res) => {
+  mapsdb.addPin(req.body)
+  .then((pin) => {
+   let mapId = pin.rows[0].map_id;
+  return mapsdb.getMapData(mapId)
+  })
+  .then((mapObj) => {
+    console.log(mapObj)
+    res.send({ mapObj, api: process.env.GOOGLE_MAPS_API_KEY })
+  })
+});
 
 // PATCH /pins/:id - Edit pin info
 router.patch("/:id", (req, res) => {

@@ -9,7 +9,7 @@ const getMaps = () => {
     .then((maps) => {
       return maps.rows;
     })
-    .catch(function (xhr, status, error) {
+    .catch(function(xhr, status, error) {
       console.log("Error: " + error);
     });
 };
@@ -18,10 +18,10 @@ const getAMap = (mapID) => {
   return db
     .query(`SELECT * FROM maps WHERE maps.id = ${mapID};`)
     .then((data) => {
-      console.log(data.rows[0])
+      console.log(data.rows[0]);
       return data.rows[0];
     })
-    .catch(function (xhr, status, error) {
+    .catch(function(xhr, status, error) {
       console.log("Error: " + error);
     });
 };
@@ -65,13 +65,13 @@ const deleteMap = (mapId) => {
   return db.query(`DELETE FROM maps WHERE id = $1;`, [mapId]);
 };
 
-  const getPins = (mapID) => {
+const getPins = (mapID) => {
   return db
     .query(`SELECT * FROM pins WHERE map_id = ${mapID};`)
     .then((data) => {
       return data.rows;
     })
-    .catch(function (xhr, status, error) {
+    .catch(function(xhr, status, error) {
       console.log("Error: " + error);
     });
 };
@@ -79,18 +79,18 @@ const deleteMap = (mapId) => {
 const getMapData = (mapID) => {
   mapInfo = {};
   return getAMap(mapID)
-  .then((data) => {
-    mapInfo.mapData = data
-    return getPins(mapID)
-  })
+    .then((data) => {
+      mapInfo.mapData = data;
+      return getPins(mapID);
+    })
     .then((pinData) => {
-      mapInfo.pinsData = pinData
+      mapInfo.pinsData = pinData;
       return mapInfo;
     })
-  .catch(function (xhr, status, error) {
-    console.log("Error: " + error)
-  })
-}
+    .catch(function(xhr, status, error) {
+      console.log("Error: " + error);
+    });
+};
 
 const editPin = (data) => {
   queryVars = [
@@ -101,9 +101,9 @@ const editPin = (data) => {
     data.street_address,
     data.city,
     data.country
-  ]
+  ];
   return db
-  .query( `
+    .query(`
   UPDATE pins
   SET pin_title = $2,
   pin_description = $3,
@@ -114,16 +114,16 @@ const editPin = (data) => {
   WHERE id = $1
   RETURNING *;
   `,
-  queryVars)
-  .then((data) => {
-    return data
-  })
-}
+      queryVars)
+    .then((data) => {
+      return data;
+    });
+};
 
 const deletePin = (pinID) => {
   return db
-  .query(`DELETE FROM pins WHERE pins.id = $1`, [pinID])
-}
+    .query(`DELETE FROM pins WHERE pins.id = $1`, [pinID]);
+};
 
 const getPinData = (pinID) => {
   return db
@@ -131,10 +131,25 @@ const getPinData = (pinID) => {
     .then((data) => {
       return data.rows[0];
     })
-    .catch(function (xhr, status, error) {
+    .catch(function(xhr, status, error) {
       console.log("Error: " + error);
     });
-}
+};
+
+const addPin = (pinCreation) => {
+  pinInfo = [
+    pinCreation.map_id,
+    pinCreation.user_id,
+    pinCreation.pin_title,
+    pinCreation.pin_description,
+    // pin_url: ,
+    pinCreation.street_address,
+    pinCreation.city,
+    pinCreation.country
+  ];
+  return db.query(`INSERT INTO pins (map_id, user_id, pin_title, pin_description, pin_url, street_address, city, country)
+  VALUES ($1, $2, $3, $4, 'pin_url', $5, $6, $7) RETURNING *`, pinInfo);
+};
 
 module.exports = {
   getMaps,
@@ -145,5 +160,6 @@ module.exports = {
   getMapData,
   editPin,
   deletePin,
-  getPinData
+  getPinData,
+  addPin
 };
