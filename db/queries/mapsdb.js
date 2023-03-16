@@ -67,8 +67,9 @@ const deleteMap = (mapId) => {
 
 const getPins = (mapID) => {
   return db
-    .query(`SELECT * FROM pins WHERE map_id = ${mapID};`)
+    .query(`SELECT pins.*, users.name FROM pins JOIN users ON user_id = users.id WHERE map_id = ${mapID};`)
     .then((data) => {
+      console.log('hey', data.rows)
       return data.rows;
     })
     .catch(function(xhr, status, error) {
