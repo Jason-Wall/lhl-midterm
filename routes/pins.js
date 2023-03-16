@@ -34,6 +34,12 @@ router.patch("/:id", (req, res) => {
   });
 });
 
+// DELETE
+router.delete("/delete", (req, res) => {
+  mapsdb.deletePin(req.body.pin_id).then((response) => {
+    res.send(response);
+  });
+});
 
 
 module.exports = router;

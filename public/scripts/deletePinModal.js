@@ -1,31 +1,31 @@
 //delete pin
-const deletePin = (id) => {
+const deletePin = (pinId) => {
   // Create buttons
   const modalDiv = `
-  <section><p>Are you sure you want to delete this map?</p></section>
+  <section><p>Are you sure you want to delete this pin?</p></section>
     </section>
     <div class="modal-buttons">
-      <span class="deleteMap">DELETE</span>
+      <span class="deletePin">DELETE</span>
       <span class="cancel">Cancel</span>
     </div>`;
   $(".modal-content").append(modalDiv);
 
-  //create map listener -deletes the map (updates maps db table) and closes modal
-  $(".deleteMap").on("click", () => {
-    console.log("mapID", mapId);
-    const mapDeletion = {
-      map_id: mapId,
+  //create pin listener -deletes the pin (updates maps db table) and closes modal
+  $(".deletePin").on("click", () => {
+    console.log("pinID", pinId);
+    const pinDeletion = {
+      pin_id: pinId,
     };
     //updates maps db table
     $.ajax({
       type: "DELETE",
-      url: `/maps/delete`,
-      data: mapDeletion,
+      url: `/pins/delete`,
+      data: pinDeletion,
     }).then(() => {
       // need to refesh the maps column talk about with Jason
       $(".modal").off();
       $(".modal").remove();
-      viewMemberArea();
+      renderMap1()
     });
   });
 

@@ -25,20 +25,6 @@ const getAMap = (mapID) => {
     });
 };
 
-
-
-
-const getARandomMap = () => {
-  return db
-    .query(`SELECT id FROM maps`)
-    .then((data) => {
-      return data;
-    })
-    .catch(function (xhr, status, error) {
-      console.log("Error: " + error);
-    });
-};
-
 const editMap = (mapEdits) => {
   const queryVars = [
     mapEdits.map_id,
@@ -153,7 +139,6 @@ module.exports = {
   getMaps,
   getAMap,
   editMap,
-  getARandomMap,
   createMap,
   deleteMap,
   getMapData,
