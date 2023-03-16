@@ -78,11 +78,9 @@ const renderMapArea = (mapObj, api) => {
 
 const renderMapInfo = (mapInfo) => {
   const $discoverMaps = $(`
-  <div>
   <div class="discoverMapsTitle mapInfoTitle strong">${mapInfo.map_title}!</div>
-  <i class="icon fa-solid fa-location-dot">Add A Pin</i></div>
-  </div>
-  <div class="mapInfoDescription">${mapInfo.map_description}!
+  <div class="mapInfoDescription">${mapInfo.map_description}!</div>
+  <div class="createAPin"><i class="icon fa-solid fa-location-dot">Add A Pin</i></div>
   <section class="mapListContainer pinContainer">
   </section>
 `);

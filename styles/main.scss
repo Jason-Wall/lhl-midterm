@@ -37,7 +37,7 @@
 }
 //60vh
 
-.discoverMapsTitle, .mapListContainer, .myMapsTitle, .myFavMapsTitle, .myContributions, .mapInfoDescription {
+.discoverMapsTitle, .mapListContainer, .myMapsTitle, .myFavMapsTitle, .myContributions, .mapInfoDescription, .createAPin {
  border: solid 1px;
  background-color: $light;
  padding: 1em;
@@ -76,6 +76,16 @@
   min-height: 600px;
 }
 
+.createAPin {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.icon:hover, button:hover, .logo:hover {
+  cursor: pointer;
+  color: $medium;
+}
 
 //temporary border to see what we are doing
 // div {
