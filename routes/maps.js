@@ -15,7 +15,7 @@ const favsdb = require("../db/queries/favsdb");
 
 router.get("/", (req, res) => {
   mapsdb.getMaps().then((maps) => {
-    res.send(maps);
+    res.send({ maps, api: process.env.GOOGLE_MAPS_API_KEY });
   });
 });
 
