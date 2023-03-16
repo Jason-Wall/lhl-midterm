@@ -22,50 +22,65 @@ const renderMapsList = (maps, container) => {
     // if user is logged in, create icons
     if ($(".logout").length) {
       const icons = $(`
-      <i class="icon fa-solid fa-heart"></i>
+      <i class="icon map-fav fa-solid fa-heart"></i>
       <i class="icon fa-solid fa-pen-to-square"></i>
       <i class="icon fa-regular fa-trash-can"></i>`);
       newDiv.find(".mapListIcons").append(icons);
 
-      newDiv.find(".fa-heart").on("click", function(event) {
+      newDiv.find(".fa-heart").on("click", function (event) {
         event.stopPropagation();
-        $.ajax({
-          method: "PATCH",
-          url: `/maps/${map.id}/favs`
-        }).then(() => {
-          viewMemberArea();
-          // Need to refresh the maps column. Work with Jenny on this.
-        });
-        $(`.map_id_${map.id}`).removeClass('favourite');
-      });
+        toggleFavourite(map.id)
+          .then(() => {
+            if ($('.myFavMapsContainer').length) {
+              return $.ajax({
+                type: "GET",
+                url: "/users-api/myinfo",
+              }).then((data) => {
+                renderMapsList(data.favMaps, "myFavMapsArea");
+              })
+            } else {
+              assignFavouritesClass();
+            };
+          });
+      })
+    };
 
-      newDiv.find(".fa-pen-to-square").on("click", function(event) {
-        event.stopPropagation();
-        renderModal(editMapForm, map.id);
-      });
-      newDiv.find(".fa-trash-can").on("click", function(event) {
-        event.stopPropagation();
-        renderModal(deleteMapForm, map.id);
-      });
-    }
+    newDiv.find(".fa-pen-to-square").on("click", function (event) {
+      event.stopPropagation();
+      renderModal(editMapForm, map.id);
+    });
+    newDiv.find(".fa-trash-can").on("click", function (event) {
+      event.stopPropagation();
+      renderModal(deleteMapForm, map.id);
+    });
     populateMapArea(map.id);
   }
+  assignFavouritesClass();
+};
 
-  //Assign favourite class
-  if ($(".logout").length) {
-    $.ajax({
-      type: "GET",
-      url: `/maps/favs`,
+// toggles favourite status in db for individual map.
+const toggleFavourite = (map_id) => {
+ return $.ajax({
+    method: "PATCH",
+    url: `/maps/${map_id}/favs`
+  })
+};
+
+//Assign favourite class to all available maps with favourite status = true.
+const assignFavouritesClass = () => {
+  $('.map-fav').removeClass('favourite');
+  $.ajax({
+    type: "GET",
+    url: `/maps/favs`,
+  })
+    .then((favmaps) => {
+      for (let favmap of favmaps) {
+        $(`.map_id_${favmap.id}`).each(function () {
+          $(this).find(".fa-heart").addClass("favourite");
+        });
+      }
     })
-      .then((favmaps) => {
-        for (let favmap of favmaps) {
-          $(`.map_id_${favmap.id}`).each(function () {
-            $(this).find(".fa-heart").addClass("favourite");
-          });
-        }
-      })
-      .catch(function (xhr, status, error) {
-        console.log("Error: " + error, status, xhr);
-      });
-  }
+    .catch(function (xhr, status, error) {
+      console.log("Error: " + error, status, xhr);
+    });
 };
