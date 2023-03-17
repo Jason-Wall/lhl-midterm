@@ -1,7 +1,9 @@
-//renders the member area
+//Creates the members view
 const viewMemberArea = () => {
+  // Clear out existing content and event listeners
   $(".mainContainer").empty();
   $(".mainContainer").off();
+  // Template for member area
   const $memberArea = `
   <section class="memberAreaContainer">
     <div class="myMapsContainer">
@@ -25,37 +27,34 @@ const viewMemberArea = () => {
   </section>
 `;
   $(".mainContainer").append($memberArea);
-  //2make an ajax call to get all related user information
+
+  //Get data for all tables
   $.ajax({
     type: "GET",
     url: "/users-api/myinfo",
   }).then((data) => {
-    //receive an object of user data from /myinfo route and use it to populate member page
-    // console.log("data:", data);
-    // My Maps
     renderMapsList(data.maps, "myMapsArea");
-
-    // My Fav Maps
     renderMapsList(data.favMaps, "myFavMapsArea");
-
-    // My Fav Pins
     renderMapsList(data.contributeMaps, "myContributionsArea");
   });
 };
 
+
+// Create the All Maps view
 const viewAllMaps = () => {
+  // Clear out existing content and event listeners
   $(".mainContainer").empty();
   $(".mainContainer").off();
-
+  // Template for all maps
   const $discoverMaps = `<div class="discoverMapsArea">
     <div class="discoverMapsTitle strong">Discover Maps!</div>
     <section class="mapListContainer">
     </section>
   </div>
-  <div class="mapArea">
-  No potatoes here</div>`;
+  <div class="mapArea"></div>`;
   $(".mainContainer").append($discoverMaps);
 
+  //Get data for all maps
   $.ajax({
     type: "GET",
     url: "/maps",
