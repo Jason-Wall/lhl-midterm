@@ -18,9 +18,6 @@
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
-  // width: 80%; /* Could be more or less, depending on screen size */
-  // I took this out Jason so the modal was only as wide as the content.
-  // I also display flex and align items flex start to .modal above to make sure that the modal was not getting width from its parent
 }
 
 input {
@@ -34,7 +31,6 @@ input {
   justify-content: flex-end;
 }
 
-//this gives the text inside the buttons padding
 .modal-buttons span {
   padding: 4px;
 }

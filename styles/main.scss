@@ -1,7 +1,6 @@
 /* style main content */
 @import "variables";
 
-/* define strong class */
 .strong {
   font-weight: bold;
 }
@@ -14,7 +13,6 @@
   display: flex;
   justify-content: space-around;
   min-height: 800px;
-  // I put flex start below so that I could modify the height of the children, I will show you how!
   align-items: flex-start;
 }
 
@@ -26,7 +24,6 @@
 }
 
 .discoverMapsArea {
-  // height: 100000px; //Tyler this is commented out so that the height of the container is determined by how many maps we have
   background-color: $medium;
   background-image: url("/images/diagmonds-light.png");
   width: 33%;
@@ -35,7 +32,6 @@
   border: solid 1px;
   min-height: 600px;
 }
-//60vh
 
 .discoverMapsTitle, .mapListContainer, .myMapsTitle, .myFavMapsTitle, .myContributions, .mapInfoDescription, .createAPin {
  border: solid 1px;
@@ -68,7 +64,6 @@
 }
 
 .myMapsContainer, .myFavMapsContainer, .myMapContributions{
-  // height: 700px;
   width: 33%;
   border: solid 1px;
   background-color: $medium;
@@ -86,10 +81,5 @@
   cursor: pointer;
   color: $medium;
 }
-
-//temporary border to see what we are doing
-// div {
-//   border: solid 1px;
-// }
 
 
