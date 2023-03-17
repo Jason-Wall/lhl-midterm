@@ -25,9 +25,9 @@ const createMapForm = (id) => {
       <span class="cancel">Cancel</span>
     </div>`;
   $(".modal-content").append(modalDiv);
-// Focus to first instance of input:
-$('.modal-content').find('input')[0].focus();
-
+  forceFocusOnModal();
+  // Focus to first instance of input:
+  $(".modal-content").find("input")[0].focus();
 
   //create map listener -creates a map (updates maps db table) and closes modal
   $(".create").on("click", (event) => {
