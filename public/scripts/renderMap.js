@@ -1,3 +1,20 @@
+// Get mapinfo and render to map area.
+const populateMapArea = (mapID) => {
+  $(`.map_id_${mapID}`).on("click", () => {
+    $.ajax({
+      type: "GET",
+      url: `/maps/${mapID}`,
+    })
+      .then(({ mapObj, api }) => {
+        renderMapArea(mapObj, api);
+      })
+      .catch(function (xhr, status, error) {
+        console.log("Error: " + error, status, xhr);
+      });
+  });
+};
+
+
 // renders a blankmap for the starter map/ homepage
 const renderBlankMap = (api) => {
   const $mapDiv = $(`
