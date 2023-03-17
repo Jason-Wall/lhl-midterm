@@ -80,12 +80,18 @@ const renderMapInfo = (mapInfo) => {
   const $discoverMaps = $(`
   <div class="discoverMapsTitle mapInfoTitle strong">${mapInfo.map_title}!</div>
   <div class="mapInfoDescription">${mapInfo.map_description}!</div>
+  <container class="addPin">
   <div class="createAPin"><i class="icon fa-solid fa-location-dot">Add A Pin</i></div>
+  </container>
   <section class="mapListContainer pinContainer">
   </section>
 `);
   $(".discoverMapsArea").empty();
   $(".discoverMapsArea").append($discoverMaps);
+
+  if (!$('.logout').length) {
+    $('.addPin').empty()
+  }
 
   $discoverMaps.find(".fa-location-dot").on("click", () => {
     console.log("clicked add pin");
