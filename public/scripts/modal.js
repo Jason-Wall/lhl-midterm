@@ -1,5 +1,3 @@
-$(document).ready(() => {});
-
 // create modal for edit:
 const renderModal = (modalForm, id) => {
   const modalDiv = `
@@ -15,7 +13,6 @@ const renderModal = (modalForm, id) => {
     }
   });
   modalForm(id);
-  forceFocusOnModal();
 };
 
 // Render Edit Map Form
@@ -29,7 +26,7 @@ const editMapForm = (id) => {
     .then(({ mapObj, api }) => {
       map = mapObj.mapData;
       const modalDiv = `
-    <img class="mapListPic"
+    <img class="popUpPic"
           src=${map.map_url}
           alt="map image">
           <label for="cover-photo">Map Url:</label>
@@ -50,6 +47,7 @@ const editMapForm = (id) => {
       <span class="cancel">Cancel</span>
     </div>`;
       $(".modal-content").append(modalDiv);
+      forceFocusOnModal();
       $(".modal-content").find("input")[0].focus();
 
       // Event listener, accept changes and write to db. Close modal and update maps table.
@@ -115,6 +113,7 @@ const editPinForm = (pin) => {
       <span class="cancel">Cancel</span>
     </div>`;
       $(".modal-content").append(modalDiv);
+      forceFocusOnModal();
       $(".modal-content").find("input")[0].focus();
 
       // Event listener, accept changes and write to db. Close modal and update maps table.
