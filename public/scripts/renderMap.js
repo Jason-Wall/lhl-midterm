@@ -44,11 +44,9 @@ function blankMap() {
 
 // updates the map variables and makes a request to the api if no map showing or calls initMap
 const renderMapArea = (mapObj, api) => {
-  console.log('renderMapArea/mapObj', mapObj)
   mapInfo = mapObj.mapData;
   pinInfo = mapObj.pinsData;
   mapID = mapObj.mapData.id;
-  console.log(pinInfo);
   if ($(".mapArea").length === 0) {
     const $discoverMaps = `<div class="discoverMapsArea">
     <div class="discoverMapsTitle">Discover Maps!</div>
@@ -94,7 +92,6 @@ const renderMapInfo = (mapInfo) => {
     $('.addPin').empty()
   }
   $discoverMaps.find(".fa-location-dot").on("click", () => {
-    console.log("clicked add pin");
     renderModal(createPin, mapInfo.id);
   });
 };
@@ -102,7 +99,6 @@ const renderMapInfo = (mapInfo) => {
 
 //will gather all of the pin information from the database and display it
 const renderPinInfo = (pin) => {
-  console.log(pin);
   const pinDetails = $(`<div id ="${pin.id}" class="mapList">
   <img class="mapListPic"
     src=${pin.pin_url}
@@ -124,10 +120,8 @@ const renderPinInfo = (pin) => {
 
   pinDetails.find(".fa-pen-to-square").on("click", () => {
     renderModal(editPinForm, pin);
-    console.log(`Edit icon clicked for pin ID: ${pin.id}`);
   });
   pinDetails.find(".fa-trash-can").on("click", () => {
-    console.log("clicked trash can");
     renderModal(deletePin, pin.id);
   });
 }

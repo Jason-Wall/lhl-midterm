@@ -22,7 +22,6 @@ const getAMap = (mapID) => {
   return db
     .query(`SELECT * FROM maps WHERE maps.id = ${mapID};`)
     .then((data) => {
-      console.log(data.rows[0]);
       return data.rows[0];
     })
     .catch(function (xhr, status, error) {
@@ -170,7 +169,6 @@ const deletePin = (pinID) => {
 
 // addPin
 const addPin = (pinCreation) => {
-  console.log("pinCreation", pinCreation);
   if (pinCreation.pin_url === "") {
     pinCreation.pin_url =
       "https://img.freepik.com/free-vector/location_53876-25530.jpg?t=st=1678987209~exp=1678987809~hmac=67360a480d47250c074b3a292783c7876973ff673daa994fd0113c008498365f";
@@ -185,7 +183,6 @@ const addPin = (pinCreation) => {
     pinCreation.city,
     pinCreation.country,
   ];
-  console.log('pinurl', pinCreation.pin_url)
   return db.query(
     `INSERT INTO pins (map_id, user_id, pin_title, pin_description, pin_url, street_address, city, country)
   VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,

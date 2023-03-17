@@ -58,7 +58,6 @@ const editMapForm = (id) => {
           map_description: $("#map-description").val(),
           map_url: $("#cover-photo").val(),
         };
-        // console.log("accept button", mapEdits);
         $.ajax({
           method: "PATCH",
           url: `/maps/${id}`,
@@ -81,7 +80,6 @@ const editMapForm = (id) => {
 
 // Render Edit Pin Form
 const editPinForm = (pin) => {
-  // console.log(pin.map_id, pin.id)
   // Make request to get all pin info for the relevant pin.
   $.ajax({
     type: "GET",
@@ -127,18 +125,14 @@ const editPinForm = (pin) => {
           city: $("#pin-city").val(),
           country: $("#pin-country").val(),
         };
-        console.log("accept button", pinEdits);
         $.ajax({
           method: "PATCH",
           url: `/pins/${pin.id}`,
           data: pinEdits,
         }).then(({ mapObj, api }) => {
-          console.log(mapObj);
           $(".modal").off();
           $(".modal").remove();
-          //may need to change viewMemberArea()
           renderMapArea(mapObj, api);
-          // Need to refresh the maps column. Work with Jenny on this.
         });
       });
 

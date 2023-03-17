@@ -53,7 +53,6 @@ router.patch("/:id/favs", (req, res) => {
   const map_id = req.params.id;
   const user_id = req.cookies.user_id;
   favsdb.toggleMapFav(user_id,map_id).then((returnFav) => {
-    console.log('returnFav:  ',returnFav);
     res.send(returnFav);
   });
 });

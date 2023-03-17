@@ -60,7 +60,6 @@ const viewAllMaps = () => {
     url: "/maps",
   })
     .then(({ maps, api }) => {
-      console.log(maps);
       renderMapsList(maps, "discoverMapsArea");
       renderBlankMap(api);
     })
