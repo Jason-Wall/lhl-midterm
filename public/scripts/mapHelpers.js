@@ -1,7 +1,11 @@
+// Populates map lists on member page and allmaps view.
+
 // Accepts maps as an object of maps, class name of the container
 // to be appended to. eg. <div class="test"> would be 'test'
 const renderMapsList = (maps, container) => {
+  // clear target container of divs.
   $(`.${container}`).find(".mapListContainer").remove();
+
   for (let map of maps) {
     const newDiv = $(`
     <section class="mapListContainer">
@@ -19,6 +23,7 @@ const renderMapsList = (maps, container) => {
     </section>
     `);
     $(`.${container}`).append(newDiv);
+
     // if user is logged in, create icons
     if ($(".logout").length) {
       const icons = $(`
@@ -27,6 +32,7 @@ const renderMapsList = (maps, container) => {
       <i class="icon fa-regular fa-trash-can"></i>`);
       newDiv.find(".mapListIcons").append(icons);
 
+      // Icon event listeners
       newDiv.find(".fa-heart").on("click", function (event) {
         event.stopPropagation();
         toggleFavourite(map.id).then(() => {

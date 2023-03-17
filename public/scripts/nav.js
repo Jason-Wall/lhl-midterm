@@ -64,8 +64,6 @@ const myMapsEventListen = () => {
       type: "POST",
       url: "/users-api/login/1",
     }).then((response) => {
-      // console.log(response);
-      //1calls viewMemberArea with the user object
       viewMemberArea(response.user);
     });
   });
@@ -78,7 +76,6 @@ const createMapEventListen = () => {
       type: "GET",
       url: "/users-api/myinfo",
     }).then((data) => {
-      console.log("data,", data);
       renderModal(createMapForm, data.maps[0].user_id);
     });
   });
