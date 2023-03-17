@@ -1,8 +1,7 @@
 // create modal for creating a new map:
 
-// Render Create Map Form into modal
+// Create Map form for modal()
 const createMapForm = (id) => {
-  // Create a series of text boxes
   const modalDiv = `
     <section>
     <div><label for="map-title">Title:</label>
@@ -29,7 +28,7 @@ const createMapForm = (id) => {
   // Focus to first instance of input:
   $(".modal-content").find("input")[0].focus();
 
-  //create map listener -creates a map (updates maps db table) and closes modal
+  //Creates a map (updates maps db table) and closes modal
   $(".create").on("click", (event) => {
     const mapCreation = {
       user_id: id,
@@ -39,13 +38,12 @@ const createMapForm = (id) => {
       city: $(".newCity").val(),
       country: $(".newCountry").val(),
     };
-    //updates maps db table
+    //Inserts to maps db table
     $.ajax({
       type: "POST",
       url: `/maps/${id}/create`,
       data: mapCreation,
     }).then(() => {
-      // need to refesh the maps column talk about with Jason
       $(".modal").off();
       $(".modal").remove();
       viewMemberArea();

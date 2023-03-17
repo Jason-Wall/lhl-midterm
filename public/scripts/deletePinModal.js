@@ -1,6 +1,5 @@
 //delete pin
 const deletePin = (pinId) => {
-  // Create buttons
   const modalDiv = `
   <section><h3>Are you sure you want to delete this pin?</h3></section>
     </section>
@@ -11,9 +10,8 @@ const deletePin = (pinId) => {
   $(".modal-content").append(modalDiv);
   $('.modal-content').find('.cancel').focus();
 
-  //create pin listener -deletes the pin (updates maps db table) and closes modal
+  //deletes the pin (updates pins db table) and closes modal
   $(".deletePin").on("click", () => {
-    console.log("pinID", pinId);
     const pinDeletion = {
       pin_id: pinId,
     };

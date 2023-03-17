@@ -2,7 +2,6 @@
 
 // Render Delete Map Form into modal
 const deleteMapForm = (mapId) => {
-  // Create buttons
   const modalDiv = `
   <section><h3>Are you sure you want to delete this map?</h3></section>
     </section>
@@ -13,9 +12,8 @@ const deleteMapForm = (mapId) => {
   $(".modal-content").append(modalDiv);
   $('.modal-content').find('.cancel').focus();
 
-  //create map listener -deletes the map (updates maps db table) and closes modal
+  //Deletes the map (updates maps db table) and closes modal
   $(".deleteMap").on("click", () => {
-    console.log("mapID;", mapId);
     const mapDeletion = {
       map_id: mapId,
     };
@@ -25,7 +23,6 @@ const deleteMapForm = (mapId) => {
       url: `/maps/delete`,
       data: mapDeletion,
     }).then(() => {
-      // need to refesh the maps column talk about with Jason
       $(".modal").off();
       $(".modal").remove();
       viewMemberArea();

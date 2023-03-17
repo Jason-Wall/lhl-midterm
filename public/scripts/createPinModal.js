@@ -1,8 +1,7 @@
-// create modal for creating a new map:
+// create modal for creating a new pin:
 
-// Render Create Map Form into modal
+// Create pin form for modal()
 const createPin = (mapId) => {
-  // Create a series of text boxes
   const modalDiv = `
     <section>
     <label for="pin-title">Pin Title:</label>
@@ -32,7 +31,7 @@ const createPin = (mapId) => {
   forceFocusOnModal();
   $(".modal-content").find("input")[0].focus();
 
-  //create map listener -creates a map (updates maps db table) and closes modal
+  //Creates a pin (updates pins db table) and closes modal
   $(".createNewPin").on("click", () => {
     const pinCreation = {
       map_id: mapId,
@@ -50,7 +49,6 @@ const createPin = (mapId) => {
       url: `/pins/${mapId}/create`,
       data: pinCreation,
     }).then(({ mapObj, api }) => {
-      // need to refesh the maps column talk about with Jason
       $(".modal").off();
       $(".modal").remove();
       renderMapArea(mapObj, api);
