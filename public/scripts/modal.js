@@ -90,10 +90,10 @@ const editPinForm = (pin) => {
       const modalDiv = `
 
     <section>
-    <img class="PinListPic"
-    src=${pin.map_url}
+    <img class="PinListPic popUpPic"
+    src=${pin.pin_url}
     alt="Pin image">
-    <label for="cover-photo">Pin Description:</label>
+    <label for="cover-photo">Pin Url:</label>
     <input type="text" id="cover-photo" name="map-url" value="${pin.pin_url}" />
       <label for="pin-title">Pin Title:</label>
       <input type="text" id="pin-title" name="pin-title" value="${pin.pin_title}" /><br>
