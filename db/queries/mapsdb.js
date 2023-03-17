@@ -1,5 +1,6 @@
 const db = require("../connection");
 
+// getMaps - Get object of all maps with creator name
 const getMaps = () => {
   return db
     .query(
@@ -16,6 +17,7 @@ const getMaps = () => {
     });
 };
 
+// getAMap - Get individual map object by map id.
 const getAMap = (mapID) => {
   return db
     .query(`SELECT * FROM maps WHERE maps.id = ${mapID};`)
@@ -28,6 +30,8 @@ const getAMap = (mapID) => {
     });
 };
 
+
+// Edit map
 const editMap = (mapEdits) => {
   const queryVars = [
     mapEdits.map_id,
@@ -47,6 +51,8 @@ const editMap = (mapEdits) => {
   );
 };
 
+
+// Create Map
 const createMap = (data) => {
   if (data.map_url === "") {
     data.map_url =
@@ -67,21 +73,14 @@ const createMap = (data) => {
   );
 };
 
+
+// Delete Map
 const deleteMap = (mapId) => {
   return db.query(`DELETE FROM maps WHERE id = $1;`, [mapId]);
 };
 
-const getPins = (mapID) => {
-  return db
-    .query(`SELECT pins.*, users.name FROM pins JOIN users ON user_id = users.id WHERE map_id = ${mapID};`)
-    .then((data) => {
-      return data.rows;
-    })
-    .catch(function (xhr, status, error) {
-      console.log("Error: " + error);
-    });
-};
 
+// getMapData - Get map and pin data for individual map. Used in single Map View.
 const getMapData = (mapID) => {
   mapInfo = {};
   return getAMap(mapID)
@@ -98,6 +97,34 @@ const getMapData = (mapID) => {
     });
 };
 
+
+// getPins - Get object of all pins and their creators name
+const getPins = (mapID) => {
+  return db
+    .query(`SELECT pins.*, users.name FROM pins JOIN users ON user_id = users.id WHERE map_id = ${mapID};`)
+    .then((data) => {
+      return data.rows;
+    })
+    .catch(function (xhr, status, error) {
+      console.log("Error: " + error);
+    });
+};
+
+
+// getPinData - Get individual pin data
+const getPinData = (pinID) => {
+  return db
+    .query(`SELECT * FROM pins WHERE pins.id = ${pinID};`)
+    .then((data) => {
+      return data.rows[0];
+    })
+    .catch(function (xhr, status, error) {
+      console.log("Error: " + error);
+    });
+};
+
+
+// Edit Pin
 const editPin = (data) => {
   queryVars = [
     data.id,
@@ -128,6 +155,8 @@ const editPin = (data) => {
     });
 };
 
+
+// Delete Pin
 const deletePin = (pinID) => {
   return db.query(`DELETE FROM pins WHERE pins.id = $1 RETURNING map_id`, [pinID])
   .then((mapId) => {
@@ -138,17 +167,8 @@ const deletePin = (pinID) => {
     });
 };
 
-const getPinData = (pinID) => {
-  return db
-    .query(`SELECT * FROM pins WHERE pins.id = ${pinID};`)
-    .then((data) => {
-      return data.rows[0];
-    })
-    .catch(function (xhr, status, error) {
-      console.log("Error: " + error);
-    });
-};
 
+// addPin
 const addPin = (pinCreation) => {
   console.log("pinCreation", pinCreation);
   if (pinCreation.pin_url === "") {
@@ -172,6 +192,8 @@ const addPin = (pinCreation) => {
     pinInfo
   );
 };
+
+
 
 module.exports = {
   getMaps,

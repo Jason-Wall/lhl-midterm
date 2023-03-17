@@ -7,7 +7,6 @@
 
 const express = require("express");
 const router = express.Router();
-const usersdb = require("../db/queries/users");
 const mapsdb = require("../db/queries/mapsdb");
 const favsdb = require("../db/queries/favsdb");
 
