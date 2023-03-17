@@ -1,6 +1,6 @@
 const db = require("../connection");
 
-// Return list of map id's for users favourites.
+// getFavMaps - Return list of map id's for users favourites.
 const getFavMaps = (user_id) => {
   return db
     .query(`SELECT maps.id FROM maps JOIN map_favourites ON map_id = maps.id WHERE map_favourites.user_id = ${user_id} AND fav_status = TRUE;`)
@@ -12,7 +12,7 @@ const getFavMaps = (user_id) => {
     });
 };
 
-// Toggles favourite status. Creates a new favourite if it doesn't already exist.
+// toggleMapFav - Toggles favourite status. Creates a new favourite if it doesn't already exist.
 const toggleMapFav = (user_id,map_id) => {
   return db
     .query(`
