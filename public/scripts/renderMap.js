@@ -111,6 +111,7 @@ const renderPinInfo = (pin) => {
   const $icons = `
   <i class="icon fa-solid fa-pen-to-square"></i>
   <i class="icon fa-regular fa-trash-can"></i>`;
+  if ($('.logout').length > 0) {
   pinDetails.find(".pinIcons").append($icons);
 
   pinDetails.find(".fa-pen-to-square").on("click", () => {
@@ -122,4 +123,5 @@ const renderPinInfo = (pin) => {
     console.log("clicked trash can");
     renderModal(deletePin, pin.id);
   });
+}
 };

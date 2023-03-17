@@ -24,8 +24,6 @@ const geoCodeMap = () => {
       console.log(
         "Geocode was not successful for the following reason: " + status
       );
-      alert("Geocode was not successful for the following reason: " + status + " : please delete recently created map")
-
     }
   });
 };
@@ -70,7 +68,6 @@ const geoCode = (info) => {
       console.log(
         "Geocode was not successful for the following reason: " + status
       );
-      alert("Geocode was not successful for the following reason: " + status + " : please delete recently created pin")
     }
   });
 };
