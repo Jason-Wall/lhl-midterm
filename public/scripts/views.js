@@ -18,7 +18,7 @@ const viewMemberArea = () => {
     </div>
     <div class="myMapContributions">
       <div class="myContributionsArea">
-        <div class="myContributions strong">Map's I contribute to</div>
+        <div class="myContributions strong">Map contributions</div>
         <section class="myContributionsAreaContainer"></section>
       </div>
     </div>
@@ -40,9 +40,8 @@ const viewMemberArea = () => {
 
     // My Fav Pins
     renderMapsList(data.contributeMaps, "myContributionsArea");
-
-    }
-  )};
+  });
+};
 
 const viewAllMaps = () => {
   $(".mainContainer").empty();
@@ -61,11 +60,11 @@ const viewAllMaps = () => {
     type: "GET",
     url: "/maps",
   })
-    .then(({maps, api}) => {
-      console.log(maps)
-    renderMapsList(maps, "discoverMapsArea")
-    renderBlankMap(api)
-})
+    .then(({ maps, api }) => {
+      console.log(maps);
+      renderMapsList(maps, "discoverMapsArea");
+      renderBlankMap(api);
+    })
     .catch(function (xhr, status, error) {
       console.log("Error: " + error);
     });
