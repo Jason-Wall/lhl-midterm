@@ -1,6 +1,9 @@
 const db = require("../connection");
 
-//4this query returns the data to users-api .then of the route /myinfo
+// Multi query for user main page.
+// Gets array of maps created by user (maps)
+// Gets array of maps favourited by user (favMaps)
+// Gets array of maps contributed to by user (contributeMaps)
 const getUserData = (userId) => {
   return db
     .query(
@@ -22,10 +25,6 @@ const getUserData = (userId) => {
             .then((contributeMaps) => {
               return {
                 maps: maps.rows,
-                // pins: pins.rows,
-                // pin_favourites: pin_favourites.rows,
-                // map_favourites: map_favourites.rows,
-                // user: user.rows,
                 favMaps: favMaps.rows,
                 contributeMaps: contributeMaps.rows,
               };
@@ -33,27 +32,6 @@ const getUserData = (userId) => {
         });
     });
 };
-      // return db
-      //   .query(`SELECT * FROM pins WHERE pins.user_id = $1;`, [userId])
-      //   .then((pins) => {
-          // return db
-          //   .query(
-          //     `SELECT * FROM pin_favourites WHERE pin_favourites.user_id = $1`,
-          //     [userId]
-          //   )
-          //   .then((pin_favourites) => {
-              // return db
-              //   .query(
-              //     `SELECT * FROM map_favourites WHERE map_favourites.user_id = $1 AND fav_status = TRUE`,
-              //     [userId]
-              //   )
-              //   .then((map_favourites) => {
-                  // return db
-                  //   .query(`SELECT * FROM users WHERE users.id = $1`, [userId])
-                  //   .then((user) => {
-//             });
-//         });
-//     });
-// };
+
 
 module.exports = { getUserData };
