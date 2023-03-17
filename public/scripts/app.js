@@ -4,8 +4,6 @@ $(document).ready(() => {
   logoOnClick();
   viewAllMaps();
   populateMapArea();
-  // renderBlankMap();
-  // renderMap1();
 });
 
 
