@@ -1,12 +1,31 @@
 -- pins for map 1 (jennys map)
 INSERT INTO pins (map_id, user_id, pin_title, pin_description, pin_url, street_address, city, country)
-VALUES (1, 1, 'Great Dane', 'spotted at the Calgary stampede', 'https://img.freepik.com/free-vector/location_53876-25530.jpg?t=st=1678987209~exp=1678987809~hmac=67360a480d47250c074b3a292783c7876973ff673daa994fd0113c008498365f', '1410 Olympic Way SE', 'Calgary', 'canada');
+VALUES (1, 1, 'Great Dane', 'spotted at david lam park', 'https://www.thesprucepets.com/thmb/DrbC35E5L8GxriqBs5L7YjLIYHM=/1280x0/filters:no_upscale():strip_icc()/great-dane-129741288-resized-56a26a905f9b58b7d0c9fe74.jpg', '1300 Pacific Blvd', 'vancouver', 'canada');
 
 INSERT INTO pins (map_id, user_id, pin_title, pin_description, pin_url, street_address, city, country)
-VALUES (1, 2, 'Chihuahua', 'spotted at the starbucks', 'https://img.freepik.com/free-vector/location_53876-25530.jpg?t=st=1678987209~exp=1678987809~hmac=67360a480d47250c074b3a292783c7876973ff673daa994fd0113c008498365f', '1120 16 Ave NW', 'Calgary', 'canada');
+VALUES (1, 2, 'Chihuahua', 'spotted at the starbucks', 'https://www.thesprucepets.com/thmb/0guJiZw8_gg61RIZVZKRS74XPA4=/2094x0/filters:no_upscale():strip_icc()/twenty20_f84c633e-705e-4bf8-a724-00cdea750d8d-590b51893df78c92837b18d6.jpg', '785 denman st', 'vancouver', 'canada');
 
 INSERT INTO pins (map_id, user_id, pin_title, pin_description, pin_url, street_address, city, country)
-VALUES (1, 2, 'Chow Chow', 'spotted at the dog park', 'https://img.freepik.com/free-vector/location_53876-25530.jpg?t=st=1678987209~exp=1678987809~hmac=67360a480d47250c074b3a292783c7876973ff673daa994fd0113c008498365f', '1135 14 Ave SW', 'Calgary', 'canada');
+VALUES (1, 3, 'Chow Chow', 'spotted at the dog park', 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F47%2F2021%2F05%2F20%2Fchow-chow-standing-in-park-279986930-2000.jpg', '416 N Ingleton Ave', 'burnaby', 'canada');
+
+INSERT INTO pins (map_id, user_id, pin_title, pin_description, pin_url, street_address, city, country)
+VALUES (1, 1, 'Golden Retriever', 'spotted Hannibal at Nelson park', 'https://smartcdn.gprod.postmedia.digital/vancouversun/wp-content/uploads/2022/06/png0616nfetch-03.jpg?quality=90&strip=all&w=944&h=708&type=webp', '1030 Bute St', 'vancouver', 'canada');
+
+INSERT INTO pins (map_id, user_id, pin_title, pin_description, pin_url, street_address, city, country)
+VALUES (1, 1, 'French Bulldog', 'spotted in coal harbour', 'https://dogtime.com/assets/uploads/gallery/french-bulldog-dog-breed-pictures/7-silverbrown.jpg', '1583 Coal Harbour Quay', 'vancouver', 'canada');
+
+INSERT INTO pins (map_id, user_id, pin_title, pin_description, pin_url, street_address, city, country)
+VALUES (1, 1, 'Mastiff', 'spotted on the sidewalk', 'https://cdn.britannica.com/02/234902-050-E6163C4B/Brindle-mastiff-dog.jpg', '1333 Robson St', 'vancouver', 'canada');
+
+INSERT INTO pins (map_id, user_id, pin_title, pin_description, pin_url, street_address, city, country)
+VALUES (1, 3, 'Golden Retriever', 'outside the safeway waiting for its owner', 'https://dogsnet.com/wp-content/uploads/2021/07/red-golden-retriever-DN-long.jpg', '1611 Davie St', 'vancouver', 'canada');
+
+INSERT INTO pins (map_id, user_id, pin_title, pin_description, pin_url, street_address, city, country)
+VALUES (1, 1, 'Yorkie', 'running away from its owner', 'https://www.akc.org/wp-content/uploads/2017/11/Yorkshire-Terrier-standing-outdoors-on-a-sunny-day.jpg', '1204 Beach Ave', 'vancouver', 'canada');
+
+INSERT INTO pins (map_id, user_id, pin_title, pin_description, pin_url, street_address, city, country)
+VALUES (1, 2, 'Pitbull', 'in the backseat of a Toyota', 'https://cdn.shopify.com/s/files/1/0840/6049/files/0022_The_History_of_the_Blue_Nose_Pitbull.jpg?v=1676738275', '899 W 12th Ave', 'vancouver', 'canada');
+
 
 
 --  pins for map 2 (tylers map)
