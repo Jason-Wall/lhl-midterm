@@ -105,7 +105,7 @@ const renderPinInfo = (pin) => {
   <img class="mapListPic"
     src=${pin.pin_url}
     alt="map image">
-  <div class="mapListDetails pinDetails">
+  <div class="pinDetails">
     <div class="title strong">${pin.pin_title}</div>
     <div class="createdBy">Created by: ${pin.name}</div>
     <div class="mapListIcons pinIcons"></div>

@@ -82,7 +82,7 @@
   align-items: center;
 }
 
-.icon:hover, button:hover, .logo:hover {
+.icon:hover, button:hover, .logo:hover, .mapListDetails .title:hover, .mapListDetails .createdBy:hover {
   cursor: pointer;
   color: $medium;
 }
