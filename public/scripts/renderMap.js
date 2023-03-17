@@ -1,24 +1,4 @@
-// renders a map
-const renderMap1 = () => {
-  // $.ajax({
-  //   type: "GET",
-  //   url: `/maps`,
-  // })
-  //   .then((maps) => {
-  //     let id = maps[0].id
-  $.ajax({
-    type: "GET",
-    url: `/maps/1`,
-  })
-    .then(({ mapObj, api }) => {
-      console.log(mapObj);
-      renderMapArea(mapObj, api);
-    })
-    .catch(function (xhr, status, error) {
-      console.log("Error: " + error, status, xhr);
-    });
-};
-
+// renders a blankmap for the starter map/ homepage
 const renderBlankMap = (api) => {
   const $mapDiv = $(`
   <div id="googleMap" class="googleMap" style="width:100%;height:100%;"></div>
@@ -29,6 +9,8 @@ defer></script>
   $(".mapArea").append($mapDiv);
 };
 
+
+//callback from google api for blank renderBlankMap
 function blankMap() {
   lat = 37.3875
   long = -122.0575
@@ -41,6 +23,7 @@ function blankMap() {
     mapSetUp
   );
 }
+
 
 // updates the map variables and makes a request to the api if no map showing or calls initMap
 const renderMapArea = (mapObj, api) => {
@@ -76,6 +59,8 @@ const renderMapArea = (mapObj, api) => {
   $(".mapArea").append($mapDiv);
 };
 
+
+//will gather all of the map information from the database and display it
 const renderMapInfo = (mapInfo) => {
   const $discoverMaps = $(`
   <div class="discoverMapsTitle mapInfoTitle strong">${mapInfo.map_title}!</div>
@@ -88,17 +73,17 @@ const renderMapInfo = (mapInfo) => {
 `);
   $(".discoverMapsArea").empty();
   $(".discoverMapsArea").append($discoverMaps);
-
   if (!$('.logout').length) {
     $('.addPin').empty()
   }
-
   $discoverMaps.find(".fa-location-dot").on("click", () => {
     console.log("clicked add pin");
     renderModal(createPin, mapInfo.id);
   });
 };
 
+
+//will gather all of the pin information from the database and display it
 const renderPinInfo = (pin) => {
   console.log(pin);
   const pinDetails = $(`<div id ="${pin.id}" class="mapList">
@@ -124,7 +109,6 @@ const renderPinInfo = (pin) => {
     renderModal(editPinForm, pin);
     console.log(`Edit icon clicked for pin ID: ${pin.id}`);
   });
-
   pinDetails.find(".fa-trash-can").on("click", () => {
     console.log("clicked trash can");
     renderModal(deletePin, pin.id);

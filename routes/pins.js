@@ -12,7 +12,6 @@ const mapsdb = require("../db/queries/mapsdb");
 
 // GET /pins/:id/ - Take you to the pin information
 router.get("/:id", (req, res) => {
-  console.log('hi')
   let pinID = req.params.id;
   mapsdb.getPinData(pinID)
   .then((pinObj) => {
@@ -31,7 +30,6 @@ router.post("/:id/create", (req, res) => {
   return mapsdb.getMapData(mapId)
   })
   .then((mapObj) => {
-    console.log(mapObj)
     res.send({ mapObj, api: process.env.GOOGLE_MAPS_API_KEY })
   })
 });
@@ -44,7 +42,6 @@ router.patch("/:id", (req, res) => {
   return mapsdb.getMapData(mapId)
   })
   .then((mapObj) => {
-    console.log(mapObj)
     res.send({ mapObj, api: process.env.GOOGLE_MAPS_API_KEY })
   })
 });
@@ -53,11 +50,9 @@ router.patch("/:id", (req, res) => {
 router.delete("/delete", (req, res) => {
   mapsdb.deletePin(req.body.pin_id)
   .then((mapId) => {
-    console.log('deletePinReturn', mapId)
     return mapsdb.getMapData(mapId)
   })
   .then((mapObj) => {
-    console.log('getmapdataReturn', mapObj)
     res.send({ mapObj, api: process.env.GOOGLE_MAPS_API_KEY });
   });
 });

@@ -4,19 +4,14 @@ $(document).ready(() => {
   logoOnClick();
   viewAllMaps();
   populateMapArea();
-  // renderBlankMap();
-  // renderMap1();
 });
 
 
 const populateMapArea = (mapID) => {
-  // console.log(mapID);
   $(`.map_id_${mapID}`).on("click", () => {
     $.ajax({
       type: "GET",
-      url: `/maps/${mapID}`, //this will be received in the backend route with the help of req.params
-      //data: {mapid: mapID} //This will be received through req.body in the backend route
-      // data: {mapid: mapID}
+      url: `/maps/${mapID}`,
     })
       .then(({ mapObj, api }) => {
         renderMapArea(mapObj, api);
