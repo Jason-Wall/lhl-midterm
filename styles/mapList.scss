@@ -6,6 +6,7 @@
   max-width: 10%;
   min-width: 69px;
   height: auto;
+  max-height: 69px;
   margin-right: 7px;
   margin-bottom: 3px;
 }
@@ -14,7 +15,8 @@
   max-width: 100px;
 }
 
-.mapListDetails, .pinDetails {
+.mapListDetails,
+.pinDetails {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -26,8 +28,8 @@
 }
 
 .icon {
-margin-left: 2px;
-margin-bottom: 2px;
+  margin-left: 2px;
+  margin-bottom: 2px;
 }
 
 .gm-style .gm-style-iw-c {
@@ -37,4 +39,4 @@ margin-bottom: 2px;
 
 .favourite {
   color: rgb(230, 37, 37);
-  }
+}

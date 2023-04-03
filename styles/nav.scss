@@ -1,33 +1,36 @@
 /* style nav bar */
 @import "variables";
 
-
 nav {
-  font-family: 'Sen', sans-serif;
+  font-family: "Sen", sans-serif;
   padding: 1em;
-  background-color:$dark;
+  background-color: $dark;
   width: 100%;
-  min-width:866px;
+  min-width: 866px;
   display: flex;
   justify-content: space-between;
   height: 90px;
-  position: fixed
+  position: fixed;
 }
 
 .button {
-  font-size:x-large;
-  margin-left: 4px;
-  background-color: $light;
+  border: none;
+  border-radius: 5px;
+  font-size: x-large;
+  margin-left: 5px;
+  color: $light;
+  background: transparent;
 }
 
 .logo {
   margin-left: 1em;
   color: $light;
-  font-size:xx-large;
+  font-size: xx-large;
   cursor: default;
 }
 
-.login, .logout{
+.login,
+.logout {
   margin-right: 1em;
 }
 
