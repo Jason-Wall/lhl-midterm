@@ -3,26 +3,25 @@
 // Create pin form for modal()
 const createPin = (mapId) => {
   const modalDiv = `
-    <section>
-    <label for="pin-title">Pin Title:</label>
-    <input type="text" id="pin-title" name="pin-title" value="" placeholder="title"/>
+    <div class="create-map-modal">
+      <label for="pin-title">Pin Title:</label>
+      <input type="text" id="pin-title" name="pin-title" value="" placeholder="title"/>
 
-    <label for="pin-description">Pin Description:</label>
-    <input type="text" id="pin-description" name="pin-description" value="" placeholder="description"/><br>
+      <label for="pin-description">Pin Description:</label>
+      <input type="text" id="pin-description" name="pin-description" value="" placeholder="description"/>
 
-    <label for="pin-street-address">Street Address:</label>
-    <input type="text" id="pin-street-address" name="pin-street-address" value="" placeholder="1589 main st"/>
+      <label for="pin-street-address">Street Address:</label>
+      <input type="text" id="pin-street-address" name="pin-street-address" value="" placeholder="1589 main st"/>
 
-    <label for="pin-city">City:</label>
-    <input type="text" id="pin-city" name="pin-city" value="" placeholder="city"/><br>
+      <label for="pin-city">City:</label>
+      <input type="text" id="pin-city" name="pin-city" value="" placeholder="city"/>
 
-    <label for="pin-country">Country:</label>
-    <input type="text" id="pin-country" name="pin-country" value="" placeholder="country"/>
+      <label for="pin-country">Country:</label>
+      <input type="text" id="pin-country" name="pin-country" value="" placeholder="country"/>
 
-    <label for="pin-url">Url:</label>
-    <input type="text" id="pin-url" name="pin-url" value="" placeholder="url"/>
-
-    </section>
+      <label for="pin-url">Url:</label>
+      <input type="text" id="pin-url" name="pin-url" value="" placeholder="url"/>
+    </div>
     <div class="modal-buttons">
       <span class="createNewPin">Create Pin!</span>
       <span class="cancel">Cancel</span>
