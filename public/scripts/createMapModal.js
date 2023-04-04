@@ -3,22 +3,23 @@
 // Create Map form for modal()
 const createMapForm = (id) => {
   const modalDiv = `
-    <section>
-    <div><label for="map-title">Title:</label>
-    <input class="newTitle" type="text" name="map-title" value="" placeholder="title"/>
+      <div class="create-map-modal">
+        <span class="strong">Create a new map</span>
+        <br>
+        <label for="map-title">Title:</label>
+        <input class="newTitle" type="text" name="map-title" value="" placeholder="title"/>
 
-    <label for="map-city">City:</label>
-    <input class="newCity" type="text" name="map-city" value="" placeholder="city"/>
+        <label for="map-city">City:</label>
+        <input class="newCity" type="text" name="map-city" value="" placeholder="city"/>
 
-    <label for="map-country">Country:</label>
-    <input class="newCountry" type="text" name="map-country" value="" placeholder="country"/></div><br>
-    <div><label for="map-description">Description:</label>
-    <input class="newDescription" type="text" name="map-description" value="" placeholder="description"/>
+        <label for="map-country">Country:</label>
+        <input class="newCountry" type="text" name="map-country" value="" placeholder="country"/>
+        <label for="map-description">Description:</label>
+        <input class="newDescription" type="text" name="map-description" value="" placeholder="description"/>
 
-    <label for="map-url">Url:</label>
-    <input class="newUrl" type="text" name="map-url" value="" placeholder="url"/></div>
-
-    </section>
+        <label for="map-url">Url:</label>
+        <input class="newUrl" type="text" name="map-url" value="" placeholder="url"/>
+      </div>
     <div class="modal-buttons">
       <span class="create">Create Map!</span>
       <span class="cancel">Cancel</span>
