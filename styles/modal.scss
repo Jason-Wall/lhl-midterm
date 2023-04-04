@@ -26,6 +26,23 @@
   flex-direction: column;
 }
 
+.edit-modal {
+  display: flex;
+  justify-content: space-between;
+}
+.edit-modal-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30%;
+}
+
+.edit-modal-right {
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+}
+
 input {
   margin: 4px;
   background-color: $medium;

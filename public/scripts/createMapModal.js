@@ -4,7 +4,7 @@
 const createMapForm = (id) => {
   const modalDiv = `
       <div class="create-map-modal">
-        <span class="strong">Create a new map</span>
+        <span class="strong">Create a New Map</span>
         <br>
         <label for="map-title">Title:</label>
         <input class="newTitle" type="text" name="map-title" value="" placeholder="title"/>
