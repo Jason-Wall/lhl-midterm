@@ -29,8 +29,8 @@ defer></script>
 
 //callback from google api for blank renderBlankMap
 function blankMap() {
-  lat = 37.3875
-  long = -122.0575
+  lat = 37.3875;
+  long = -122.0575;
   let mapSetUp = {
     center: new google.maps.LatLng(lat, long),
     zoom: 10,
@@ -83,13 +83,11 @@ const renderMapInfo = (mapInfo) => {
   <container class="addPin">
   <div class="createAPin"><i class="icon fa-solid fa-location-dot">Add A Pin</i></div>
   </container>
-  <section class="mapListContainer pinContainer">
-  </section>
 `);
   $(".discoverMapsArea").empty();
   $(".discoverMapsArea").append($discoverMaps);
   if (!$('.logout').length) {
-    $('.addPin').empty()
+    $('.addPin').empty();
   }
   $discoverMaps.find(".fa-location-dot").on("click", () => {
     renderModal(createPin, mapInfo.id);
@@ -99,30 +97,34 @@ const renderMapInfo = (mapInfo) => {
 
 //will gather all of the pin information from the database and display it
 const renderPinInfo = (pin) => {
-  const pinDetails = $(`<div id ="${pin.id}" class="mapList">
-  <img class="mapListPic"
-    src=${pin.pin_url}
-    alt="map image">
-  <div class="pinDetails">
-    <div class="title strong">${pin.pin_title}</div>
-    <div class="createdBy">Created by: ${pin.name}</div>
-    <div class="mapListIcons pinIcons"></div>
-  </div>
-</div>
-<div class"mapDescription pinDesciption">${pin.pin_description}</div>
-`);
-  $(".mapListContainer").append(pinDetails);
+  const pinDetails = $(`
+  <section class="pinListContainer">
+    <div id = '${pin.id}' class="mapList">
+      <img class="mapListPic"
+        src=${pin.pin_url}
+        alt="map image">
+      <div class="mapListDetails">
+        <div class="title strong">${pin.pin_title}</div>
+        <div class="createdBy">Created by: ${pin.name}</div>
+        <div class="mapListIcons"></div>
+      </div>
+    </div>
+    <div class = "mapDescription">${pin.pin_description}</div>
+  </section>
+  `);
+
+  $(".discoverMapsArea").append(pinDetails);
   const $icons = `
   <i class="icon fa-solid fa-pen-to-square"></i>
   <i class="icon fa-regular fa-trash-can"></i>`;
   if ($('.logout').length > 0) {
-  pinDetails.find(".pinIcons").append($icons);
+    pinDetails.find(".pinIcons").append($icons);
 
-  pinDetails.find(".fa-pen-to-square").on("click", () => {
-    renderModal(editPinForm, pin);
-  });
-  pinDetails.find(".fa-trash-can").on("click", () => {
-    renderModal(deletePin, pin.id);
-  });
-}
+    pinDetails.find(".fa-pen-to-square").on("click", () => {
+      renderModal(editPinForm, pin);
+    });
+    pinDetails.find(".fa-trash-can").on("click", () => {
+      renderModal(deletePin, pin.id);
+    });
+  }
 };

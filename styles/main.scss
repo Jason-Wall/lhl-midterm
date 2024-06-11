@@ -6,13 +6,13 @@
 }
 
 .mainContainer {
-  background-image: url("/images/diagmonds-light.png");
-  background-color: $light;
-  font-family: 'PT Sans', sans-serif;
+  // background-image: url("/images/diagmonds-light.png");
+  background-color: $medium;
+  font-family: "PT Sans", sans-serif;
   padding-top: 100px;
   display: flex;
   justify-content: space-around;
-  min-height: 800px;
+  min-height: 90vh;
   align-items: flex-start;
 }
 
@@ -25,49 +25,67 @@
 
 .discoverMapsArea {
   background-color: $medium;
-  background-image: url("/images/diagmonds-light.png");
+  // background-image: url("/images/diagmonds-light.png");
   width: 33%;
   margin-left: 2em;
   margin-right: 1em;
-  border: solid 1px;
+  // border: solid 1px;
   min-height: 600px;
 }
 
-.discoverMapsTitle, .mapListContainer, .myMapsTitle, .myFavMapsTitle, .myContributions, .mapInfoDescription, .createAPin {
- border: solid 1px;
- background-color: $light;
- padding: 1em;
- margin: 2px;
+.discoverMapsTitle,
+.mapListContainer,
+.pinListContainer,
+.myMapsTitle,
+.myFavMapsTitle,
+.myContributions,
+.mapInfoDescription,
+.createAPin {
+  //  border: solid 1px;
+  border-radius: 10px;
+  background-color: $light;
+  padding: 1em;
+  margin: 5px;
 }
 
-.myContributions, .myFavMapsTitle, .myMapsTitle, .discoverMapsTitle {
-  font-size:large;
+.myContributions,
+.myFavMapsTitle,
+.myMapsTitle,
+.discoverMapsTitle {
+  font-size: large;
 }
 
 .mapDescription {
-  border: ridge 1px;
+  // border: ridge 1px;
   padding: 4px;
 }
 
 .mapArea {
-  border: ridge 3px;
+  // border: ridge 3px;
   display: flex;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
-  height: 600px;
+  height: 85vh;
   position: sticky;
-  top: 90px;
+  top: 100px;
   width: 66%;
   padding: 1em;
   margin-right: 2em;
   margin-left: 1em;
 }
 
-.myMapsContainer, .myFavMapsContainer, .myMapContributions{
+.googleMap {
+  border-radius: 10px;
+}
+
+.myMapsContainer,
+.myFavMapsContainer,
+.myMapContributions {
   width: 33%;
-  border: solid 1px;
+  // border: solid 1px;
+  border-radius: 10px;
   background-color: $medium;
-  background-image: url("/images/diagmonds-light.png");
+  // background-image: url("/images/diagmonds-light.png");
   min-height: 600px;
 }
 
@@ -77,9 +95,11 @@
   align-items: center;
 }
 
-.icon:hover, button:hover, .logo:hover, .mapListDetails .title:hover, .mapListDetails .createdBy:hover {
+.icon:hover,
+button:hover,
+.logo:hover,
+.mapListDetails .title:hover,
+.mapListDetails .createdBy:hover {
   cursor: pointer;
   color: $medium;
 }
-
-
